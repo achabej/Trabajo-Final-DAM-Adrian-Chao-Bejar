@@ -27,6 +27,10 @@ ResourcesManager="*res://Scripts/Systems/Enviroment/Resources_Manager.gd"
 
 project/assembly_name="Proyect Mobile Space Game"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/d/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false

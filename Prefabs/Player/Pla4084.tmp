@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=19 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
+[ext_resource type="PackedScene" uid="uid://bdyptm7smjixm" path="res://Models/Characters/addons/gdquest_gdbot/gdbot_skin.tscn" id="2_yssqg"]
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Controller.gd" id="3_4bf5b"]
 [ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_ag43d"]
 [ext_resource type="PackedScene" uid="uid://cjyl78b8oqo5a" path="res://Prefabs/Player/Extractor_Tool.tscn" id="5_bjpnc"]
@@ -40,14 +41,15 @@ camera = NodePath("CamNode/SpringArm3D/Camera3D")
 
 [node name="PlayerMesh" type="Node3D" parent="."]
 
-[node name="Mesh" type="Node3D" parent="PlayerMesh"]
-transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0, 0)
-
 [node name="weapon_holder" type="Node3D" parent="PlayerMesh"]
 script = ExtResource("3_4bf5b")
 
 [node name="Extractor_Tool" parent="PlayerMesh/weapon_holder" instance=ExtResource("5_bjpnc")]
 visible = false
+
+[node name="GDbotSkin" parent="PlayerMesh" instance=ExtResource("2_yssqg")]
+transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0, 0)
+script = null
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -60,17 +62,16 @@ transform = Transform3D(1.10651, 0, 0, 0, 1.10651, 0, 0, 0, 1.10651, 0, 1.00559,
 shape = SubResource("CapsuleShape3D_dbldf")
 
 [node name="CamNode" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.68307, 0.730354, 0, -0.730354, 0.68307, 0, 1.53635, 0)
+transform = Transform3D(1, 0, 0, 0, 0.842735, 0.53833, 0, -0.53833, 0.842735, 0, 1.53635, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CamNode"]
-transform = Transform3D(1, 0, 0, 0, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.955227, 0.295875, 0, -0.295875, 0.955227, 0, 0, 0)
 collision_mask = 2
-spring_length = 18.0
+spring_length = 12.0
 margin = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="CamNode/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
-fov = 60.0
 
 [node name="HealthController" parent="." instance=ExtResource("4_ag43d")]
 

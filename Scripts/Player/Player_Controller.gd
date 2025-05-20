@@ -21,12 +21,18 @@ var recharge_timer = 0.0
 
 @export var camera: Camera3D
 
+# Modelo del jugador
+@onready var player_model = preload("res://addons/Godot_4_3D_Characters/addons/gdquest_gdbot/gdbot_skin.tscn").instantiate()
+
 @onready var player_mesh = $PlayerMesh 
 @onready var health_controller = $HealthController
 @onready var hand_controller = $PlayerMesh/weapon_holder  
 
 const ROTATION_SPEED = 6.0  # Rotación normal
 const ROTATION_SHOOT_SPEED = 15.0  # Rotación al disparar
+
+func _ready() -> void:
+	$PlayerMesh/Mesh.add_child(player_model) 
 
 func _physics_process(delta: float) -> void:
 
