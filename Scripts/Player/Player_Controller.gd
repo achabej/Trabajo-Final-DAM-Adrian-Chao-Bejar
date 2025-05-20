@@ -23,6 +23,7 @@ var recharge_timer = 0.0
 
 # Modelo del jugador
 @onready var player_model = preload("res://addons/Godot_4_3D_Characters/addons/gdquest_gdbot/gdbot_skin.tscn").instantiate()
+@onready var anim_tree = player_model.get_node("AnimationTree")
 
 @onready var player_mesh = $PlayerMesh 
 @onready var health_controller = $HealthController
@@ -127,13 +128,17 @@ func handle_movement(delta: float) -> void:
 	# Controla la velocidad si se está esprintando, apuntando o caminando
 	if is_jetpacking:
 		current_speed = WALK_SPEED
+		#anim_tree.travel("jump")
 	else:
 		if Input.is_action_pressed("right_click") and current_weapon and !BuildManager.Building:  # Cuando se apunta
-			current_speed = AIM_SPEED  
+			current_speed = AIM_SPEED
+			#anim_tree.travel("walk")
 		elif Input.is_action_pressed("sprint"): 
 			current_speed = RUN_SPEED
+			#anim_tree.travel("run")
 		else:
 			current_speed = WALK_SPEED
+			#anim_tree.travel("walk")
 	
 	# Calcula el movimiento dependiendo del input
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
