@@ -43,10 +43,13 @@ func _ready() -> void:
 		detector.monitoring = true
 		detector.connect("body_entered", _on_convey_detector_body_entered)
 		detector.connect("body_exited", _on_convey_detector_body_exited)
-
-	var input_area = get_node_or_null("MatEnterPoints/Enter1/Area3D")
-	if input_area:
-		input_area.connect("body_entered", _on_material_entered)
+	
+	var mat_enter_points = get_node_or_null("MatEnterPoints")
+	if mat_enter_points:
+		for enter in mat_enter_points.get_children():
+			var area := enter.get_node_or_null("Area3D")
+			if area:
+				area.connect("body_entered", _on_material_entered)
 
 func _process(delta: float) -> void:
 	# Si tiene todos los materiales, empieza a producir
@@ -61,8 +64,8 @@ func _process(delta: float) -> void:
 		var scale_y = 1.0 + 0.1 * sin(anim_time)
 		mesh.scale.y = original_scale.y * scale_y
 	else:
-		mesh.scale = original_scale
-		
+		mesh.scale = original_scale	
+
 func _has_all_required_materials() -> bool:
 	for recipe in required_materials:
 		var inputs: Dictionary = recipe.get("Inputs", {})
@@ -82,7 +85,7 @@ func _has_all_required_materials() -> bool:
 func spawn_mat() -> void:
 	if not spawn_position or not is_instance_valid(current_conveyor):
 		return
-
+	
 	var best_recipe: Dictionary = {}
 	var best_fill_ratio: float = 0.0
 
@@ -114,6 +117,8 @@ func spawn_mat() -> void:
 		var amount = best_recipe["Inputs"][material]
 		material_storage[material] -= amount
 
+	# 🔁 Intentar recoger más materiales después de liberar espacio
+	_collect_pending_materials_from_inputs()
 	# Instanciar resultado
 	var prefab: PackedScene = best_recipe["Mat Spawn"]
 	var instance = prefab.instantiate()
@@ -124,7 +129,22 @@ func spawn_mat() -> void:
 	var manager = current_conveyor.get_node_or_null("Convey_Manager")
 	if manager and manager is ConveyScript and manager.current_material == null:
 		manager.current_material = instance
+		
 
+#Comprobamos si hay materiales en las entradas para recoger
+func _collect_pending_materials_from_inputs() -> void:
+	var mat_enter_points := get_node_or_null("MatEnterPoints")
+	if mat_enter_points:
+		for enter in mat_enter_points.get_children():
+			var area := enter.get_node_or_null("Area3D")
+			if area:
+				for body in area.get_overlapping_bodies():
+					if body.has_method("get_material_type"):
+						var mat_type : String = body.get_material_type()
+						if can_accept_material(mat_type):
+							receive_material(body, mat_type)
+
+#Metodo que se llama cuando termina el contador
 func _on_spawn_timer_timeout() -> void:
 	if blocking_materials == 0:
 		spawn_mat()
@@ -134,7 +154,6 @@ func _check_activation():
 	if not is_active and _has_all_required_materials():
 		is_active = true
 		spawn_timer.start()
-
 
 # Capacidad máxima basada en materiales requeridos
 func get_max_material_storage() -> int:
@@ -150,7 +169,7 @@ func can_accept_material(mat_type: String) -> bool:
 	var total := 0
 	for stored in material_storage.values():
 		total += stored
-	return total < get_max_material_storage()
+	return total <= get_max_material_storage()
 
 # Metodo que se llama cuando hay filtro y es para añadir el material a la fabrica
 func receive_material(body: Node3D, mat_type: String) -> void:
@@ -162,18 +181,14 @@ func _on_material_entered(body: Node3D) -> void:
 	if not get_parent().is_in_group("Build"):
 		return
 
-	if not (body.has_method("get_material_type")):
+	if not body.has_method("get_material_type"):
 		return
 
 	var mat_type = body.get_material_type()
 	print(mat_type)
 
-	var total_storage := 0
-	for stored in material_storage.values():
-		total_storage += stored
-
-	if total_storage + 1 > get_max_material_storage():
-		#print("⛔ Almacenamiento lleno, material rechazado")
+	if not can_accept_material(mat_type):
+		# print("⛔ No se puede aceptar más de este material:", mat_type)
 		return
 
 	if material_storage.has(mat_type):

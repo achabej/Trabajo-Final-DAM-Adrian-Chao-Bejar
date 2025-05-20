@@ -1,10 +1,11 @@
-[gd_scene load_steps=55 format=4 uid="uid://d1at21fcbuwp5"]
+[gd_scene load_steps=56 format=4 uid="uid://d1at21fcbuwp5"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="1_squtq"]
 [ext_resource type="Texture2D" uid="uid://d3up50xuy5oan" path="res://Models/Original/ChipRefinery_colormap.png" id="2_nx4e4"]
 [ext_resource type="Texture2D" uid="uid://dnmdoxetf4saf" path="res://Models/Original/Convey_Line_colormap.png" id="3_y2tw0"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Machine_Script.gd" id="5_mb0eg"]
 [ext_resource type="PackedScene" uid="uid://d35y1023ave83" path="res://Prefabs/Buildings/Materials/Chips.tscn" id="5_wn8ty"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/Label_Factory_Script.gd" id="7_r6nbq"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Enter_Filter_Script.gd" id="8_xqgyt"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4ir5c"]
@@ -705,6 +706,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0130549, -4.52088
 shape = SubResource("BoxShape3D_o3kg5")
 
 [node name="SpawnTimer" type="Timer" parent="Test_Generator_Manager"]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.873024, 0.487677, 0, -0.487677, 0.873024, 0, 2.92778, -0.00898534)
+text = "Test"
+script = ExtResource("7_r6nbq")
 
 [connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D" to="Test_Generator_Manager" method="_on_material_entered"]
 [connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter2/Area3D" to="Test_Generator_Manager" method="_on_material_entered"]

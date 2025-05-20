@@ -1,10 +1,11 @@
-[gd_scene load_steps=91 format=4 uid="uid://duw4g116ovu3k"]
+[gd_scene load_steps=92 format=4 uid="uid://duw4g116ovu3k"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="1_ad2xr"]
 [ext_resource type="Texture2D" uid="uid://dnmdoxetf4saf" path="res://Models/Original/Convey_Line_colormap.png" id="3_s3yni"]
 [ext_resource type="PackedScene" uid="uid://m7abq6t83gon" path="res://Prefabs/Buildings/Materials/Steel_Ingot.tscn" id="4_ns6yf"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Machine_Script.gd" id="5_2lqxp"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Enter_Filter_Script.gd" id="6_6xraj"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/Label_Factory_Script.gd" id="6_cm1lp"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4ir5c"]
 points = PackedVector3Array(0.996336, 0.423354, 0.996336, -1, -2.54794, -1, -1, -2.54794, 0.988733, 0.996232, -2.5591, 0.996232, 0.988733, -2.54794, -1, -1, 0.412038, -1, -1, 0.412038, 0.988733, 0.988733, 0.412038, -1)
@@ -999,6 +1000,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0130549, -4.52088
 shape = SubResource("BoxShape3D_k65re")
 
 [node name="SpawnTimer" type="Timer" parent="Test_Generator_Manager"]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.873024, 0.487677, 0, -0.487677, 0.873024, 0.659562, 2.92778, 0.0785744)
+text = "Test"
+script = ExtResource("6_cm1lp")
 
 [connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D" to="Test_Generator_Manager" method="_on_material_entered"]
 [connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D" to="Test_Generator_Manager/MatEnterPoints/Enter1" method="_on_body_entered"]
