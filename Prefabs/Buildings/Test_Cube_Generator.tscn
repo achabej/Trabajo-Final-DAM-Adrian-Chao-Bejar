@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://cra01q2yfdqo6"]
+
+[ext_resource type="Material" uid="uid://dwort0vh0128f" path="res://Materials/Test/MT_test_green.tres" id="1_fdrwh"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="1_qer58"]
+[ext_resource type="Material" uid="uid://n17vgig4sn6u" path="res://Materials/Test/MT_test_red.tres" id="2_6flcu"]
+[ext_resource type="Material" uid="uid://c21ejtwwfibec" path="res://Materials/Test/MT_test_black.tres" id="2_mcjtx"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/Machine_Script.gd" id="3_cuxj7"]
+[ext_resource type="PackedScene" uid="uid://cp70dvds381h8" path="res://Prefabs/Buildings/Materials/Iron.tscn" id="6_7520c"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xc502"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tiis8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_avh62"]
+size = Vector3(0.560303, 0.877625, 0.59668)
+
+[node name="Test_Cube_Generator" type="StaticBody3D" groups=["Machine"]]
+script = ExtResource("1_qer58")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 1.421, 0, 0, 0, 0.9, 0, 0.798359, 0)
+shape = SubResource("ConvexPolygonShape3D_xc502")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1.579, 0, 0, 0, 1, 0, 0.798359, 0)
+material_override = ExtResource("2_mcjtx")
+mesh = SubResource("BoxMesh_tiis8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.1, -0.0117733, 0.759017, 0.552491)
+material_override = ExtResource("1_fdrwh")
+mesh = SubResource("BoxMesh_tiis8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.15, -0.012, 0.759027, -0.547409)
+material_override = ExtResource("2_6flcu")
+mesh = SubResource("BoxMesh_tiis8")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1.579, 0, 0, 0, 1, 0, 0.798359, 0)
+shape = SubResource("ConvexPolygonShape3D_xc502")
+
+[node name="Test_Generator_Manager" type="StaticBody3D" parent="." node_paths=PackedStringArray("spawn_position") groups=["Machine"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_cuxj7")
+test_material_scene = ExtResource("6_7520c")
+spawn_position = NodePath("MatSpawnPoint")
+
+[node name="MatSpawnPoint" type="Node3D" parent="Test_Generator_Manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05892, 0.854498, -4.62868e-08)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02102, 0.469867, -4.46303e-08)
+shape = SubResource("BoxShape3D_avh62")
+
+[node name="ConveyDetector" type="Area3D" parent="Test_Generator_Manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.192924, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/ConveyDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02102, 0.275892, -4.46303e-08)
+shape = SubResource("BoxShape3D_avh62")
+
+[connection signal="body_entered" from="Test_Generator_Manager/ConveyDetector" to="Test_Generator_Manager" method="_on_convey_detector_body_entered"]
+[connection signal="body_exited" from="Test_Generator_Manager/ConveyDetector" to="Test_Generator_Manager" method="_on_convey_detector_body_exited"]

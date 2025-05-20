@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://dtyqm35g18wg4"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
+[ext_resource type="Material" uid="uid://dpoyn72yw6ij6" path="res://Materials/MT_test_blue.tres" id="2_btyuc"]
+[ext_resource type="PackedScene" uid="uid://dpxq6jyk8lrk4" path="res://Prefabs/Player/weapon_test_1.tscn" id="3_03cjb"]
+[ext_resource type="Script" path="res://Scripts/Player/hand_controller.gd" id="3_4bf5b"]
+[ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_ag43d"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wbwhx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xusir"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbldf"]
+height = 1.95554
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh1a7"]
+bg_color = Color(0.297607, 0.308817, 0.318345, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p44d7"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_0f6ym"]
+subpixel_positioning = 0
+
+[node name="PlayerTest" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_jhext")
+RUN_SPEED = 14
+camera = NodePath("CamNode/SpringArm3D/Camera3D")
+
+[node name="PlayerMesh" type="Node3D" parent="."]
+
+[node name="testSkin" type="MeshInstance3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("2_btyuc")
+mesh = SubResource("CapsuleMesh_wbwhx")
+skeleton = NodePath("../..")
+
+[node name="Eyes" type="MeshInstance3D" parent="PlayerMesh/testSkin"]
+transform = Transform3D(-8.74228e-09, 0, -0.5, 0, 0.3, 0, 0.2, 0, -2.18557e-08, 0, 0.521, -0.466)
+mesh = SubResource("BoxMesh_xusir")
+
+[node name="weapon_holder" type="Node3D" parent="PlayerMesh"]
+script = ExtResource("3_4bf5b")
+
+[node name="Weapon_test_1" parent="PlayerMesh/weapon_holder" instance=ExtResource("3_03cjb")]
+fire_rate = 0.1
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_6k3mc")
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1.10651, 0, 0, 0, 1.10651, 0, 0, 0, 1.10651, 0, 1.00559, 0)
+shape = SubResource("CapsuleShape3D_dbldf")
+
+[node name="CamNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.842735, 0.53833, 0, -0.53833, 0.842735, 0, 1.53635, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamNode"]
+transform = Transform3D(1, 0, 0, 0, 0.955227, 0.295875, 0, -0.295875, 0.955227, 0, 0, 0)
+spring_length = 12.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CamNode/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="HealthController" parent="." instance=ExtResource("4_ag43d")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Health_bar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 597.0
+offset_right = 366.0
+offset_bottom = 624.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gh1a7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p44d7")
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Health_bar"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -36.0
+offset_right = 197.0
+offset_bottom = -5.0
+theme_override_fonts/normal_font = SubResource("SystemFont_0f6ym")
+theme_override_font_sizes/normal_font_size = 22
+text = "Health
+"
+metadata/_edit_use_anchors_ = true

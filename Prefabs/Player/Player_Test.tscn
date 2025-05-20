@@ -1,0 +1,421 @@
+[gd_scene load_steps=21 format=3 uid="uid://dtyqm35g18wg4"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
+[ext_resource type="Material" uid="uid://dpoyn72yw6ij6" path="res://Materials/Test/MT_test_blue.tres" id="2_btyuc"]
+[ext_resource type="Script" path="res://Scripts/Player/Hand_Controller.gd" id="3_4bf5b"]
+[ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_ag43d"]
+[ext_resource type="PackedScene" uid="uid://cjyl78b8oqo5a" path="res://Prefabs/Player/Extractor_Tool.tscn" id="5_bjpnc"]
+[ext_resource type="Script" path="res://Scripts/Systems/Managers/Interface_Manager.gd" id="6_glq1p"]
+[ext_resource type="Script" path="res://Scripts/UI/Materials_Manager.gd" id="6_oplyg"]
+[ext_resource type="Script" path="res://Scripts/Player/Mouse_Area_2d.gd" id="7_uq8yo"]
+[ext_resource type="Script" path="res://Scripts/UI/PopupManager.gd" id="8_r3hhy"]
+[ext_resource type="PackedScene" uid="uid://buyu3haltyjpm" path="res://Prefabs/Player/Material_Popup.tscn" id="9_w3rbo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wbwhx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xusir"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbldf"]
+height = 1.95554
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh1a7"]
+bg_color = Color(0.297607, 0.308817, 0.318345, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wdt8"]
+bg_color = Color(1, 0.694118, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p44d7"]
+bg_color = Color(0.960784, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_0f6ym"]
+subpixel_positioning = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aym3"]
+size = Vector2(1168, 119)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gs6gc"]
+
+[node name="PlayerTest" type="CharacterBody3D" node_paths=PackedStringArray("camera") groups=["Player"]]
+script = ExtResource("1_jhext")
+AIM_SPEED = 5
+JETPACK_TIME = 1.2
+camera = NodePath("CamNode/SpringArm3D/Camera3D")
+
+[node name="PlayerMesh" type="Node3D" parent="."]
+
+[node name="testSkin" type="MeshInstance3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("2_btyuc")
+mesh = SubResource("CapsuleMesh_wbwhx")
+skeleton = NodePath("../..")
+
+[node name="Eyes" type="MeshInstance3D" parent="PlayerMesh/testSkin"]
+transform = Transform3D(-8.74228e-09, 0, -0.5, 0, 0.3, 0, 0.2, 0, -2.18557e-08, 0, 0.521, -0.466)
+mesh = SubResource("BoxMesh_xusir")
+
+[node name="weapon_holder" type="Node3D" parent="PlayerMesh"]
+script = ExtResource("3_4bf5b")
+
+[node name="Extractor_Tool" parent="PlayerMesh/weapon_holder" instance=ExtResource("5_bjpnc")]
+visible = false
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_6k3mc")
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1.10651, 0, 0, 0, 1.10651, 0, 0, 0, 1.10651, 0, 1.00559, 0)
+shape = SubResource("CapsuleShape3D_dbldf")
+
+[node name="CamNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.842735, 0.53833, 0, -0.53833, 0.842735, 0, 1.53635, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamNode"]
+transform = Transform3D(1, 0, 0, 0, 0.955227, 0.295875, 0, -0.295875, 0.955227, 0, 0, 0)
+collision_mask = 2
+spring_length = 12.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CamNode/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="HealthController" parent="." instance=ExtResource("4_ag43d")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Jetpack_Bar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = -119.0
+offset_right = 395.0
+offset_bottom = -92.0
+grow_vertical = 0
+rotation = -1.57079
+scale = Vector2(0.5, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_gh1a7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5wdt8")
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Health_bar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -61.0
+offset_right = 372.0
+offset_bottom = -34.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_gh1a7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p44d7")
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Health_bar"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -36.0
+offset_right = 197.0
+offset_bottom = -5.0
+theme_override_fonts/normal_font = SubResource("SystemFont_0f6ym")
+theme_override_font_sizes/normal_font_size = 22
+text = "Health
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Materials" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -48.0
+offset_right = -66.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("6_oplyg")
+
+[node name="Wood" type="Control" parent="CanvasLayer/Materials"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -39.0
+offset_right = 1.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Materials/Wood"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -1.0
+offset_right = 11.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Madera"
+autowrap_mode = 0
+
+[node name="Amount" type="RichTextLabel" parent="CanvasLayer/Materials/Wood"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+autowrap_mode = 0
+
+[node name="Iron" type="Control" parent="CanvasLayer/Materials"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -39.0
+offset_top = 27.0
+offset_right = 1.0
+offset_bottom = 67.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Materials/Iron"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -1.0
+offset_right = 11.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hierro"
+autowrap_mode = 0
+
+[node name="Amount" type="RichTextLabel" parent="CanvasLayer/Materials/Iron"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+autowrap_mode = 0
+
+[node name="Copper" type="Control" parent="CanvasLayer/Materials"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -39.0
+offset_top = 52.0
+offset_right = 1.0
+offset_bottom = 92.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Materials/Copper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -1.0
+offset_right = 11.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cobre"
+autowrap_mode = 0
+
+[node name="Amount" type="RichTextLabel" parent="CanvasLayer/Materials/Copper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+autowrap_mode = 0
+
+[node name="Cristal" type="Control" parent="CanvasLayer/Materials"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -39.0
+offset_top = 77.0
+offset_right = 1.0
+offset_bottom = 117.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Materials/Cristal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -1.0
+offset_right = 11.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cristal"
+autowrap_mode = 0
+
+[node name="Amount" type="RichTextLabel" parent="CanvasLayer/Materials/Cristal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+autowrap_mode = 0
+
+[node name="Mat_PopUp_Controller" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("popup_spawn_point")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 53.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_r3hhy")
+popup_scene = ExtResource("9_w3rbo")
+popup_spawn_point = NodePath("Node2D")
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/Mat_PopUp_Controller"]
+position = Vector2(28, 19)
+
+[node name="Building_Buttons" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 87.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+script = ExtResource("6_glq1p")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Building_Buttons"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.08)
+
+[node name="BtnBuildConveyLine" type="Button" parent="CanvasLayer/Building_Buttons"]
+layout_mode = 0
+offset_left = 209.0
+offset_top = 11.0
+offset_right = 336.0
+offset_bottom = 83.0
+text = "Cinta 
+transportadora"
+
+[node name="BtnBuildExtractor" type="Button" parent="CanvasLayer/Building_Buttons"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 11.0
+offset_right = 464.0
+offset_bottom = 83.0
+text = "Extractor"
+
+[node name="BtnBuildFurnace" type="Button" parent="CanvasLayer/Building_Buttons"]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 11.0
+offset_right = 577.0
+offset_bottom = 83.0
+text = "Horno"
+
+[node name="BtnBuildSteelRefinery" type="Button" parent="CanvasLayer/Building_Buttons"]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 11.0
+offset_right = 687.0
+offset_bottom = 83.0
+text = "Refineria 
+de Acero"
+
+[node name="BtnBuildChipsFactory" type="Button" parent="CanvasLayer/Building_Buttons"]
+layout_mode = 0
+offset_left = 705.0
+offset_top = 11.0
+offset_right = 800.0
+offset_bottom = 83.0
+text = "Fabrica
+de chips"
+
+[node name="BtnBuildPlatesFactory" type="Button" parent="CanvasLayer/Building_Buttons"]
+layout_mode = 0
+offset_left = 819.0
+offset_top = 11.0
+offset_right = 914.0
+offset_bottom = 83.0
+text = "Fabrica de 
+placas"
+
+[node name="Area2D2" type="Area2D" parent="CanvasLayer/Building_Buttons"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Building_Buttons/Area2D2"]
+position = Vector2(574, 51.5)
+shape = SubResource("RectangleShape2D_1aym3")
+
+[node name="Materials_Needed" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = 60.0
+offset_right = 98.0
+offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 8
+bbcode_enabled = true
+autowrap_mode = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("7_uq8yo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gs6gc")
+
+[connection signal="button_down" from="CanvasLayer/Building_Buttons/BtnBuildConveyLine" to="CanvasLayer/Building_Buttons" method="_on_btn_build_convey_merger_button_down"]
+[connection signal="button_down" from="CanvasLayer/Building_Buttons/BtnBuildExtractor" to="CanvasLayer/Building_Buttons" method="_on_btn_build_extractor_button_down"]
+[connection signal="button_down" from="CanvasLayer/Building_Buttons/BtnBuildFurnace" to="CanvasLayer/Building_Buttons" method="_on_btn_build_furnace_button_down"]
+[connection signal="button_down" from="CanvasLayer/Building_Buttons/BtnBuildSteelRefinery" to="CanvasLayer/Building_Buttons" method="_on_btn_build_steel_refinery_button_down"]
+[connection signal="button_down" from="CanvasLayer/Building_Buttons/BtnBuildChipsFactory" to="CanvasLayer/Building_Buttons" method="_on_btn_build_chips_factory_button_down"]
+[connection signal="button_down" from="CanvasLayer/Building_Buttons/BtnBuildPlatesFactory" to="CanvasLayer/Building_Buttons" method="_on_btn_build_plates_factory_button_down"]
+[connection signal="area_entered" from="CanvasLayer/Building_Buttons/Area2D2" to="CanvasLayer/Building_Buttons" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CanvasLayer/Building_Buttons/Area2D2" to="CanvasLayer/Building_Buttons" method="_on_area_2d_area_exited"]

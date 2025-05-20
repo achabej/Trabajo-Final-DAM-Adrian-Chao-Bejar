@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8ounvi54kibq"]
+
+[ext_resource type="PackedScene" uid="uid://dtyqm35g18wg4" path="res://Prefabs/Player/Player_Test.tscn" id="1_7exgm"]
+[ext_resource type="Script" path="res://Scripts/Characters/NPC_AI.gd" id="1_ofglc"]
+[ext_resource type="Texture2D" uid="uid://dms1ix84cai3m" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="3_xgo2f"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_b7upp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qx2ds"]
+size = Vector3(1.93668, 0.0862122, 1.97479)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2e56"]
+albedo_texture = ExtResource("3_xgo2f")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x77c1"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_ofglc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.671785, 0.740746, 0, -0.740746, 0.671785, 0, 0, 0)
+
+[node name="PlayerTest" parent="." instance=ExtResource("1_7exgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164523, -0.073914, -1.05186)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_b7upp")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 0, 0, 0)
+rotation_order = 1
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(-65534, 65535, 1114115, -65534, 65534, 1114115, -65533, 65534, 1114115, -65533, 65535, 1114115)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_qx2ds")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_c2e56")
+mesh = SubResource("PlaneMesh_x77c1")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpxq6jyk8lrk4"]
+
+[ext_resource type="Script" path="res://Scripts/Items/Weapon_Script.gd" id="1_qnhtl"]
+[ext_resource type="PackedScene" uid="uid://in47yot3bkd" path="res://Prefabs/test_bullet_player.tscn" id="2_h1q3y"]
+[ext_resource type="Material" uid="uid://c21ejtwwfibec" path="res://Materials/Test/MT_test_black.tres" id="3_yu5nc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6jirl"]
+
+[node name="Weapon" type="Node3D" node_paths=PackedStringArray("punto_disparo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358666, 1.14167, -0.381617)
+script = ExtResource("1_qnhtl")
+bala_prefab = ExtResource("2_h1q3y")
+punto_disparo = NodePath("Bullet_Point")
+fire_rate = 0.2
+velocidad_bala = 50.0
+
+[node name="Gun" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.216476, 0, 0, 0, 0.216476, 0, 0, 0, 0.63834, 0.0809662, 0.0292885, -0.307502)
+material_override = ExtResource("3_yu5nc")
+mesh = SubResource("BoxMesh_6jirl")
+skeleton = NodePath("../../testSkin")
+
+[node name="Bullet_Point" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0787917, 0.036092, -0.650633)

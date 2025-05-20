@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8ounvi54kibq"]
+
+[ext_resource type="PackedScene" uid="uid://tjudu1y70htk" path="res://Planet/planet.tscn" id="2_a5buv"]
+[ext_resource type="PackedScene" uid="uid://dtyqm35g18wg4" path="res://Player/Player_Test.tscn" id="2_iahfn"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fraee"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.671785, 0.740746, 0, -0.740746, 0.671785, 0, 0, 0)
+
+[node name="Planet" parent="." instance=ExtResource("2_a5buv")]
+
+[node name="PlayerTest" parent="." instance=ExtResource("2_iahfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164523, 20.7968, -1.05186)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 21.1726, 0)
+mesh = SubResource("CylinderMesh_fraee")

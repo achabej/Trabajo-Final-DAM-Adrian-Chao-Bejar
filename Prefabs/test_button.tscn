@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://6qg776oute0v"]
+
+[ext_resource type="Script" path="res://Scripts/Items/In_Button.gd" id="1_a3x3g"]
+[ext_resource type="Material" uid="uid://c21ejtwwfibec" path="res://Materials/Test/MT_test_black.tres" id="1_nkxs3"]
+[ext_resource type="Material" uid="uid://dwort0vh0128f" path="res://Materials/Test/MT_test_green.tres" id="2_owod0"]
+[ext_resource type="PackedScene" uid="uid://ba3gc5dwpmmxh" path="res://Prefabs/Systems/interactable.tscn" id="4_7vcla"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_22p5c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76n6y"]
+size = Vector3(0.714355, 0.489258, 0.707245)
+
+[node name="In_Button" type="StaticBody3D"]
+transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.700598, 0, 0, 0, 0.256507, 0, 0, 0, 0.700598, 0, 0.131582, 0)
+material_override = ExtResource("1_nkxs3")
+mesh = SubResource("BoxMesh_22p5c")
+
+[node name="Button" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.537631, 0, 0, 0, 0.196841, 0, 0, 0, 0.537631, 0, 0.304604, 0)
+mesh = SubResource("BoxMesh_22p5c")
+surface_material_override/0 = ExtResource("2_owod0")
+script = ExtResource("1_a3x3g")
+
+[node name="Interactable" parent="." node_paths=PackedStringArray("interact_obj") instance=ExtResource("4_7vcla")]
+transform = Transform3D(1.85985, 0, 0, 0, 1.344, 0, 0, 0, 1.85985, 0, 0, 0)
+interact_obj = NodePath("../Button")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012207, 0.255371, -0.000228872)
+shape = SubResource("BoxShape3D_76n6y")

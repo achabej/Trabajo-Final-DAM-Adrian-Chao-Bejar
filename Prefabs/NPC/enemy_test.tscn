@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbj04l51hsgho"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/NPC_Movement.gd" id="1_ux28f"]
+[ext_resource type="Material" uid="uid://n17vgig4sn6u" path="res://Materials/Test/MT_test_red.tres" id="2_byxef"]
+[ext_resource type="PackedScene" uid="uid://dpxq6jyk8lrk4" path="res://Prefabs/Player/Weapon.tscn" id="3_3otvm"]
+[ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_k7o8o"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wfgvm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_na5qp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d5n4d"]
+height = 1.95554
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f7l02"]
+
+[node name="EnemyTest" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -12.5889)
+script = ExtResource("1_ux28f")
+
+[node name="NPCMesh" type="Node3D" parent="."]
+
+[node name="testSkin" type="MeshInstance3D" parent="NPCMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("2_byxef")
+mesh = SubResource("CapsuleMesh_wfgvm")
+skeleton = NodePath("../..")
+
+[node name="Eyes" type="MeshInstance3D" parent="NPCMesh/testSkin"]
+transform = Transform3D(-8.74228e-09, 0, -0.5, 0, 0.3, 0, 0.2, 0, -2.18557e-08, 0, 0.521, -0.466)
+mesh = SubResource("BoxMesh_na5qp")
+
+[node name="weapon_holder" type="Node3D" parent="NPCMesh"]
+
+[node name="Weapon_test_1" parent="NPCMesh/weapon_holder" instance=ExtResource("3_3otvm")]
+fire_rate = 0.1
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1.10651, 0, 0, 0, 1.10651, 0, 0, 0, 1.10651, 0, 1.00559, 0)
+shape = SubResource("CapsuleShape3D_d5n4d")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_f7l02")
+
+[node name="HealthController" parent="." instance=ExtResource("4_k7o8o")]
+tag_group = "player_bullet"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="body_entered" from="Hitbox" to="HealthController" method="_on_hitbox_body_entered"]

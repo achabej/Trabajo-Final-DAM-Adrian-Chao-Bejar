@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8ounvi54kibq"]
+
+[ext_resource type="PackedScene" uid="uid://dtyqm35g18wg4" path="res://Prefabs/Player/Player_Test.tscn" id="1_7exgm"]
+[ext_resource type="Texture2D" uid="uid://cymshiualdahc" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="2_xu4ye"]
+[ext_resource type="PackedScene" uid="uid://6qg776oute0v" path="res://Prefabs/test_button.tscn" id="3_np3gw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3ufmk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uwkg"]
+albedo_texture = ExtResource("2_xu4ye")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ekk5f"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.671785, 0.740746, 0, -0.740746, 0.671785, 0, 0, 0)
+
+[node name="PlayerTest" parent="." instance=ExtResource("1_7exgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164523, 2.66133, -1.05186)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3ufmk")
+surface_material_override/0 = SubResource("StandardMaterial3D_3uwkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_ekk5f")
+
+[node name="In_Button" parent="." instance=ExtResource("3_np3gw")]
+transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 3.4624, 0, -0.571221)

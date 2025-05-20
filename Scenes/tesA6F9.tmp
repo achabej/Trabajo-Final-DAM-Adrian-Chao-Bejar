@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8ounvi54kibq"]
+
+[ext_resource type="PackedScene" uid="uid://dtyqm35g18wg4" path="res://Prefabs/Player/Player_Test.tscn" id="1_7exgm"]
+[ext_resource type="Texture2D" uid="uid://cymshiualdahc" path="res://addons/kenney_prototype_textures/green/texture_02.png" id="2_xu4ye"]
+[ext_resource type="Script" path="res://Scripts/Player/Weapon_Manager.gd" id="3_fy1vh"]
+[ext_resource type="PackedScene" uid="uid://c751116y646w3" path="res://Prefabs/test_bullet.tscn" id="4_n24to"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3ufmk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uwkg"]
+albedo_texture = ExtResource("2_xu4ye")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ekk5f"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.671785, 0.740746, 0, -0.740746, 0.671785, 0, 0, 0)
+
+[node name="PlayerTest" parent="." instance=ExtResource("1_7exgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164523, 2.66133, -1.05186)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3ufmk")
+surface_material_override/0 = SubResource("StandardMaterial3D_3uwkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_ekk5f")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+script = ExtResource("3_fy1vh")
+bala_prefab = ExtResource("4_n24to")
+punto_disparo_path = NodePath("$PlayerMesh/Weapon_Holder/Bullet_Point")

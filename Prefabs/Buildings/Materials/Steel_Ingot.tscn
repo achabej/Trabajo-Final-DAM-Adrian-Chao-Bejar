@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://m7abq6t83gon"]
+
+[ext_resource type="Material" uid="uid://cyklx7ui0ope2" path="res://Materials/Enviroment/Steel_Mat.tres" id="1_tbx4b"]
+
+[sub_resource type="GDScript" id="GDScript_14snt"]
+script/source = "extends RigidBody3D
+
+@export var mat_type : String = \"\"
+
+func get_material_type():
+	return mat_type
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_bb3j0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s12pw"]
+size = Vector3(1.03296, 0.475586, 0.991211)
+
+[node name="Steel_Ingot" type="RigidBody3D" groups=["Material"]]
+can_sleep = false
+lock_rotation = true
+freeze_mode = 1
+script = SubResource("GDScript_14snt")
+mat_type = "Steel_Ingot"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.494518, 0, 0, 0, 0.435056, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("1_tbx4b")
+gi_mode = 2
+mesh = SubResource("BoxMesh_bb3j0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_s12pw")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_s12pw")

@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://dk452euwfr3yv"]
+
+[ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="1_5bjsq"]
+[ext_resource type="PackedScene" uid="uid://dfwax7fpafe1t" path="res://Models/Original/Convey_Line.glb" id="2_2nh3d"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/Storage_Script.gd" id="2_cww8a"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4ir5c"]
+points = PackedVector3Array(0.996336, 0.423354, 0.996336, -1, -2.54794, -1, -1, -2.54794, 0.988733, 0.996232, -2.5591, 0.996232, 0.988733, -2.54794, -1, -1, 0.412038, -1, -1, 0.412038, 0.988733, 0.988733, 0.412038, -1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xnyvw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0hb4d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5341l"]
+size = Vector3(0.647461, 0.5, 0.610352)
+
+[node name="Extractor" type="StaticBody3D" groups=["Extractor", "Machine"]]
+script = ExtResource("1_5bjsq")
+notBuildList = Array[String](["Build", "Deposit", "Tree", "Player"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.03291, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 2.15772, 0)
+shape = SubResource("ConvexPolygonShape3D_4ir5c")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2.03291, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55772, 0)
+shape = SubResource("ConvexPolygonShape3D_4ir5c")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(3.21951, 0, 0, 0, 2.01437, 0, 0, 0, 1.84497, 0, 1.09106, 0)
+mesh = SubResource("BoxMesh_xnyvw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.759933, 0, 0, 0, 0.759933, 0, 0, 0, 0.759933, -1.70219, 0.643916, 0)
+mesh = SubResource("BoxMesh_0hb4d")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(3.40322, 0, 0, 0, 0.759933, 0, 0, 0, 0.248767, -0.0121478, 0.381617, 0.871478)
+mesh = SubResource("BoxMesh_0hb4d")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(3.40322, 0, 0, 0, 0.759933, 0, 0, 0, 0.248767, -0.0121478, 0.381617, -0.914659)
+mesh = SubResource("BoxMesh_0hb4d")
+
+[node name="Convey_Line" parent="Mesh" instance=ExtResource("2_2nh3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Test_Generator_Manager" type="StaticBody3D" parent="." groups=["Machine"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("2_cww8a")
+
+[node name="MatEnterPoints" type="Node3D" parent="Test_Generator_Manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03097, 0.00561142, 0.000459285)
+
+[node name="Enter1" type="StaticBody3D" parent="Test_Generator_Manager/MatEnterPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47453, 0.418138, -0.0417465)
+
+[node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000214577, 0.0977138, 0.00746679)
+shape = SubResource("BoxShape3D_5341l")
+
+[connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D" to="Test_Generator_Manager" method="_on_area_3d_body_entered"]

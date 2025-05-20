@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c751116y646w3"]
+
+[ext_resource type="Material" uid="uid://dbxv4onma5yp1" path="res://Materials/MT_test_red.tres" id="1_hfils"]
+[ext_resource type="Script" path="res://Scripts/test_bullet.gd" id="1_vq706"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dsvee"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_thu7h"]
+
+[node name="Bullet" type="RigidBody3D"]
+script = ExtResource("1_vq706")
+life_time = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.151383, 0, 0, 0, -6.61715e-09, -0.151383, 0, 0.151383, -6.61715e-09, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_dsvee")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.151383, 0, 0, 0, -6.61715e-09, -0.151383, 0, 0.151383, -6.61715e-09, 0, 0, 0)
+material_override = ExtResource("1_hfils")
+mesh = SubResource("CapsuleMesh_thu7h")
