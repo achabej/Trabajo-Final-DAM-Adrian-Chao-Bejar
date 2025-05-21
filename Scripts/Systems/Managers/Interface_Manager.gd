@@ -27,7 +27,6 @@ func _on_btn_build_chips_factory_button_down() -> void:
 func _on_btn_build_plates_factory_button_down() -> void:
 	BuildManager.SpawnPlatesFactory()
 
-
 # Evita que se construya en la parte superior del menu
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	BuildManager.OnGrid = false

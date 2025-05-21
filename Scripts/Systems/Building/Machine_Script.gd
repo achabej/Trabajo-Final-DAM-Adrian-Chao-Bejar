@@ -12,6 +12,7 @@ class_name MachineWithInput
 		"Mat Spawn": null
 	}
 ]
+@export var max_storage: int = 10  #Cantidad maxima de material
 
 # Animación
 @onready var mesh: Node3D = $"../Mesh"
@@ -155,21 +156,14 @@ func _check_activation():
 		is_active = true
 		spawn_timer.start()
 
-# Capacidad máxima basada en materiales requeridos
-func get_max_material_storage() -> int:
-	var total := 0
-	for recipe in required_materials:
-		var inputs: Dictionary = recipe.get("Inputs", {})
-		for value in inputs.values():
-			total += value
-	return total
-
 # Metodo que se llama cuando hay filtro y es para comprobar que tiene espacio para el material
 func can_accept_material(mat_type: String) -> bool:
-	var total := 0
-	for stored in material_storage.values():
-		total += stored
-	return total <= get_max_material_storage()
+	# Si el material no está registrado aún, puede aceptar (0 < max_storage)
+	if not material_storage.has(mat_type):
+		return true
+	
+	return material_storage[mat_type] < max_storage
+
 
 # Metodo que se llama cuando hay filtro y es para añadir el material a la fabrica
 func receive_material(body: Node3D, mat_type: String) -> void:

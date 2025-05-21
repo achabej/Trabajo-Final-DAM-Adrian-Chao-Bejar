@@ -1,15 +1,14 @@
-[gd_scene load_steps=8 format=4 uid="uid://vtcolnjad0qa"]
+[gd_scene load_steps=7 format=4 uid="uid://b5ga5oyphu56e"]
 
-[ext_resource type="Script" path="res://Scripts/Systems/Enviroment/Deposit.gd" id="1_qiakt"]
-[ext_resource type="PackedScene" uid="uid://b5ga5oyphu56e" path="res://Prefabs/Buildings/Materials/Cristal.tscn" id="2_7vpa8"]
-[ext_resource type="Material" uid="uid://dyc3gpqrdpdci" path="res://Materials/Enviroment/Cristal_Mat.tres" id="2_h0sm2"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/Mat_Type.gd" id="1_oi4bi"]
+[ext_resource type="Material" uid="uid://dyc3gpqrdpdci" path="res://Materials/Enviroment/Cristal_Mat.tres" id="2_27a7a"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1ppfx"]
-size = Vector3(1.65527, 1.2251, 1.74219)
+[sub_resource type="BoxShape3D" id="BoxShape3D_rllrh"]
+size = Vector3(0.913086, 0.878662, 0.951172)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2iuy7"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_24c1k"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_43525"]
 _surfaces = [{
 "aabb": AABB(-0.566381, -1.68046, -0.566381, 1.13276, 3.36091, 1.13276),
 "format": 34359742465,
@@ -23,7 +22,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_lmgpj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bowcx"]
 resource_name = "Cristal_Cylinder"
 _surfaces = [{
 "aabb": AABB(-0.566381, -1.68046, -0.566381, 1.13276, 3.36091, 1.13276),
@@ -39,80 +38,31 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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////v///gdoAAL7SQdYBw////7///32lAABA7f28vKn///8/QdYBw////7+B2v9///9A7f//faUAAEDtQ5m8qf///z99pf9///++0v28vKn///8/gdr/f///QO1Dmbyp////P32l/3///77Su2a8qf///z+BWv9/gdr/v7tmvKn///8/gVr/f4Ha/78BQ7yp////P30l/399pf+/AUO8qf///z+9KQHD////v30l/399pf+/AAB9pYFa/7+9Kbrm////vwAAgdp9Jf+/vSkBw////78AAH2lgVr/v///gdoAAEAtAACB2n0l/z///4HaAAC+0gAAgdp9Jf+///+B2gAAvtL//32lAABA7f//gdoAAEAt//99pQAAvhKB2v9///9A7f//faUAAEDtgdr/f///vhL//32lAAC+En2l/3///77Sgdr/f///QO19pf9///9ALYHa/3///74SfaX/f///vtKBWv9/gdr/v32l/3///0AtgVr/f4Ha/z+BWv9/gdr/v30l/399pf+/gVr/f4Ha/z99Jf9/faX/P30l/399pf+/AAB9pYFa/799Jf9/faX/PwAAfaWBWv8/AACB2n0l/78AAH2lgVr/vwAAgdp9Jf8/AAB9pYFa/z9Dmbyp////P0HWuub///+//by8qf///z9B1gHD////v7tmvKn///8/vSm65v///78BQ7yp////P70pAcP///+/QdZEGf///7///4HaAABALb0pRBn///+/AACB2n0l/z9B1kQZ////v///gdoAAEAtQdb9PP///7///32lAAC+Ev28Qlb///8/Qdb9PP///7+B2v9///++Ev//faUAAL4SQ5lCVv///z99pf9///9ALf28Qlb///8/gdr/f///vhJDmUJW////P32l/3///0Atu2ZCVv///z+BWv9/gdr/P7tmQlb///8/gVr/f4Ha/z8BQ0JW////P30l/399pf8/AUNCVv///z+9Kf08////v30l/399pf8/AAB9pYFa/z+9KUQZ////vwAAgdp9Jf8/vSn9PP///78AAH2lgVr/P///gdoAAEAtAACB2n0l/z///4HaAABALf//faUAAL4Sgdr/f///vhL//32lAAC+En2l/3///0Atgdr/f///vhJ9pf9///9ALYFa/3+B2v8/gVr/f4Ha/z99Jf9/faX/P30l/399pf8/AAB9pYFa/z8AAIHafSX/PwAAfaWBWv8/Q5lCVv///z9B1kQZ////v/28Qlb///8/Qdb9PP///7+7ZkJW////P70pRBn///+/AUNCVv///z+9Kf08////vxTvxMP///+/gdr/f////78gq7yp////Pym3/3///77S/38AtP///z//f/9///++0t5UvKn///8/d0H/f4Ha/79FDiCh////v7cUk8r///+/QdYhK////7///9XIAABALX/vrG3///8/Trv9bP///z9kfl9q////P95UQlb///8/sSa6cf///z+9KSEr////vwAA/799Jf8/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_24c1k")
+shadow_mesh = SubResource("ArrayMesh_43525")
 
-[node name="Cristal_Deposit" type="StaticBody3D" groups=["Deposit"]]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-script = ExtResource("1_qiakt")
-material = ExtResource("2_7vpa8")
-resource_type = "Cristal"
+[node name="Iron" type="RigidBody3D" groups=["Material"]]
+can_sleep = false
+lock_rotation = true
+freeze_mode = 1
+script = ExtResource("1_oi4bi")
+mat_type = "Cristal"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176514, 0)
-shape = SubResource("BoxShape3D_1ppfx")
+shape = SubResource("BoxShape3D_rllrh")
+
+[node name="Mesh" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Cylinder" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-2.50706e-08, 0.573549, -2.50706e-08, 0, -2.50706e-08, -0.573549, -0.573549, -2.50706e-08, 1.09587e-15, 0, 0, 0)
+material_override = ExtResource("2_27a7a")
+mesh = SubResource("ArrayMesh_bowcx")
+skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176514, 0)
-shape = SubResource("BoxShape3D_1ppfx")
+shape = SubResource("BoxShape3D_rllrh")
 
-[node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279047, 0)
-
-[node name="Cylinder" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(0.398525, 0.170056, 0.0790097, -0.187515, 0.361421, 0.167919, 0, -0.185579, 0.39943, 0.186805, 0.0189955, -0.201157)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Cylinder2" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-0.118631, -0.227788, 0.357804, -0.187515, 0.361421, 0.167919, -0.380459, -0.107105, -0.194328, 0.0681204, -0.104313, -0.364593)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Cylinder5" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-0.0253446, -0.268625, 0.240816, -0.17733, 0.219509, 0.226195, -0.314175, -0.102227, -0.147098, -0.265714, -0.378663, -0.266604)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Cylinder6" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-0.314494, -0.14053, -0.110178, -0.17733, 0.219509, 0.226195, -0.0210206, 0.250722, -0.25979, 0.00209288, -0.327009, 0.351898)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Cylinder7" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(0.272061, 0.237648, -0.0173359, -0.17733, 0.219509, 0.226195, 0.159158, -0.161659, 0.281655, 0.355634, -0.327009, -0.0948193)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Cylinder8" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-0.0780081, 0.170051, -0.226181, -0.187815, 0.144377, 0.173324, 0.211661, 0.190784, 0.0704378, 0.289042, -0.342048, 0.233555)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Cylinder9" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(0.180451, 0.0700799, 0.139253, -0.153933, 0.113772, 0.142218, -0.0246432, -0.197509, 0.131332, 0.2122, -0.199651, -0.490204)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Cylinder3" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-0.222877, 0.111062, -0.48793, -0.233224, 0.449524, 0.208853, 0.442738, 0.292709, -0.135608, 0.146262, -0.104313, 0.000982456)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Cylinder4" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(-0.490764, -0.241819, -0.0275546, -0.233224, 0.449524, 0.208853, -0.069584, 0.198839, -0.505674, -0.110644, -0.287847, 0.000982456)
-material_override = ExtResource("2_h0sm2")
-mesh = SubResource("ArrayMesh_lmgpj")
-skeleton = NodePath("")
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.630763, 0)
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

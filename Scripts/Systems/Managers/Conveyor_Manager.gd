@@ -5,7 +5,7 @@ var conveyors: Array = []
 
 #Temporizador
 var tick_timer: Timer
-@export var tick_interval := 0.05
+@export var tick_interval := 0.01
 
 func _ready():
 	tick_timer = Timer.new()

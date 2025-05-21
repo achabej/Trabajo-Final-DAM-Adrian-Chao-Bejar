@@ -20,6 +20,9 @@ func idle():
 func walk():
 	_main_state_machine.travel("Walk")
 
+func run():
+	_main_state_machine.travel("Run")
+
 ## Sets the model to an upward-leaping animation, simulating a jump.
 func jump():
 	_main_state_machine.travel("Jump")
@@ -32,3 +35,6 @@ func fall():
 ##[br][b]Note:[/b] To add new expressions, you can edit gdbot_face.tscn, which is a 2D scene utilized by a viewport node to display on Gdbot's face.
 func set_face(face_name):
 	_face._set_face(face_name)
+
+func set_anim_speed(speed: float):
+	_animation_tree.set("parameters/walk_speed_scale/scale", speed)

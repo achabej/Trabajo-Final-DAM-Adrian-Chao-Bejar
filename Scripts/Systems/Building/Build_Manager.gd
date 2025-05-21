@@ -5,7 +5,6 @@ var extractor : PackedScene = preload("res://Prefabs/Buildings/Extractor.tscn")
 var convey_line : PackedScene = preload("res://Prefabs/Buildings/Convey_Line.tscn")
 var convey_merger : PackedScene = preload("res://Prefabs/Buildings/Convey_Line.tscn")
 var furnace : PackedScene = preload("res://Prefabs/Buildings/Furnace.tscn")
-var storage : PackedScene = preload("res://Prefabs/Buildings/Storage.tscn")
 var steelRefinery : PackedScene = preload("res://Prefabs/Buildings/SteelRefinery.tscn")
 var cristalRefinery : PackedScene
 var chipsFactory : PackedScene = preload("res://Prefabs/Buildings/ChipsFactory.tscn")
@@ -19,8 +18,7 @@ var building_costs = {
 	"Convey_Line": {"Iron": 2},
 	"Furnace": {"Iron": 20},
 	"SteelRefinery": {"Iron": 50, "Copper": 50, "Wood": 15},
-	"PlatesFactory": {"Iron": 25, "Copper": 25, "Wood": 10},
-	"Storage": {"Wood": 15, "Iron" : 20}
+	"PlatesFactory": {"Iron": 25, "Copper": 25, "Wood": 10}
 }
 
 @onready var grid_map : GridMap
@@ -279,15 +277,9 @@ func SpawnConveyMerger():
 
 func SpawnFurnace():
 	SpawnObj(furnace)
-
-func SpawnStorage():
-	SpawnObj(storage)
 	
 func SpawnSteelRefinery():
 	SpawnObj(steelRefinery)
-	
-func SpawnCristalRefinery():
-	SpawnObj(storage)
 	
 func SpawnChipsFactory():
 	SpawnObj(chipsFactory)

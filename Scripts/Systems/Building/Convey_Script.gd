@@ -1,7 +1,7 @@
 extends Area3D
 class_name ConveyScript
 
-@export var convey_velocity = 2
+@export var convey_velocity = 4
 @export var raycast: RayCast3D # Para conveyors normales
 @onready var center = $Center
 @onready var debug_label: Label3D = $Label3D

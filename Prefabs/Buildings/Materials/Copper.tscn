@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Mat_Type.gd" id="1_kkil6"]
 [ext_resource type="Material" uid="uid://d3ccf8xvmvoac" path="res://Materials/Enviroment/Copper_Mat.tres" id="2_h6ths"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_4lkwk"]
+[sub_resource type="BoxMesh" id="BoxMesh_w5i7g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rllrh"]
 size = Vector3(0.913086, 0.878662, 0.827148)
@@ -15,10 +15,48 @@ freeze_mode = 1
 script = ExtResource("1_kkil6")
 mat_type = "Copper"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.431857, -0.00677833, 0.304169, 0.0926857, 0.519792, -0.132851, -0.275219, 0.164415, 0.432543, -0.297862, 0, 0.332694)
 material_override = ExtResource("2_h6ths")
-gi_mode = 2
-mesh = SubResource("BoxMesh_4lkwk")
+mesh = SubResource("BoxMesh_w5i7g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-0.477822, 0.197821, 0.408107, 0.11483, 0.643981, -0.164592, -0.417389, -0.0492937, -0.512477, 0.198929, 0, -0.306339)
+material_override = ExtResource("2_h6ths")
+mesh = SubResource("BoxMesh_w5i7g")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-0.0179363, 0.170494, 0.65334, 0.11483, 0.643981, -0.164592, -0.634197, 0.11178, -0.0482792, 0.0561478, -0.160348, 0.225161)
+material_override = ExtResource("2_h6ths")
+mesh = SubResource("BoxMesh_w5i7g")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(-0.0950883, -0.155812, -0.682443, 0.120198, 0.674085, -0.172286, 0.657266, -0.145816, -0.0672238, -0.297862, -0.112792, -0.270317)
+material_override = ExtResource("2_h6ths")
+mesh = SubResource("BoxMesh_w5i7g")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.325097, 0.130975, 0.17725, -0.074211, 0.376693, -0.128957, -0.196842, 0.0742973, 0.341357, 0.537807, -0.275173, -0.0306809)
+material_override = ExtResource("2_h6ths")
+mesh = SubResource("BoxMesh_w5i7g")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.292246, -0.152456, 0.218148, 0.160585, 0.368523, 0.0214259, -0.196842, 0.0742973, 0.341357, -0.631753, -0.0860299, 0.111874)
+material_override = ExtResource("2_h6ths")
+mesh = SubResource("BoxMesh_w5i7g")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.292246, -0.152456, 0.218148, 0.160585, 0.368523, 0.0214259, -0.196842, 0.0742973, 0.341357, -0.0190896, -0.0734599, -0.701771)
+material_override = ExtResource("2_h6ths")
+mesh = SubResource("BoxMesh_w5i7g")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.280247, 0.077302, 0.160546, -0.0340217, 0.328664, -0.0930674, -0.166645, 0.0628996, 0.288991, -0.0190896, -0.0734599, 0.714309)
+material_override = ExtResource("2_h6ths")
+mesh = SubResource("BoxMesh_w5i7g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_rllrh")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cy36aygvs66pn"]
+[gd_scene load_steps=55 format=3 uid="uid://cy36aygvs66pn"]
 
 [ext_resource type="PackedScene" uid="uid://kod0awm1ha4o" path="res://addons/Godot_4_3D_Characters/addons/gdquest_gobot/model/gobot.glb" id="1_qg1mb"]
 [ext_resource type="Script" path="res://addons/Godot_4_3D_Characters/addons/gdquest_gobot/gobot_skin.gd" id="1_rwke8"]
@@ -2093,11 +2093,10 @@ nodes/StateMachine/position = Vector2(0, 80)
 nodes/output/position = Vector2(580, 80)
 node_connections = [&"FlipShot", 0, &"StateMachine", &"FlipShot", 1, &"Flip", &"HurtShot", 0, &"FlipShot", &"HurtShot", 1, &"Animation", &"output", 0, &"HurtShot"]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_chj4k"]
-
 [node name="GobotSkin" type="Node3D" node_paths=PackedStringArray("gobot_model")]
 script = ExtResource("1_rwke8")
 gobot_model = NodePath("gobot/Armature/Skeleton3D/Gobot")
+blink = false
 _left_eye_mat_override = "surface_material_override/1"
 _right_eye_mat_override = "surface_material_override/2"
 _open_eye = ExtResource("3_aysq5")
@@ -2110,14 +2109,14 @@ bones/0/position = Vector3(0.125361, 0.0989139, 0.0728901)
 bones/0/rotation = Quaternion(0.772549, 0.107691, -0.136221, 0.610749)
 bones/1/position = Vector3(-0.109875, 0.0989111, -0.0510765)
 bones/1/rotation = Quaternion(0.679368, -0.310085, 0.392234, 0.537083)
-bones/2/position = Vector3(0, 0.357083, 0)
-bones/2/rotation = Quaternion(0.0697349, 0.0248084, -0.00173477, 0.997256)
-bones/3/rotation = Quaternion(1, -5.78106e-11, -7.50265e-08, 3.72784e-09)
-bones/4/rotation = Quaternion(-0.449087, -0.1393, -0.0411221, 0.881604)
-bones/5/rotation = Quaternion(0.302414, 1.0865e-06, -1.03345e-05, 0.953177)
-bones/6/rotation = Quaternion(-0.197068, 0.552523, 0.210998, 0.781897)
-bones/7/rotation = Quaternion(0.468384, -1.00863e-06, 1.6022e-05, 0.883525)
-bones/8/rotation = Quaternion(-0.630167, -0.279845, -0.675607, 0.261023)
+bones/2/position = Vector3(0, 0.350265, 0)
+bones/2/rotation = Quaternion(0.0697537, 0.00895717, -0.000626348, 0.997524)
+bones/3/rotation = Quaternion(1, -9.85835e-12, -7.55762e-08, -4.9972e-09)
+bones/4/rotation = Quaternion(-0.498261, -0.151436, -0.0564656, 0.85183)
+bones/5/rotation = Quaternion(0.395712, 1.05497e-06, -1.35008e-05, 0.918375)
+bones/6/rotation = Quaternion(-0.237601, 0.529369, 0.230138, 0.781249)
+bones/7/rotation = Quaternion(0.527932, -9.67732e-07, 1.80552e-05, 0.849287)
+bones/8/rotation = Quaternion(-0.706177, -0.24675, -0.595708, 0.292508)
 bones/9/rotation = Quaternion(2.16937e-07, 5.35541e-07, -0.395029, 0.918669)
 bones/10/rotation = Quaternion(-0.289732, -0.637458, -0.217438, 0.680017)
 bones/11/rotation = Quaternion(0.487906, -0.0174399, 0.00854542, 0.87268)
@@ -2125,7 +2124,7 @@ bones/12/rotation = Quaternion(-0.371224, -0.00197697, 0.00585366, 0.928523)
 bones/13/rotation = Quaternion(-0.502333, 1.50049e-05, -2.85054e-05, 0.864674)
 bones/14/rotation = Quaternion(-0.371224, -0.00197698, 0.00585369, 0.928523)
 bones/15/rotation = Quaternion(-0.502333, 1.49999e-05, -2.85068e-05, 0.864674)
-bones/16/rotation = Quaternion(-0.684697, 0.256928, 0.620278, 0.28361)
+bones/16/rotation = Quaternion(-0.605911, 0.28889, 0.697442, 0.250976)
 bones/17/rotation = Quaternion(2.27203e-07, -5.84749e-07, 0.395029, 0.918669)
 bones/18/rotation = Quaternion(-0.289732, 0.637458, 0.217438, 0.680017)
 bones/19/rotation = Quaternion(0.487906, 0.0174399, -0.00854541, 0.87268)
@@ -2161,14 +2160,15 @@ autostart = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/../gobot")
 tree_root = SubResource("AnimationNodeBlendTree_8xvna")
 anim_player = NodePath("../gobot/AnimationPlayer")
-active = true
 parameters/FlipShot/active = false
+parameters/FlipShot/internal_active = false
 parameters/FlipShot/request = 0
 parameters/HurtShot/active = false
+parameters/HurtShot/internal_active = false
 parameters/HurtShot/request = 0
-parameters/StateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_chj4k")
 parameters/StateMachine/Run/Add2/add_amount = 1.0
 
 [editable path="gobot"]

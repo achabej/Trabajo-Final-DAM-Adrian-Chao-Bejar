@@ -1,11 +1,11 @@
 extends CharacterBody3D
 
-#MOVEMENT CONFIG
+#CONFIGURACION MOVIMIENTO
 @export var WALK_SPEED = 6.5
 @export var RUN_SPEED = 10
 @export var AIM_SPEED = 3
 
-#JETPACK CONFIG
+#CONFIGURACION SALTO
 @export var JETPACK_LIFT = 8
 @export var MAX_JETPACK_HEIGHT = 2.0  
 @export var JETPACK_TIME = 2.0 
@@ -19,21 +19,34 @@ var is_jetpacking = false
 var recharge_delay = 2.0  
 var recharge_timer = 0.0 
 
+#CONFIGURACION CAMARA
 @export var camera: Camera3D
+@export var rotation_speed: float = 0.01  
+@export var min_y_angle_deg: float = -90.0 
+@export var max_y_angle_deg: float = -45.0
+@onready var cam_node = $CamNode
+var mouse_delta_y := 0.0
 
 # Modelo del jugador
 @onready var player_model = preload("res://addons/Godot_4_3D_Characters/addons/gdquest_gdbot/gdbot_skin.tscn").instantiate()
-@onready var anim_tree = player_model.get_node("AnimationTree")
+const BLEND_SPEED = 5.0 
 
 @onready var player_mesh = $PlayerMesh 
 @onready var health_controller = $HealthController
 @onready var hand_controller = $PlayerMesh/weapon_holder  
+var current_y_rotation := 0.0  
 
+#ROTACION HORIZONTAL
 const ROTATION_SPEED = 6.0  # Rotación normal
 const ROTATION_SHOOT_SPEED = 15.0  # Rotación al disparar
 
 func _ready() -> void:
 	$PlayerMesh/Mesh.add_child(player_model) 
+
+func _input(event):
+	if Input.is_action_pressed("Rotate_Cam") and event is InputEventMouseMotion:
+		mouse_delta_y = -event.relative.y
+
 
 func _physics_process(delta: float) -> void:
 
@@ -52,6 +65,14 @@ func _physics_process(delta: float) -> void:
 
 	# Movimiento
 	handle_movement(delta)
+	
+	# Rota la camara cuando se pulsa click medio
+	if Input.is_action_pressed("Rotate_Cam"):
+		current_y_rotation = clamp(current_y_rotation + mouse_delta_y * rotation_speed, deg_to_rad(min_y_angle_deg), deg_to_rad(max_y_angle_deg))
+		var rot = cam_node.rotation
+		rot.x = current_y_rotation
+		cam_node.rotation = rot
+	mouse_delta_y = 0.0
 	
 	if Input.is_action_just_pressed("Building_Mode"):
 		BuildManager.ChangeState()
@@ -120,43 +141,72 @@ func handle_shooting(delta: float) -> void:
 		if current_weapon and current_weapon.has_method("stop_shooting"):
 			current_weapon.stop_shooting()
 
-
 # Método para manejar el movimiento
 func handle_movement(delta: float) -> void:
 	var current_weapon = hand_controller.get_current_weapon()
-
-	# Controla la velocidad si se está esprintando, apuntando o caminando
-	if is_jetpacking:
-		current_speed = WALK_SPEED
-		#anim_tree.travel("jump")
-	else:
-		if Input.is_action_pressed("right_click") and current_weapon and !BuildManager.Building:  # Cuando se apunta
-			current_speed = AIM_SPEED
-			#anim_tree.travel("walk")
-		elif Input.is_action_pressed("sprint"): 
-			current_speed = RUN_SPEED
-			#anim_tree.travel("run")
-		else:
-			current_speed = WALK_SPEED
-			#anim_tree.travel("walk")
-	
-	# Calcula el movimiento dependiendo del input
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var input_rot := Input.get_axis("ui_left", "ui_right")
+	var is_moving = input_dir.length() > 0.1
+	var direction := (global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
+	# ROTACIÓN
 	if input_rot:
 		global_rotate(up_direction, PI * -1.7 * delta * input_rot)
 		input_dir = Vector2.ZERO  # Evita mover mientras rota
 
-	var direction := (global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# MOVIMIENTO Y VELOCIDAD
+	if is_jetpacking:
+		current_speed = WALK_SPEED
+		player_model.jump()
+	elif Input.is_action_pressed("right_click") and current_weapon and !BuildManager.Building:
+		current_speed = AIM_SPEED
+	elif Input.is_action_pressed("sprint"):
+		current_speed = RUN_SPEED
+	else:
+		current_speed = WALK_SPEED
+
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed
 
+		# ROTA AL JUGADOR AL MOVERSE (si no está apuntando)
+	if is_moving and not (Input.is_action_pressed("right_click") and current_weapon and !BuildManager.Building):
+		look_in_direction(direction, delta, ROTATION_SPEED)
+
 	move_and_slide()
 
-	# Rota al jugador según el input
-	if direction.length() > 0.1 and not (Input.is_action_pressed("right_click") and current_weapon and !BuildManager.Building): 
-		look_in_direction(direction, delta, ROTATION_SPEED)
+	# ANIMACIONES
+	if not is_on_floor():
+		if velocity.y < 0:
+			player_model.fall()
+		else:
+			player_model.jump()
+	elif is_moving:
+		var target_blend = 0.0
+		var anim_speed = 1.0
+
+		if Input.is_action_pressed("sprint") and !Input.is_action_pressed("right_click"):
+			target_blend = 1.0
+			anim_speed = 1.3
+		elif Input.is_action_pressed("right_click"):
+			target_blend = 0.1
+			anim_speed = 0.55
+		else:
+			target_blend = 0.0
+			anim_speed = 1.0
+
+		# Aplica blending progresivo
+		player_model.walk_run_blending = lerp(player_model.walk_run_blending, target_blend, delta * BLEND_SPEED)
+
+		# Aplica velocidad de animación
+		player_model.set_anim_speed(anim_speed)
+
+		player_model.walk()
+	else:
+		# También puedes suavizar el blend al quedarse quieto, si quieres
+		player_model.walk_run_blending = lerp(player_model.walk_run_blending, 0.0, delta * BLEND_SPEED)
+		player_model.idle()
+
+
 
 # Rota al jugador según el input
 func look_in_direction(direction: Vector3, delta: float, rotationSpeed: float) -> void:

@@ -351,6 +351,7 @@ size = Vector3(0.113037, 1, 0.110352)
 
 [node name="Extractor" type="StaticBody3D" groups=["Extractor", "Machine"]]
 script = ExtResource("1_g6mu8")
+notBuildList = Array[String](["Player", "Tree", "Build"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.27057, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55772, 0)
@@ -426,6 +427,7 @@ skeleton = NodePath("")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("4_3hxt4")
 spawn_position = NodePath("MatSpawnPoint")
+spawn_interval = 1.5
 
 [node name="MatSpawnPoint" type="Node3D" parent="Test_Generator_Manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.652, 0.656868, -9.81353e-08)

@@ -1,14 +1,19 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=23 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Controller.gd" id="3_4bf5b"]
 [ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_ag43d"]
 [ext_resource type="PackedScene" uid="uid://cjyl78b8oqo5a" path="res://Prefabs/Player/Extractor_Tool.tscn" id="5_bjpnc"]
 [ext_resource type="Script" path="res://Scripts/Systems/Managers/Interface_Manager.gd" id="6_glq1p"]
+[ext_resource type="Texture2D" uid="uid://cdg1rijy4ybsd" path="res://Textures/UI/Wood Log.png" id="6_jlrom"]
 [ext_resource type="Script" path="res://Scripts/UI/Materials_Manager.gd" id="6_oplyg"]
+[ext_resource type="Texture2D" uid="uid://cwno4oyo5aq0g" path="res://Textures/UI/Iron.png" id="7_fc8pl"]
 [ext_resource type="Script" path="res://Scripts/Player/Mouse_Area_2d.gd" id="7_uq8yo"]
+[ext_resource type="Texture2D" uid="uid://ba04tjiq47c23" path="res://Textures/UI/Copper.png" id="8_bs4n8"]
 [ext_resource type="Script" path="res://Scripts/UI/PopupManager.gd" id="8_r3hhy"]
+[ext_resource type="Texture2D" uid="uid://j2n5cq8etnjh" path="res://Textures/UI/Cristal.png" id="9_5p1bq"]
 [ext_resource type="PackedScene" uid="uid://buyu3haltyjpm" path="res://Prefabs/Player/Material_Popup.tscn" id="9_w3rbo"]
+[ext_resource type="Script" path="res://Scripts/UI/Phase_Controller.gd" id="13_vqwf6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
 
@@ -28,11 +33,12 @@ bg_color = Color(0.960784, 0, 0, 1)
 subpixel_positioning = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aym3"]
-size = Vector2(1168, 119)
+size = Vector2(4792, 138)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs6gc"]
+radius = 2.0
 
-[node name="PlayerTest" type="CharacterBody3D" node_paths=PackedStringArray("camera") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera") groups=["Player"]]
 script = ExtResource("1_jhext")
 AIM_SPEED = 5
 JETPACK_TIME = 1.2
@@ -127,9 +133,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -66.0
-offset_top = -48.0
+offset_top = 6.0
 offset_right = -66.0
-offset_bottom = -48.0
+offset_bottom = 6.0
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("6_oplyg")
@@ -137,23 +143,14 @@ script = ExtResource("6_oplyg")
 [node name="Wood" type="Control" parent="CanvasLayer/Materials"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -39.0
-offset_right = 1.0
-offset_bottom = 40.0
+offset_left = -30.0
+offset_top = 28.0
+offset_right = 10.0
+offset_bottom = 68.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Materials/Wood"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -1.0
-offset_right = 11.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Madera"
-autowrap_mode = 0
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Materials/Wood"]
+position = Vector2(20, 10)
+texture = ExtResource("6_jlrom")
 
 [node name="Amount" type="RichTextLabel" parent="CanvasLayer/Materials/Wood"]
 layout_mode = 1
@@ -172,24 +169,14 @@ autowrap_mode = 0
 [node name="Iron" type="Control" parent="CanvasLayer/Materials"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -39.0
-offset_top = 27.0
-offset_right = 1.0
-offset_bottom = 67.0
+offset_left = -30.0
+offset_top = 62.0
+offset_right = 10.0
+offset_bottom = 102.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Materials/Iron"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -1.0
-offset_right = 11.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Hierro"
-autowrap_mode = 0
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Materials/Iron"]
+position = Vector2(20, 9)
+texture = ExtResource("7_fc8pl")
 
 [node name="Amount" type="RichTextLabel" parent="CanvasLayer/Materials/Iron"]
 layout_mode = 1
@@ -208,24 +195,14 @@ autowrap_mode = 0
 [node name="Copper" type="Control" parent="CanvasLayer/Materials"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -39.0
-offset_top = 52.0
-offset_right = 1.0
-offset_bottom = 92.0
+offset_left = -30.0
+offset_top = 94.0
+offset_right = 10.0
+offset_bottom = 134.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Materials/Copper"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -1.0
-offset_right = 11.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Cobre"
-autowrap_mode = 0
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Materials/Copper"]
+position = Vector2(20, 10)
+texture = ExtResource("8_bs4n8")
 
 [node name="Amount" type="RichTextLabel" parent="CanvasLayer/Materials/Copper"]
 layout_mode = 1
@@ -244,24 +221,14 @@ autowrap_mode = 0
 [node name="Cristal" type="Control" parent="CanvasLayer/Materials"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -39.0
-offset_top = 77.0
-offset_right = 1.0
-offset_bottom = 117.0
+offset_left = -30.0
+offset_top = 126.0
+offset_right = 10.0
+offset_bottom = 166.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Materials/Cristal"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -1.0
-offset_right = 11.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Cristal"
-autowrap_mode = 0
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Materials/Cristal"]
+position = Vector2(20, 11)
+texture = ExtResource("9_5p1bq")
 
 [node name="Amount" type="RichTextLabel" parent="CanvasLayer/Materials/Cristal"]
 layout_mode = 1
@@ -301,7 +268,7 @@ position = Vector2(28, 19)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 87.0
+offset_bottom = 96.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
@@ -315,64 +282,88 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1.08)
+scale = Vector2(1, 1.19283)
 
 [node name="BtnBuildConveyLine" type="Button" parent="CanvasLayer/Building_Buttons"]
-layout_mode = 0
-offset_left = 209.0
-offset_top = 11.0
-offset_right = 336.0
-offset_bottom = 83.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -361.0
+offset_top = 16.0
+offset_right = -234.0
+offset_bottom = 88.0
+grow_horizontal = 2
 text = "Cinta 
 transportadora"
 
 [node name="BtnBuildExtractor" type="Button" parent="CanvasLayer/Building_Buttons"]
-layout_mode = 0
-offset_left = 350.0
-offset_top = 11.0
-offset_right = 464.0
-offset_bottom = 83.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 16.0
+offset_right = -103.0
+offset_bottom = 88.0
+grow_horizontal = 2
 text = "Extractor"
 
 [node name="BtnBuildFurnace" type="Button" parent="CanvasLayer/Building_Buttons"]
-layout_mode = 0
-offset_left = 482.0
-offset_top = 11.0
-offset_right = 577.0
-offset_bottom = 83.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.0
+offset_top = 16.0
+offset_right = 11.0
+offset_bottom = 88.0
+grow_horizontal = 2
 text = "Horno"
 
 [node name="BtnBuildSteelRefinery" type="Button" parent="CanvasLayer/Building_Buttons"]
-layout_mode = 0
-offset_left = 592.0
-offset_top = 11.0
-offset_right = 687.0
-offset_bottom = 83.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 123.0
+offset_bottom = 88.0
+grow_horizontal = 2
 text = "Refineria 
 de Acero"
 
 [node name="BtnBuildChipsFactory" type="Button" parent="CanvasLayer/Building_Buttons"]
-layout_mode = 0
-offset_left = 705.0
-offset_top = 11.0
-offset_right = 800.0
-offset_bottom = 83.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 261.0
+offset_top = 16.0
+offset_right = 356.0
+offset_bottom = 88.0
+grow_horizontal = 2
 text = "Fabrica
 de chips"
 
 [node name="BtnBuildPlatesFactory" type="Button" parent="CanvasLayer/Building_Buttons"]
-layout_mode = 0
-offset_left = 819.0
-offset_top = 11.0
-offset_right = 914.0
-offset_bottom = 83.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 144.0
+offset_top = 16.0
+offset_right = 239.0
+offset_bottom = 88.0
+grow_horizontal = 2
 text = "Fabrica de 
 placas"
 
 [node name="Area2D2" type="Area2D" parent="CanvasLayer/Building_Buttons"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Building_Buttons/Area2D2"]
-position = Vector2(574, 51.5)
+position = Vector2(574, 61)
 shape = SubResource("RectangleShape2D_1aym3")
 
 [node name="Materials_Needed" type="RichTextLabel" parent="CanvasLayer"]
@@ -394,10 +385,47 @@ theme_override_constants/shadow_outline_size = 8
 bbcode_enabled = true
 autowrap_mode = 1
 
+[node name="Phase_Controller" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 1.0
+anchor_top = 0.373
+anchor_right = 1.0
+anchor_bottom = 0.373
+offset_left = -198.0
+offset_top = -55.704
+offset_right = -14.0
+offset_bottom = 89.296
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("13_vqwf6")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Phase_Controller"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Phase_Controller"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("7_uq8yo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(595, 3)
 shape = SubResource("CircleShape2D_gs6gc")
 
 [connection signal="button_down" from="CanvasLayer/Building_Buttons/BtnBuildConveyLine" to="CanvasLayer/Building_Buttons" method="_on_btn_build_convey_merger_button_down"]
