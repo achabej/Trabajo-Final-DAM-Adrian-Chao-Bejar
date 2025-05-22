@@ -1,4 +1,5 @@
 extends Node
+signal phase_changed(new_phase: int)
 
 enum State {
 	Play,
@@ -15,37 +16,37 @@ var tick_timer : float = 0.0
 var phases : Dictionary = {
 	"Phase1": {
 		"Resources": {
-			"Iron_Ingot": 20,
+			"Iron_Ingot": 2,
 			"Copper_Ingot": 2
 		}
 	},
 	"Phase2": {
 		"Resources": {
-			"Steel_Ingot": 25,
-			"Copper_Ingot": 20,
+			"Steel_Ingot": 2,
+			"Copper_Ingot": 2,
 		}
 	},
 	"Phase3": {
 		"Resources": {
-			"Steel_Plate": 15,
-			"Iron_Plate": 20,
-			"Copper_Plate": 20,
+			"Steel_Plate": 1,
+			"Iron_Plate": 2,
+			"Copper_Plate": 2,
 		}
 	},
 	
 	"Phase4": {
 		"Resources": {
-			"Chips": 20,
-			"Steel_Plate": 30,
-			"Cristal": 15
+			"Chips": 2,
+			"Steel_Plate": 3,
+			"Cristal": 1
 		}
 	},
 	"Phase5": {
 		"Resources": {
-			"Chips": 25,
-			"Steel_Plate": 50,
-			"Copper_Plate": 50,
-			"Cristal": 25
+			"Chips": 2,
+			"Steel_Plate": 5,
+			"Copper_Plate": 5,
+			"Cristal": 2
 		}
 	}
 }
@@ -88,10 +89,18 @@ func add_mat(material_type: String, amount: int = 1) -> void:
 	
 	if _check_phase_complete():
 		current_phase += 1
+		emit_signal("phase_changed", current_phase)
+
 		if current_phase > phases.size():
-			current_phase = phases.size()
+			# Ya no hay más fases. Solo actualizar la UI con el mensaje final
+			storage.clear()
+			_update_ui()
+			return
+		
 		storage.clear()
 		_update_phase_storage()
+		_update_ui()
+
 
 func _update_phase_storage() -> void:
 	# Inicializar el storage para la fase actual, para que tenga todas las claves con 0
@@ -120,6 +129,11 @@ func _update_ui() -> void:
 	var phase_controller = player.get_node_or_null("CanvasLayer/Phase_Controller")
 	if not phase_controller:
 		return
+
+	# Si ya se completaron todas las fases
+	if current_phase > phases.size():
+		phase_controller.update_phase_text("[color=green][b]FASES COMPLETADAS[/b][/color]")
+		return
 	
 	var phase_key = "Phase%d" % current_phase
 	if not phases.has(phase_key):
@@ -130,7 +144,6 @@ func _update_ui() -> void:
 		var have = storage.get(mat, 0)
 		var need = phases[phase_key]["Resources"][mat]
 		if have >= need:
-			# Línea en verde cuando se cumple el requisito
 			text += "[color=green]    %s %d/%d[/color]\n" % [mat, have, need]
 		else:
 			text += "    %s %d/%d\n" % [mat, have, need]

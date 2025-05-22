@@ -1,10 +1,24 @@
 extends Node
 
+@onready var unlocks_for_phase := {
+	1: [$BtnBuildExtractor, $BtnBuildConveyLine,$BtnBuildFurnace],
+	2: [$BtnBuildSteelRefinery],
+	3: [$BtnBuildPlatesFactory],
+	4: [$BtnBuildChipsFactory]
+}
+
+func _ready():
+	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
+	_on_phase_changed(GameManager.current_phase)  # Aplicar al arrancar
+	
+func _on_phase_changed(new_phase: int) -> void:
+	for fase in unlocks_for_phase.keys():
+		var visible : bool = fase <= new_phase
+		for btn in unlocks_for_phase[fase]:
+			btn.visible = visible
+
 func _on_btn_build_extractor_button_down() -> void:
 	BuildManager.SpawnExtractor()
-
-func _on_btn_build_text_machine_button_down() -> void:
-	BuildManager.SpawnTestCubeGenerator()
 
 func _on_btn_build_convey_merger_button_down() -> void:
 	BuildManager.SpawnConveyMerger()
@@ -26,6 +40,9 @@ func _on_btn_build_chips_factory_button_down() -> void:
 
 func _on_btn_build_plates_factory_button_down() -> void:
 	BuildManager.SpawnPlatesFactory()
+
+#func _on_btn_build_text_machine_button_down() -> void:
+	#BuildManager.SpawnTestCubeGenerator()
 
 # Evita que se construya en la parte superior del menu
 func _on_area_2d_area_entered(area: Area2D) -> void:

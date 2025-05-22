@@ -354,13 +354,13 @@ script = ExtResource("1_g6mu8")
 notBuildList = Array[String](["Player", "Tree", "Build"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.27057, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55772, 0)
+transform = Transform3D(1.27057, 0, 0, 0, 1.5121, 0, 0, 0, 1.07597, 0, 3.86567, 0)
 shape = SubResource("ConvexPolygonShape3D_4ir5c")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1.27057, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55772, 0)
+transform = Transform3D(1.27057, 0, 0, 0, 1.5121, 0, 0, 0, 1.07597, 0, 3.86567, 0)
 shape = SubResource("ConvexPolygonShape3D_4ir5c")
 
 [node name="Mesh" type="Node3D" parent="."]
@@ -449,6 +449,8 @@ shape = SubResource("BoxShape3D_73mnf")
 
 [node name="ConveyDetector" type="Area3D" parent="Test_Generator_Manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.803524, 0.388432, -7.02463e-08)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/ConveyDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0130549, -4.52088e-08)

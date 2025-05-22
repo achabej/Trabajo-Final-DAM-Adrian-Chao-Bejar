@@ -11,17 +11,15 @@ config_version=5
 [application]
 
 config/name="Proyect Mobile Space Game"
-run/main_scene="res://Scenes/test_scene.tscn"
+run/main_scene="res://Scenes/Planet_1.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-WeaponManager="*res://Scripts/Systems/Managers/Weapon_Manager.gd"
 BuildManager="*res://Scripts/Systems/Building/Build_Manager.gd"
 GameManager="*res://Scripts/Systems/Managers/Game_Manager.gd"
 ConveyorManager="*res://Scripts/Systems/Managers/Conveyor_Manager.gd"
-ResourcesManager="*res://Scripts/Systems/Enviroment/Resources_Manager.gd"
 
 [dotnet]
 

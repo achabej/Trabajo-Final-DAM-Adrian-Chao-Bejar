@@ -118,8 +118,6 @@ func spawn_mat() -> void:
 		var amount = best_recipe["Inputs"][material]
 		material_storage[material] -= amount
 
-	# 🔁 Intentar recoger más materiales después de liberar espacio
-	_collect_pending_materials_from_inputs()
 	# Instanciar resultado
 	var prefab: PackedScene = best_recipe["Mat Spawn"]
 	var instance = prefab.instantiate()
@@ -130,7 +128,6 @@ func spawn_mat() -> void:
 	var manager = current_conveyor.get_node_or_null("Convey_Manager")
 	if manager and manager is ConveyScript and manager.current_material == null:
 		manager.current_material = instance
-		
 
 #Comprobamos si hay materiales en las entradas para recoger
 func _collect_pending_materials_from_inputs() -> void:
@@ -149,7 +146,10 @@ func _collect_pending_materials_from_inputs() -> void:
 func _on_spawn_timer_timeout() -> void:
 	if blocking_materials == 0:
 		spawn_mat()
+
 	is_active = false
+	_collect_pending_materials_from_inputs()  # Ahora se hace aquí
+
 
 func _check_activation():
 	if not is_active and _has_all_required_materials():

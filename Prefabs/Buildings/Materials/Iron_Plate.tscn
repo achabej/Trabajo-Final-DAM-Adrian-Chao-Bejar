@@ -17,6 +17,8 @@ func get_material_type():
 size = Vector3(1.03296, 0.475586, 0.991211)
 
 [node name="Iron_Plate" type="RigidBody3D" groups=["Material"]]
+collision_layer = 2
+collision_mask = 2
 can_sleep = false
 lock_rotation = true
 freeze_mode = 1

@@ -5,13 +5,13 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s820e"]
 resource_name = "Maple Leaves"
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.906332, 0.296268, 0.121594, 1)
+albedo_color = Color(0.853054, 0.269017, 0.824335, 1)
 emission_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy27p"]
 resource_name = "Maple Wood"
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.678782, 0.567323, 0.481916, 1)
+albedo_color = Color(0.605296, 0.379726, 0.328886, 1)
 emission_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_a3vp8"]
@@ -78,6 +78,8 @@ size = Vector3(3.48926, 2.68588, 3.53516)
 
 [node name="Tree1" type="StaticBody3D" groups=["Tree"]]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("2_yx2bt")
 resource_type = "Wood"
 

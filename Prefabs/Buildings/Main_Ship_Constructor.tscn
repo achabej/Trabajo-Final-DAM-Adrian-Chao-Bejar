@@ -14,6 +14,8 @@ points = PackedVector3Array(0.996336, 0.423354, 0.996336, -1, -2.54794, -1, -1, 
 size = Vector3(0.647461, 0.5, 0.610352)
 
 [node name="Main_Ship_Constructor" type="StaticBody3D" groups=["Extractor", "Machine"]]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2.03291, 0, 0, 0, 0.8, 0, 0, 0, 1.89042, 0, 2.15772, 0)
@@ -55,9 +57,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03097, 0.00561142, 0.000459
 
 [node name="Enter1" type="StaticBody3D" parent="Test_Generator_Manager/MatEnterPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47453, 0.418138, -0.0417465)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000214577, 0.0977138, 0.00746679)

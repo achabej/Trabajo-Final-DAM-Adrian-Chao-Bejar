@@ -37,15 +37,24 @@ func _ready():
 func _process(_delta):
 	if current_material and not is_instance_valid(current_material):
 		current_material = null
+	if active_entry != null and not is_instance_valid(active_entry):
+		active_entry = null
+
 
 func _exit_tree():
 	ConveyorManager.unregister_conveyor(self)
+	#Elimina los materiales encima de la cinta
 	for body in get_overlapping_bodies():
 		if body.is_in_group("Material") and is_instance_valid(body):
 			body.queue_free()
-
+	#Elimina su referencia en detected_conveyors de la cinta de enfrente
 	if is_instance_valid(current_detected_conveyor) and current_detected_conveyor.detected_conveyors.has(self):
 		current_detected_conveyor.detected_conveyors.erase(self)
+	
+	#Elimina su referencia en active_entry para que no se quede la reserva en el movimiento
+	if is_instance_valid(next_convey_manager) and next_convey_manager.active_entry == self:
+		next_convey_manager.active_entry = null
+
 
 func _on_body_entered(body: Node3D) -> void:
 	#Comprueba si la cinta y la maquina estan construidas
@@ -99,6 +108,7 @@ func try_move():
 	tween.tween_property(current_material, "global_position", to_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(Callable(self, "_on_movement_finished"))
 
+# Funcion para cuando termina el movimiento
 func _on_movement_finished():
 	if is_instance_valid(next_convey_manager):
 		next_convey_manager.is_moving = false
@@ -107,8 +117,11 @@ func _on_movement_finished():
 	current_material = null
 	next_convey_manager = null
 	is_moving = false
+	
+	if is_instance_valid(next_convey_manager) and next_convey_manager.active_entry == self:
+		next_convey_manager.active_entry = null
 
-# ────── MERGER LOGIC ──────
+# Logica para gestionar varias entradas en una cinta
 func _on_merger_tick():
 	if current_material != null:
 		try_send_to_output()
@@ -130,6 +143,7 @@ func _on_merger_tick():
 						#print("🔄 Material absorbido por MERGER desde:", source_convey.name)
 						break
 
+# Mueve el material que tiene encima a la siguiente cinta
 func move_material_to_center(material: RigidBody3D):
 	var to_pos = get_center_position()
 	to_pos.y = material.global_position.y
@@ -139,6 +153,7 @@ func move_material_to_center(material: RigidBody3D):
 	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_callback(Callable(self, "_on_input_move_finished"))
 
+# Funcion para enviar el material 
 func try_send_to_output():
 	if current_material == null or not salida_raycast.is_colliding():
 		return
@@ -159,11 +174,11 @@ func try_send_to_output():
 
 				#print("➡️ Material enviado al conveyor de salida:", salida_convey.name)
 
+# Limpia la referencia al finalizar el movimiento
 func _on_output_move_finished():
 	current_material = null
-	#print("✅ MERGER listo para nuevo material.")
 
-# ────── COMMON ──────
+# Actualiza el siguiente convey para sincronizarlo
 func update_next_convey():
 	if raycast and raycast.is_colliding():
 		var collider = raycast.get_collider()
@@ -178,9 +193,11 @@ func update_next_convey():
 						manager.detected_conveyors.append(self)
 						current_detected_conveyor = manager
 
+# Devuelve la posicion central de la cinta
 func get_center_position() -> Vector3:
 	return center.global_transform.origin
 
+# Encuentra el nodo padre de un grupo
 func find_parent_with_group(node: Node, group_name: String) -> Node:
 	var current = node
 	while current:
@@ -189,6 +206,7 @@ func find_parent_with_group(node: Node, group_name: String) -> Node:
 		current = current.get_parent()
 	return null
 
+# Comprueba si puede mover un material al siguiente convey
 func request_entry(from_conveyor: Node) -> bool:
 	if current_material != null or is_moving:
 		return false

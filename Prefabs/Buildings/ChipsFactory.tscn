@@ -665,6 +665,8 @@ allowed_material = "Copper_Plate"
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000214577, 0.0977138, 0.00746679)
@@ -677,6 +679,8 @@ allowed_material = "Steel_Plate"
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/MatEnterPoints/Enter2/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000214577, 0.0977138, 0.00746679)
@@ -689,6 +693,8 @@ allowed_material = "Refined_Cristal"
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/MatEnterPoints/Enter3/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000214577, 0.0977138, 0.00746679)
@@ -700,6 +706,8 @@ shape = SubResource("BoxShape3D_o3kg5")
 
 [node name="ConveyDetector" type="Area3D" parent="Test_Generator_Manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.64144, 0.388432, -5.60764e-08)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/ConveyDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0130549, -4.52088e-08)

@@ -30,12 +30,12 @@ ground_bottom_color = Color(0.36543, 0.692502, 0.617578, 1)
 ground_horizon_color = Color(0.607008, 0.790829, 0.537506, 1)
 sun_angle_max = 24.31
 
-[sub_resource type="Sky" id="Sky_ispar"]
+[sub_resource type="Sky" id="Sky_mfoux"]
 sky_material = SubResource("ProceduralSkyMaterial_efyh2")
 
 [sub_resource type="Environment" id="Environment_ttxv5"]
 background_mode = 2
-sky = SubResource("Sky_ispar")
+sky = SubResource("Sky_mfoux")
 ambient_light_color = Color(0.761784, 0.759428, 0.784369, 1)
 ambient_light_sky_contribution = 0.72
 ambient_light_energy = 0.5
@@ -66,6 +66,8 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor"]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
@@ -100,7 +102,7 @@ transform = Transform3D(0.892318, 0, 1.20572, 0, 1.5, 0, -1.20572, 0, 0.892318, 
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 5.918, 0.0513344, 5.85042)
 
 [node name="Copper_Deposit" parent="NavigationRegion3D" instance=ExtResource("7_vc2xy")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.7855, 0, -5.9737)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18.2145, 0, -33.9737)
 
 [node name="Cristal_Deposit" parent="NavigationRegion3D" instance=ExtResource("8_w5ghy")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18, 0, -6)

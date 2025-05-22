@@ -11,7 +11,7 @@ emission_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmln0"]
 resource_name = "Oak Tree Leaves"
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.3582, 0.587873, 0.135012, 1)
+albedo_color = Color(0.878181, 0.201392, 0.488863, 1)
 emission_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_k5ps5"]
@@ -78,6 +78,8 @@ size = Vector3(3.48926, 1.95036, 3.53516)
 
 [node name="003_Oak_Tree" type="StaticBody3D" groups=["Tree"]]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_4boob")
 resource_type = "Wood"
 

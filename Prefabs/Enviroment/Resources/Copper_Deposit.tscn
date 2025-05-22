@@ -11,6 +11,8 @@ size = Vector3(1.65527, 1.2251, 1.74219)
 
 [node name="Copper_Deposit" type="StaticBody3D" groups=["Deposit"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_n732b")
 material = ExtResource("2_j2syp")
 resource_type = "Copper"

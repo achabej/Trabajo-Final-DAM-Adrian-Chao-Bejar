@@ -41,8 +41,10 @@ radius = 2.0
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera") groups=["Player"]]
 script = ExtResource("1_jhext")
 AIM_SPEED = 5
-JETPACK_TIME = 1.2
+MAX_JETPACK_HEIGHT = 4.0
+JETPACK_TIME = 3.0
 camera = NodePath("CamNode/SpringArm3D/Camera3D")
+max_y_angle_deg = 0.0
 
 [node name="PlayerMesh" type="Node3D" parent="."]
 
@@ -70,7 +72,7 @@ transform = Transform3D(1, 0, 0, 0, 0.68307, 0.730354, 0, -0.730354, 0.68307, 0,
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CamNode"]
 transform = Transform3D(1, 0, 0, 0, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)
-collision_mask = 2
+collision_mask = 4
 spring_length = 18.0
 margin = 0.5
 
