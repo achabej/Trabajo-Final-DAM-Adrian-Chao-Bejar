@@ -44,7 +44,7 @@ ambient_light_sky_contribution = 0.72
 ambient_light_energy = 0.5
 glow_enabled = true
 
-[node name="Planet1" type="Node3D"]
+[node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.501209, -0.640987, 0.581313, 0, 0.671785, 0.740746, -0.865327, -0.371268, 0.336705, 0, 0, 0)
