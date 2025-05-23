@@ -25,5 +25,5 @@ func _process_queue() -> void:
 		var anim = popup.get_node("AnimationPlayer")
 		anim.play("float_up")
 
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.2).timeout
 	processing_queue = false

@@ -13,6 +13,7 @@
 [node name="Extractor_Tool" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358666, 1.14167, -0.381617)
 script = ExtResource("1_j8em4")
+damage = 5.0
 
 [node name="Mesh" type="Node3D" parent="."]
 
@@ -49,6 +50,6 @@ target_position = Vector3(0, -8, 0)
 [node name="ParticleEndLaser" parent="Laser" instance=ExtResource("5_77so6")]
 
 [node name="ExtractorTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.2
 
 [connection signal="timeout" from="ExtractorTimer" to="." method="_on_extractor_timer_timeout"]
