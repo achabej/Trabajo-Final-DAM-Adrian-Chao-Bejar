@@ -5,7 +5,7 @@ var conveyors: Array = []
 
 #Temporizador
 var tick_timer: Timer
-@export var tick_interval := 0.01
+var tick_interval := 0.2
 
 func _ready():
 	tick_timer = Timer.new()
@@ -25,6 +25,9 @@ func register_conveyor(conveyor: Node):
 
 func unregister_conveyor(conveyor: Node):
 	conveyors.erase(conveyor)
+
+func get_all_conveyors() -> Array:
+	return conveyors.duplicate()
 
 func tick_conveyor():
 	for conveyor in conveyors:
