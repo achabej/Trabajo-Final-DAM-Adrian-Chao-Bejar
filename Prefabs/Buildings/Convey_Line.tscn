@@ -169,7 +169,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.520706, 0.293376, 0)
 target_position = Vector3(0.5, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Convey_Manager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0293057, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0682901, 0)
 shape = SubResource("ConvexPolygonShape3D_2ymlc")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
