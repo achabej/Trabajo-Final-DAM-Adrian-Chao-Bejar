@@ -214,7 +214,7 @@ size = Vector3(0.619141, 0.105469, 0.633789)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_oxkdk")
-mat_type = "Chips"
+mat_type = "Chip"
 
 [node name="Mesh" type="Node3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)

@@ -35,15 +35,15 @@ var phases : Dictionary = {
 	},
 	
 	"Phase4": {
-		"Resources": {
-			"Chips": 2,
+		"Resources": {	
+			"Chip": 2,
 			"Steel_Plate": 3,
 			"Cristal": 1
 		}
 	},
 	"Phase5": {
 		"Resources": {
-			"Chips": 2,
+			"Chip": 2,
 			"Steel_Plate": 5,
 			"Copper_Plate": 5,
 			"Cristal": 2

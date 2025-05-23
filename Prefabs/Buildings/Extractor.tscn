@@ -425,6 +425,8 @@ skeleton = NodePath("")
 
 [node name="Test_Generator_Manager" type="StaticBody3D" parent="." node_paths=PackedStringArray("spawn_position") groups=["Machine"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("4_3hxt4")
 spawn_position = NodePath("MatSpawnPoint")
 spawn_interval = 1.5
@@ -437,9 +439,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82454, 0.240582, -1.14877e
 shape = SubResource("BoxShape3D_k65re")
 
 [node name="DepositDetector" type="StaticBody3D" parent="Test_Generator_Manager"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("8_17wdj")
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/DepositDetector"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/DepositDetector/Area3D"]
 shape = SubResource("BoxShape3D_73mnf")
@@ -449,8 +455,8 @@ shape = SubResource("BoxShape3D_73mnf")
 
 [node name="ConveyDetector" type="Area3D" parent="Test_Generator_Manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.803524, 0.388432, -7.02463e-08)
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/ConveyDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0130549, -4.52088e-08)

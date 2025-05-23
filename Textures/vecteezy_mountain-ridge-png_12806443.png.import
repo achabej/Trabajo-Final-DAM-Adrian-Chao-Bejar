@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3tha2h3twypn"
-path.s3tc="res://.godot/imported/SteelRefinery_colormap.png-f5f67bba0000f0a1c94ae2c84f49535c.s3tc.ctex"
+uid="uid://c80cfwtax2msp"
+path.s3tc="res://.godot/imported/vecteezy_mountain-ridge-png_12806443.png-c82d2561a962955c12b63b3c3cbe81f8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Models/Original/SteelRefinery_colormap.png"
-dest_files=["res://.godot/imported/SteelRefinery_colormap.png-f5f67bba0000f0a1c94ae2c84f49535c.s3tc.ctex"]
+source_file="res://Textures/vecteezy_mountain-ridge-png_12806443.png"
+dest_files=["res://.godot/imported/vecteezy_mountain-ridge-png_12806443.png-c82d2561a962955c12b63b3c3cbe81f8.s3tc.ctex"]
 
 [params]
 
