@@ -15,12 +15,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if ActiveBuildableObject and not isBuild:
+		collision_mask = (1 << 3)
 		var can_build := true
 		for obj in objects:
 			if isInProhibitedGroup(obj):
 				can_build = false
 				break
 		BuildManager.AbleToBuild = can_build
+	
+	if isBuild:
+		collision_mask = (1 << 1) | (1 << 2) 
+
 
 # Cambia el material de todos los MeshInstance3D que no estén protegidos
 func apply_material_to_meshes(mat: Material) -> void:

@@ -74,3 +74,7 @@ func _on_convey_detector_body_exited(body: Node3D) -> void:
 	elif body.is_in_group("Material"):
 		blocking_materials = max(0, blocking_materials - 1)
 		print("✅ Zona de spawn libre")
+
+func snap_to_conveyor_center() -> void:
+	if is_instance_valid(current_conveyor):
+		global_position = current_conveyor.global_position

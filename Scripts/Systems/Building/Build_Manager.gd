@@ -160,7 +160,6 @@ func place_building(delta):
 			if gen.has_method("activate"):
 				gen.activate()
 
-	
 	if Input.is_action_just_pressed("Rotate_Building"):
 		rotate_building()
 

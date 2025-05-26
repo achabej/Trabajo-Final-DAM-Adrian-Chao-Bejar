@@ -45,7 +45,6 @@ func _exit_tree():
 		if body.is_in_group("Material") and is_instance_valid(body):
 			body.queue_free()
 
-
 	for conveyor in ConveyorManager.get_all_conveyors():
 		if conveyor.current_material != null:
 			conveyor.try_move()
