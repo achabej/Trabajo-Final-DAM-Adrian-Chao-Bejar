@@ -1,10 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://b5ga5oyphu56e"]
+[gd_scene load_steps=8 format=4 uid="uid://b5ga5oyphu56e"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Mat_Type.gd" id="1_oi4bi"]
 [ext_resource type="Material" uid="uid://dyc3gpqrdpdci" path="res://Materials/Enviroment/Cristal_Mat.tres" id="2_27a7a"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rllrh"]
-size = Vector3(0.913086, 0.878662, 0.951172)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2iuy7"]
 
@@ -40,17 +37,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_43525")
 
-[node name="Iron" type="RigidBody3D" groups=["Material"]]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3gfjt"]
+size = Vector3(0.913086, 0.878662, 0.827148)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wrb7g"]
+size = Vector3(0.913086, 0.878662, 0.827148)
+
+[node name="Cristal" type="CharacterBody3D" groups=["Material"]]
 collision_layer = 2
 collision_mask = 2
-can_sleep = false
-lock_rotation = true
-freeze_mode = 1
 script = ExtResource("1_oi4bi")
 mat_type = "Cristal"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_rllrh")
 
 [node name="Mesh" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -64,7 +61,8 @@ skeleton = NodePath("")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_rllrh")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000104666, -0.00506246, 0.000466704)
+shape = SubResource("BoxShape3D_3gfjt")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wrb7g")

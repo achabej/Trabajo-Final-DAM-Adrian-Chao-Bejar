@@ -8,12 +8,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_rllrh"]
 size = Vector3(0.913086, 0.878662, 0.827148)
 
-[node name="Copper" type="RigidBody3D" groups=["Material"]]
+[node name="Copper" type="CharacterBody3D" groups=["Material"]]
 collision_layer = 2
 collision_mask = 2
-can_sleep = false
-lock_rotation = true
-freeze_mode = 1
 script = ExtResource("1_kkil6")
 mat_type = "Copper"
 

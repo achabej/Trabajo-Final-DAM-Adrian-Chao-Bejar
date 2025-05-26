@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://d35y1023ave83"]
+[gd_scene load_steps=23 format=4 uid="uid://d35y1023ave83"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Mat_Type.gd" id="1_oxkdk"]
 [ext_resource type="Material" uid="uid://qorfm5rakhmf" path="res://Materials/Basic_Mat.tres" id="1_vuux0"]
@@ -207,17 +207,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5i246")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hc7d8"]
-size = Vector3(0.619141, 0.105469, 0.633789)
+[sub_resource type="BoxShape3D" id="BoxShape3D_yjxet"]
+size = Vector3(0.913086, 0.878662, 0.827148)
 
-[node name="Chips" type="RigidBody3D" groups=["Material"]]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvvol"]
+size = Vector3(0.913086, 0.878662, 0.827148)
+
+[node name="Chip" type="CharacterBody3D" groups=["Material"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_oxkdk")
 mat_type = "Chip"
 
 [node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+transform = Transform3D(1.13163, 0, 0, 0, 1.13163, 0, 0, 0, 1.13163, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.330284, 0, 0, 0, 0.046521, 0, 0, 0, 0.330284, 0, 0, 0)
@@ -255,10 +258,11 @@ material_override = ExtResource("1_vuux0")
 mesh = SubResource("ArrayMesh_8wsod")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_hc7d8")
-
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_hc7d8")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000104666, -0.00506246, 0.000466704)
+shape = SubResource("BoxShape3D_yjxet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wvvol")

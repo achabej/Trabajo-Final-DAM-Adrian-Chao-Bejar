@@ -44,14 +44,14 @@ sky_material = SubResource("ProceduralSkyMaterial_bbnah")
 [sub_resource type="Environment" id="Environment_4d2ix"]
 background_mode = 2
 sky = SubResource("Sky_ispar")
-ambient_light_color = Color(0.692258, 0.818728, 0.928181, 1)
+ambient_light_color = Color(0.75014, 0.88178, 0.974935, 1)
 ambient_light_sky_contribution = 0.7
 ambient_light_energy = 1.5
 reflected_light_source = 2
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.904965, 0.429438, 0.772611, 1)
+fog_light_color = Color(0.680525, 0.54109, 0.940335, 1)
 fog_light_energy = 0.7
 fog_density = 0.7192
 fog_depth_curve = 3.605

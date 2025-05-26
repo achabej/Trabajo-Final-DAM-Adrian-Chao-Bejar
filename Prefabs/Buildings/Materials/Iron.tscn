@@ -8,12 +8,9 @@ size = Vector3(0.913086, 0.878662, 0.827148)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bphbn"]
 
-[node name="Iron" type="RigidBody3D" groups=["Material"]]
+[node name="Iron" type="CharacterBody3D" groups=["Material"]]
 collision_layer = 2
 collision_mask = 2
-can_sleep = false
-lock_rotation = true
-freeze_mode = 1
 script = ExtResource("1_aablb")
 mat_type = "Iron"
 
@@ -68,6 +65,3 @@ mesh = SubResource("BoxMesh_bphbn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000104666, -0.00506246, 0.000466704)
 shape = SubResource("BoxShape3D_rllrh")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

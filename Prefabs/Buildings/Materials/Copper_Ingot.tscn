@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp1s1y3t5m1ws"]
+[gd_scene load_steps=6 format=3 uid="uid://cp1s1y3t5m1ws"]
 
 [ext_resource type="Material" uid="uid://d3ccf8xvmvoac" path="res://Materials/Enviroment/Copper_Mat.tres" id="2_s5j0y"]
 
 [sub_resource type="GDScript" id="GDScript_14snt"]
-script/source = "extends RigidBody3D
+script/source = "extends CharacterBody3D
 
 @export var mat_type : String = \"\"
 
@@ -13,15 +13,15 @@ func get_material_type():
 
 [sub_resource type="BoxMesh" id="BoxMesh_bb3j0"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_s12pw"]
-size = Vector3(1.03296, 0.475586, 0.991211)
+[sub_resource type="BoxShape3D" id="BoxShape3D_bectm"]
+size = Vector3(0.913086, 0.878662, 0.827148)
 
-[node name="Copper_Ingot" type="RigidBody3D" groups=["Material"]]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hvwqn"]
+size = Vector3(0.913086, 0.878662, 0.827148)
+
+[node name="Copper_Ingot" type="CharacterBody3D" groups=["Material"]]
 collision_layer = 2
 collision_mask = 2
-can_sleep = false
-lock_rotation = true
-freeze_mode = 1
 script = SubResource("GDScript_14snt")
 mat_type = "Copper_Ingot"
 
@@ -31,10 +31,11 @@ material_override = ExtResource("2_s5j0y")
 gi_mode = 2
 mesh = SubResource("BoxMesh_bb3j0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_s12pw")
-
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("BoxShape3D_s12pw")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000104666, -0.00506246, 0.000466704)
+shape = SubResource("BoxShape3D_bectm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hvwqn")

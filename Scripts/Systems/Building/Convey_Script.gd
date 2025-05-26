@@ -1,7 +1,7 @@
 extends Area3D
 class_name ConveyScript
 
-@export var convey_velocity = 4
+@export var convey_velocity = 6.0
 @export var raycast: RayCast3D
 
 @onready var center = $Center
@@ -13,12 +13,12 @@ var timer: Timer = null
 var is_merger := false
 var entrada_index := 0
 
-var current_material: RigidBody3D = null
+var current_material : CharacterBody3D = null
 var target_position: Vector3 = Vector3.ZERO
 var next_convey_manager: Node = null
 var is_moving := false
 var detected_conveyors: Array = []
-var current_detected_conveyor: Node3D
+var current_detected_conveyor: Node3D = null
 var active_entry: Node = null
 
 func _ready():
@@ -36,7 +36,7 @@ func _process(_delta):
 		current_material = null
 	if active_entry != null and not is_instance_valid(active_entry):
 		active_entry = null
-	
+
 	cleanup_invalid_references()
 
 func _exit_tree():
@@ -44,6 +44,7 @@ func _exit_tree():
 	for body in get_overlapping_bodies():
 		if body.is_in_group("Material") and is_instance_valid(body):
 			body.queue_free()
+
 
 	for conveyor in ConveyorManager.get_all_conveyors():
 		if conveyor.current_material != null:
@@ -66,18 +67,29 @@ func _on_body_entered(body: Node3D) -> void:
 			machine_root.set("current_conveyor", self.get_parent())
 	elif body.is_in_group("Material") and current_material == null:
 		current_material = body
-		body.linear_velocity = Vector3.ZERO
-		body.angular_velocity = Vector3.ZERO
+		if body is CharacterBody3D:
+			body.velocity = Vector3.ZERO
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("Material") and body == current_material:
 		await get_tree().process_frame
-		if not get_overlapping_bodies().has(body):
+		if not is_instance_valid(body) or not get_overlapping_bodies().has(body):
 			current_material = null
 
-func try_move():
-	if not get_parent().is_in_group("Build"):
-		return
+# Función asíncrona para mover el material suavemente hasta target_pos
+func move_material_to(material: CharacterBody3D, target_pos: Vector3, speed: float) -> void:
+	while is_instance_valid(material) and material.global_position.distance_to(target_pos) > 0.1:
+		if not is_instance_valid(material):
+			return
+		var direction = (target_pos - material.global_position).normalized()
+		material.global_position += direction * speed * get_process_delta_time()
+		await get_tree().process_frame
+
+	if is_instance_valid(material):
+		material.global_position = target_pos
+
+# Función principal para intentar mover el material al siguiente conveyor
+func try_move() -> void:
 	if is_moving or current_material == null:
 		return
 
@@ -98,12 +110,9 @@ func try_move():
 	var to_pos = next_convey_manager.get_center_position()
 	to_pos.y = from_pos.y
 
-	var tween := create_tween()
-	var distance = from_pos.distance_to(to_pos)
-	var duration = distance / convey_velocity
-
-	tween.tween_property(current_material, "global_position", to_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(Callable(self, "_on_movement_finished"))
+	await move_material_to(current_material, to_pos, convey_velocity)
+	
+	_on_movement_finished()
 
 func _on_movement_finished():
 	if is_instance_valid(next_convey_manager):
@@ -167,14 +176,12 @@ func _on_merger_tick():
 						move_material_to_center(material)
 						break
 
-func move_material_to_center(material: RigidBody3D):
+func move_material_to_center(material: CharacterBody3D):
 	var to_pos = get_center_position()
 	to_pos.y = material.global_position.y
 
-	var tween = create_tween()
-	tween.tween_property(material, "global_position", to_pos, convey_velocity)
-	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(Callable(self, "_on_input_move_finished"))
+	# Usamos la función asíncrona para mover el material sin tween
+	await move_material_to(material, to_pos, convey_velocity)
 
 func try_send_to_output():
 	if current_material == null or not salida_raycast.is_colliding():
@@ -189,10 +196,8 @@ func try_send_to_output():
 				var to_pos = salida_manager.get_center_position()
 				to_pos.y = current_material.global_position.y
 
-				var tween = create_tween()
-				tween.tween_property(current_material, "global_position", to_pos, convey_velocity)
-				tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-				tween.tween_callback(Callable(self, "_on_output_move_finished"))
+				await move_material_to(current_material, to_pos, convey_velocity)
+				_on_output_move_finished()
 
 func _on_output_move_finished():
 	current_material = null

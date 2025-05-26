@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 BuildManager="*res://Scripts/Systems/Building/Build_Manager.gd"
 GameManager="*res://Scripts/Systems/Managers/Game_Manager.gd"
 ConveyorManager="*res://Scripts/Systems/Managers/Conveyor_Manager.gd"
+DebugManager="*res://Scripts/Systems/Managers/Debug_Manager.gd"
 
 [dotnet]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://1iet6k1s1nam"]
+[gd_scene load_steps=15 format=4 uid="uid://1iet6k1s1nam"]
 
 [ext_resource type="Material" uid="uid://qorfm5rakhmf" path="res://Materials/Basic_Mat.tres" id="2_gl4e8"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="2_tw2dg"]
@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Convey_Script.gd" id="4_c4w8x"]
 [ext_resource type="Texture2D" uid="uid://drupcovi6w2ub" path="res://Textures/black_arrow.png" id="4_icwpx"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2ymlc"]
-points = PackedVector3Array(0.493642, 0.306358, 0.368475, -0.491025, 0.0910253, -0.369931, -0.49363, 0.30637, -0.371885, -0.49363, 0.30637, 0.368517, 0.396887, 0, 0.364616, 0.401079, 0.398921, -0.371854, 0.396887, 0, -0.367984, -0.396818, -2.77556e-17, 0.364616, -0.401056, 0.398944, 0.368528, -0.401056, 0.398944, -0.371896, 0.401079, 0.398921, 0.368486, -0.396818, -2.77556e-17, -0.367984, 0.491038, 0.0910375, -0.369889, -0.491025, 0.0910253, 0.366563, 0.493642, 0.306358, -0.371843, 0.491038, 0.0910375, 0.366521, -0.414297, 0.0142974, -0.369921, -0.414297, 0.0142974, 0.366553)
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7p4y"]
+size = Vector3(0.925537, 0.44873, 0.932617)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hijnf"]
 transparency = 2
@@ -92,6 +92,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g1b0n")
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2ymlc"]
+points = PackedVector3Array(0.493642, 0.306358, 0.368475, -0.491025, 0.0910253, -0.369931, -0.49363, 0.30637, -0.371885, -0.49363, 0.30637, 0.368517, 0.396887, 0, 0.364616, 0.401079, 0.398921, -0.371854, 0.396887, 0, -0.367984, -0.396818, -2.77556e-17, 0.364616, -0.401056, 0.398944, 0.368528, -0.401056, 0.398944, -0.371896, 0.401079, 0.398921, 0.368486, -0.396818, -2.77556e-17, -0.367984, 0.491038, 0.0910375, -0.369889, -0.491025, 0.0910253, 0.366563, 0.493642, 0.306358, -0.371843, 0.491038, 0.0910375, 0.366521, -0.414297, 0.0142974, -0.369921, -0.414297, 0.0142974, 0.366553)
+
 [node name="Convey_Line" type="StaticBody3D" groups=["Convey"]]
 transform = Transform3D(0.966212, 0, 0, 0, 0.966212, 0, 0, 0, 0.966212, 0, 0, 0)
 collision_layer = 3
@@ -100,8 +103,8 @@ script = ExtResource("2_tw2dg")
 notBuildList = Array[String](["Deposit", "Build", "Tree", "Player"])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0293057, 0)
-shape = SubResource("ConvexPolygonShape3D_2ymlc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.227975, 0)
+shape = SubResource("BoxShape3D_i7p4y")
 
 [node name="Arrow" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0.00414781, 0.440244, 0)
@@ -132,8 +135,8 @@ skeleton = NodePath("")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0293057, 0)
-shape = SubResource("ConvexPolygonShape3D_2ymlc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.269235, 0)
+shape = SubResource("BoxShape3D_i7p4y")
 
 [node name="Convey_Manager" type="Area3D" parent="." node_paths=PackedStringArray("raycast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.121, 0)
@@ -143,9 +146,6 @@ script = ExtResource("4_c4w8x")
 raycast = NodePath("Salida")
 
 [node name="MergerTimer" type="Timer" parent="Convey_Manager"]
-
-[node name="Label3D" type="Label3D" parent="Convey_Manager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579888, 0)
 
 [node name="Entradas" type="Node3D" parent="Convey_Manager"]
 
