@@ -57,8 +57,6 @@ func spawn_mat() -> void:
 		mat.add_to_group("Ignore_Build_Validation")
 
 		var manager = current_conveyor.get_node_or_null("Convey_Manager")
-		if manager and manager is ConveyScript and manager.current_material == null:
-			manager.current_material = mat
 
 func activate():
 	is_active = true

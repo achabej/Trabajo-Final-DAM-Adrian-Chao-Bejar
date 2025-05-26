@@ -78,7 +78,7 @@ func _process(delta):
 		tick_active = true
 	else:
 		tick_active = false
-
+	
 	if GameManager.currentState == GameManager.State.Building:
 		material_controller()
 		move_to_closest_tile(delta)

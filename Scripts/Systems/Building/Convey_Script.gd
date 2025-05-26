@@ -130,7 +130,7 @@ func update_next_convey():
 			var convey_node = find_parent_with_group(collider, "Convey")
 			if convey_node:
 				var manager = convey_node.get_node_or_null("Convey_Manager")
-				if manager and manager != self:
+				if manager and manager != self and convey_node.is_in_group("Build"):
 					target_position = manager.get_center_position()
 					next_convey_manager = manager
 					if not manager.detected_conveyors.has(self):
