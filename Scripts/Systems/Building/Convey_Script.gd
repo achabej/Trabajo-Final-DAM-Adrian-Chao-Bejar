@@ -9,16 +9,12 @@ class_name ConveyScript
 
 var entrada_rays: Array = []
 var salida_raycast: RayCast3D = null
-var timer: Timer = null
-var is_merger := false
 var entrada_index := 0
 
 var current_material : CharacterBody3D = null
 var target_position: Vector3 = Vector3.ZERO
 var next_convey_manager: Node = null
 var is_moving := false
-var detected_conveyors: Array = []
-var current_detected_conveyor: Node3D = null
 var active_entry: Node = null
 
 func _ready():
@@ -26,17 +22,15 @@ func _ready():
 
 	entrada_rays = $Entradas.get_children()
 	salida_raycast = $Convey_Manager/RayCast3D
-	timer = $MergerTimer
-	timer.timeout.connect(_on_merger_tick)
-
-	is_merger = entrada_rays.size() > 0 and salida_raycast != null and timer != null
 
 func _process(_delta):
 	if current_material and not is_instance_valid(current_material):
 		current_material = null
 	if active_entry != null and not is_instance_valid(active_entry):
 		active_entry = null
-
+	
+	$Label3D.text = str(active_entry)
+	
 	cleanup_invalid_references()
 
 func _exit_tree():
@@ -48,8 +42,6 @@ func _exit_tree():
 	for conveyor in ConveyorManager.get_all_conveyors():
 		if conveyor.current_material != null:
 			conveyor.try_move()
-		if conveyor.detected_conveyors.has(self):
-			conveyor.detected_conveyors.erase(self)
 		if conveyor.active_entry == self:
 			conveyor.active_entry = null
 		if conveyor.next_convey_manager == self:
@@ -60,7 +52,10 @@ func _exit_tree():
 		next_convey_manager.active_entry = null
 
 func _on_body_entered(body: Node3D) -> void:
-	if get_parent().is_in_group("Build") and body.get_parent().is_in_group("Build"):
+	if !get_parent().is_in_group("Build"):
+		return
+	
+	if body.get_parent().is_in_group("Build"):
 		var machine_root = find_parent_with_group(body, "Machine")
 		if machine_root:
 			machine_root.set("current_conveyor", self.get_parent())
@@ -89,9 +84,9 @@ func move_material_to(material: CharacterBody3D, target_pos: Vector3, speed: flo
 
 # Función principal para intentar mover el material al siguiente conveyor
 func try_move() -> void:
-	if is_moving or current_material == null:
+	if is_moving or current_material == null or !get_parent().is_in_group("Build"):
 		return
-
+	
 	update_next_convey()
 
 	if not is_instance_valid(next_convey_manager):
@@ -104,7 +99,10 @@ func try_move() -> void:
 	next_convey_manager.is_moving = true
 	next_convey_manager.current_material = current_material
 	is_moving = true
-
+	
+	if next_convey_manager.active_entry == self and current_material == null:
+		active_entry = null
+		
 	var from_pos = current_material.global_position
 	var to_pos = next_convey_manager.get_center_position()
 	to_pos.y = from_pos.y
@@ -132,9 +130,6 @@ func update_next_convey():
 				if manager and manager != self and convey_node.is_in_group("Build"):
 					target_position = manager.get_center_position()
 					next_convey_manager = manager
-					if not manager.detected_conveyors.has(self):
-						manager.detected_conveyors.append(self)
-						current_detected_conveyor = manager
 
 func request_entry(from_conveyor: Node) -> bool:
 	if current_material != null or is_moving:
@@ -151,9 +146,6 @@ func cleanup_invalid_references():
 		next_convey_manager = null
 	if not is_instance_valid(active_entry):
 		active_entry = null
-	if not is_instance_valid(current_detected_conveyor):
-		current_detected_conveyor = null
-	detected_conveyors = detected_conveyors.filter(func(c): return is_instance_valid(c))
 
 func _on_merger_tick():
 	if current_material != null:
