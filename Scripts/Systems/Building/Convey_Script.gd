@@ -29,7 +29,7 @@ func _process(_delta):
 	if active_entry != null and not is_instance_valid(active_entry):
 		active_entry = null
 	
-	$Label3D.text = str(active_entry)
+	#$Label3D.text = str(active_entry)
 	
 	cleanup_invalid_references()
 

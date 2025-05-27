@@ -56,11 +56,17 @@ var storage = {}
 
 func _ready() -> void:
 	tick_timer = tick_interval
-	current_phase = 1  # Mejor usar índice 1-based para coincidir con nombres de fases "Phase1"
+	current_phase = 1  
 	storage = {}
+
+	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
+
 	_update_phase_storage()
 	_update_ui()
-
+	
+	await get_tree().process_frame
+	DialogManager.show_dialogues_for_phase(current_phase)
+	
 func add_mat(material_type: String, amount: int = 1) -> void:
 	var phase_key = "Phase%d" % current_phase
 	if not phases.has(phase_key):
@@ -126,7 +132,7 @@ func _update_ui() -> void:
 	if not player:
 		return
 	
-	var phase_controller = player.get_node_or_null("CanvasLayer/Phase_Controller")
+	var phase_controller = player.get_node_or_null("CanvasLayer/HUD/Phase_Controller")
 	if not phase_controller:
 		return
 
@@ -149,3 +155,6 @@ func _update_ui() -> void:
 			text += "    %s %d/%d\n" % [mat, have, need]
 	
 	phase_controller.update_phase_text(text)
+
+func _on_phase_changed(new_phase: int):
+	DialogManager.show_dialogues_for_phase(new_phase)

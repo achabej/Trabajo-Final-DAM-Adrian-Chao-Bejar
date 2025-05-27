@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var health_bar = $"../CanvasLayer/Health_bar"
+@onready var health_bar = $"../CanvasLayer/HUD/Health_bar"
 @export var max_health = 100
 @export var tag_group: String = "enemy_bullet"
 var current_health

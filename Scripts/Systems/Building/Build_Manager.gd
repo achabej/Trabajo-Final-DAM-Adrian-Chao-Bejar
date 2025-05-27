@@ -88,7 +88,7 @@ func _process(delta):
 #======= Gestión de materiales =======
 func increase_mat(mat, amount):
 	materiales[mat] += amount
-	var canvas_node = Player.get_node("CanvasLayer")
+	var canvas_node = Player.get_node("CanvasLayer").get_node("HUD")
 	
 	canvas_node.get_node("Materials").update_mat_UI()
 	var label = "+%d %s" % [amount, mat]
@@ -100,7 +100,7 @@ func decrease_mat(mat, amount):
 	else:
 		amount = materiales[mat]
 		materiales[mat] = 0
-	var canvas_node = Player.get_node("CanvasLayer")
+	var canvas_node = Player.get_node("CanvasLayer").get_node("HUD")
 
 	canvas_node.get_node("Materials").update_mat_UI()
 
@@ -214,7 +214,7 @@ func change_material(obj: Node3D, material: Material):
 
 #Cambia entre modo construir y modo libre
 func ChangeState():
-	var label = Player.get_node("CanvasLayer").get_node("Materials_Needed") as RichTextLabel
+	var label = Player.get_node("CanvasLayer").get_node("HUD").get_node("Materials_Needed") as RichTextLabel
 
 	if Input.is_action_just_pressed("Building_Mode"):
 		BuildingUI.visible = not BuildingUI.visible
@@ -293,7 +293,7 @@ func SpawnPlatesFactory():
 #	SpawnObj(test_cube_generator)
 	
 func update_materials_needed_UI(building_name: String):
-	var canvas = Player.get_node("CanvasLayer")
+	var canvas = Player.get_node("CanvasLayer").get_node("HUD")
 	var label = canvas.get_node("Materials_Needed") as RichTextLabel
 	label.clear()
 	label.show()

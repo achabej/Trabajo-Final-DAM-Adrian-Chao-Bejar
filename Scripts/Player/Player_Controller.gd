@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var MAX_JETPACK_HEIGHT = 2.0
 @export var JETPACK_TIME = 2.0
 @export var jetpack_enabled: bool = true
-@onready var jetpack_bar = $"CanvasLayer/Jetpack_Bar"
+@onready var jetpack_bar = $"CanvasLayer/HUD/Jetpack_Bar"
 @export var JETPACK_MAX_ABSOLUTE_Y: float = 10.0
 var jetpack_cooldown_timer := 0.0
 var jetpack_min_height := 4.0
@@ -68,6 +68,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_vertical_angle = clamp(target_vertical_angle, deg_to_rad(min_y_angle_deg), deg_to_rad(max_y_angle_deg))
 
 func _physics_process(delta: float) -> void:
+	#Detener el movimiento si hay un dialogo
+	check_dialog_state(delta)
+
+	$CanvasLayer/HUD.visible = true
+
 	# Aplica impulso a cuerpos rígidos con los que colisiona
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -144,6 +149,9 @@ func handle_jetpack(delta: float) -> void:
 			jetpack_enabled = false
 
 func handle_shooting(delta: float) -> void:
+	if DialogManager.is_dialogue_active:
+		return
+
 	# Obtiene el arma actual del jugador
 	var current_weapon = hand_controller.get_current_weapon()
 
@@ -166,6 +174,9 @@ func handle_shooting(delta: float) -> void:
 			current_weapon.stop_shooting()
 
 func handle_movement(delta: float) -> void:
+	if DialogManager.is_dialogue_active:
+		return
+
 	# Calcula dirección del input y movimiento
 	var current_weapon = hand_controller.get_current_weapon()
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -226,3 +237,34 @@ func look_in_direction(direction: Vector3, delta: float, rotationSpeed: float) -
 	var target_rotation = atan2(-direction.x, -direction.z)
 	var current_rotation = player_mesh.rotation.y
 	player_mesh.rotation.y = lerp_angle(current_rotation, target_rotation, rotationSpeed * delta)
+
+func check_dialog_state(delta: float) -> void:
+	# Bloqueo por diálogo activo
+	if DialogManager.is_dialogue_active:
+		# Bloquear movimiento, disparo y construcción
+		$CanvasLayer/HUD.visible = false
+		velocity = Vector3.ZERO
+		move_and_slide()
+		player_model.idle()
+		if BuildManager.CurrentSpawnable:
+			BuildManager.CurrentSpawnable = null
+		
+		hand_controller.hide_weapon()
+		
+		# Suavemente rotar el jugador hacia la cámara
+		var to_camera = (camera.global_transform.origin - global_transform.origin)
+		to_camera.y = 0
+		to_camera = to_camera.normalized()
+		look_in_direction(to_camera, delta, 4.0)
+
+		# Cámara: suavemente rotar y hacer zoom
+		target_vertical_angle = deg_to_rad(-20.0)
+		camera.fov = lerp(camera.fov, 30.0, 3.0 * delta)  # Zoom in
+
+		return  # No ejecutar más lógica mientras hay diálogo
+
+	else:
+		# Restaurar cámara cuando no hay diálogo
+		$CanvasLayer/HUD.visible = true
+		camera.fov = lerp(camera.fov, 60.0, 3.0 * delta)  # Zoom out
+		hand_controller.show_weapon()
