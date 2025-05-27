@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=26 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
+[ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Player/Thruster_Effect.tscn" id="2_24l4c"]
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Controller.gd" id="3_4bf5b"]
 [ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_ag43d"]
 [ext_resource type="PackedScene" uid="uid://cjyl78b8oqo5a" path="res://Prefabs/Player/Extractor_Tool.tscn" id="5_bjpnc"]
@@ -51,6 +52,16 @@ camera = NodePath("CamNode/SpringArm3D/Camera3D")
 max_y_angle_deg = -10.0
 
 [node name="PlayerMesh" type="Node3D" parent="."]
+
+[node name="Trail_Node" type="Node3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13177, 0.230398, 0)
+visible = false
+
+[node name="Node3D" parent="PlayerMesh/Trail_Node" instance=ExtResource("2_24l4c")]
+transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.292246, -0.389208, 0)
+
+[node name="Node3D2" parent="PlayerMesh/Trail_Node" instance=ExtResource("2_24l4c")]
+transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0440139, -0.389208, 0)
 
 [node name="Mesh" type="Node3D" parent="PlayerMesh"]
 transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0, 0)

@@ -84,6 +84,8 @@ func move_material_to(material: CharacterBody3D, target_pos: Vector3, speed: flo
 
 # Función principal para intentar mover el material al siguiente conveyor
 func try_move() -> void:
+	cleanup_invalid_references()
+
 	if is_moving or current_material == null or !get_parent().is_in_group("Build"):
 		return
 	

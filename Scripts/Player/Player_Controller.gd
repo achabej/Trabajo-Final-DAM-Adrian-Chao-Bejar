@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var RUN_SPEED = 10
 @export var AIM_SPEED = 3
 
-# Configuración de jetpack y salto
+# ======JETPACK======
 @export var JETPACK_LIFT = 8
 @export var MAX_JETPACK_HEIGHT = 2.0
 @export var JETPACK_TIME = 2.0
@@ -26,7 +26,7 @@ var lift_increase_speed := 6.0
 var current_speed = WALK_SPEED
 var jetpack_time_left = JETPACK_TIME
 var is_jetpacking = false
-var recharge_delay = 0.5
+var recharge_delay = 0.2
 var recharge_timer = 0.0
 var starting_jetpack_y = 0.0
 
@@ -70,9 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	#Detener el movimiento si hay un dialogo
 	check_dialog_state(delta)
-
-	$CanvasLayer/HUD.visible = true
-
+	
 	# Aplica impulso a cuerpos rígidos con los que colisiona
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -99,6 +97,11 @@ func _physics_process(delta: float) -> void:
 		BuildManager.ChangeState()
 
 func handle_jetpack(delta: float) -> void:
+	if DialogManager.is_dialogue_active:
+		return
+	
+	$PlayerMesh/Trail_Node.visible = is_jetpacking
+	
 	# Aplica gravedad personalizada si no está en el suelo
 	if not is_on_floor():
 		velocity.y += -10.0 * delta
