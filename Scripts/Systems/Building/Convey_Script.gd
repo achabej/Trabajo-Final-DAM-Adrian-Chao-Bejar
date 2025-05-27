@@ -16,6 +16,8 @@ var target_position: Vector3 = Vector3.ZERO
 var next_convey_manager: Node = null
 var is_moving := false
 var active_entry: Node = null
+var active_entry_timeout_max := 3
+var active_entry_timeout := 0
 
 func _ready():
 	ConveyorManager.register_conveyor(self)
@@ -29,7 +31,7 @@ func _process(_delta):
 	if active_entry != null and not is_instance_valid(active_entry):
 		active_entry = null
 	
-	#$Label3D.text = str(active_entry)
+	$Label3D.text = str(active_entry)
 	
 	cleanup_invalid_references()
 
@@ -87,8 +89,18 @@ func try_move() -> void:
 	cleanup_invalid_references()
 
 	if is_moving or current_material == null or !get_parent().is_in_group("Build"):
+		# Si no se puede mover, incrementar timeout si hay active_entry
+		if active_entry != null:
+			active_entry_timeout += 1
+			# Si supera timeout, liberar active_entry para evitar deadlock
+			if active_entry_timeout >= active_entry_timeout_max:
+				active_entry = null
+				active_entry_timeout = 0
 		return
-	
+	else:
+		# Reseteamos timeout cuando estamos activos
+		active_entry_timeout = 0
+
 	update_next_convey()
 
 	if not is_instance_valid(next_convey_manager):
@@ -134,6 +146,10 @@ func update_next_convey():
 					next_convey_manager = manager
 
 func request_entry(from_conveyor: Node) -> bool:
+	# Limpiar active_entry si está muerto o inválido (evita deadlock)
+	if active_entry != null and not is_instance_valid(active_entry):
+		active_entry = null
+
 	if current_material != null or is_moving:
 		return false
 
