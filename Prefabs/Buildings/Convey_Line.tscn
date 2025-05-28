@@ -147,6 +147,7 @@ raycast = NodePath("Salida")
 
 [node name="Label3D" type="Label3D" parent="Convey_Manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82015e-08, 0.597582, -0.436974)
+visible = false
 
 [node name="Entradas" type="Node3D" parent="Convey_Manager"]
 
