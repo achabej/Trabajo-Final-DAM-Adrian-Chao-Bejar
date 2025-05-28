@@ -27,6 +27,7 @@ func shoot():
 
 	if laser_raycast.is_colliding():
 		var collider = laser_raycast.get_collider()
+		print(collider)
 		
 		if collider.is_in_group("Deposit") or collider.is_in_group("Tree"):
 			current_deposit = collider

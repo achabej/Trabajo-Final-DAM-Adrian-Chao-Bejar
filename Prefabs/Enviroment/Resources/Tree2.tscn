@@ -101,3 +101,5 @@ shape = SubResource("BoxShape3D_u5ops")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.53925, 0)
 shape = SubResource("BoxShape3D_7qrfe")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
