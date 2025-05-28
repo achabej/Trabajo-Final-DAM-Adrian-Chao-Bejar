@@ -157,5 +157,7 @@ func _update_ui() -> void:
 	phase_controller.update_phase_text(text)
 
 func _on_phase_changed(new_phase: int):
-	
 	DialogManager.show_dialogues_for_phase(new_phase)
+	if BuildManager.CurrentSpawnable != null:
+		BuildManager.CurrentSpawnable.queue_free()
+		BuildManager.CurrentSpawnable = null

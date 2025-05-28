@@ -1,8 +1,10 @@
 extends Node
 
 @onready var unlocks_for_phase := {
-	1: [$BtnBuildExtractor, $BtnBuildConveyLine,$BtnBuildFurnace, $BtnBuildPlatesFactory,$BtnBuildChipsFactory,$BtnBuildSteelRefinery],
-
+	1: [$BtnBuildExtractor, $BtnBuildConveyLine,$BtnBuildFurnace],
+	2: [$BtnBuildSteelRefinery],
+	3: [$BtnBuildPlatesFactory],
+	4: [$BtnBuildChipsFactory], 
 }
 
 func _ready():
