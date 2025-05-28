@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cipi3wx325pae"]
+
+[sub_resource type="Curve" id="Curve_5lmcy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.993569, 0.374198), -0.384444, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xwvff"]
+curve = SubResource("Curve_5lmcy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6be8o"]
+particle_flag_align_y = true
+emission_shape = 2
+emission_sphere_radius = 3.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, 1, 0)
+spread = 62.042
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.2
+scale_curve = SubResource("CurveTexture_xwvff")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8aocu"]
+emission_enabled = true
+emission_energy_multiplier = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_4epos"]
+material = SubResource("StandardMaterial3D_8aocu")
+
+[node name="Node3D" type="GPUParticles3D"]
+emitting = false
+amount = 124
+lifetime = 0.3
+one_shot = true
+speed_scale = 0.6
+fixed_fps = 60
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_6be8o")
+draw_pass_1 = SubResource("BoxMesh_4epos")

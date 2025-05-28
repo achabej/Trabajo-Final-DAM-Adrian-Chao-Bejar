@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfwax7fpafe1t" path="res://Models/Original/Convey_Line.glb" id="2_4qs1k"]
 [ext_resource type="Texture2D" uid="uid://dx32wr1quj112" path="res://Models/Original/Landing_Pad_SteelRefinery_colormap.png" id="2_15dpd"]
-[ext_resource type="Script" path="res://Scripts/Systems/Building/Main_Ship_Script.gd" id="3_yqy25"]
+[ext_resource type="Script" path="res://Scripts/Ship/Main_Ship_Script.gd" id="3_yqy25"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p3ogs"]
 points = PackedVector3Array(10.3397, 0.827604, 2.40715, 3.60669, -1, -2.55362, 0.0790402, -1, -0.966482, 0.3083, 1.1061, -0.957172, 10.3397, 0.827604, -2.4011, 11.3658, -1, 0.972526, 1.49936, -0.6761, 2.48116, 0.336159, 0.827604, 2.0222, 10.8316, -0.671554, -2.09514, 1.1051, 0.827604, -2.4011, 11.1365, 1.1061, 0.963217, 7.837, -1, 2.55967, 3.62701, 1.1061, 2.36013, 7.8167, 1.1061, -2.35409, 0.0790402, -1, 0.972526, 11.5609, 0.787867, -1, 7.837, -1, -2.55362, 3.58599, 0.948393, 2.58468, 3.58138, 0.950313, -2.58421, 0.613207, -0.671551, -2.09513, -0.116067, 0.787867, -1, 10.8245, -0.670541, 2.09827, 11.3658, -1, -0.966482, 11.5257, 0.783469, 1, 3.60669, -1, 2.55967, 11.1365, 1.1061, -0.957172, 7.85769, 0.948393, 2.58468, 0.3083, 1.1061, 0.963217, 7.8623, 0.950313, -2.58421, -0.0808831, 0.783469, 1, 1.1051, 0.827604, 2.40715, 9.94429, -0.6761, 2.48116)
