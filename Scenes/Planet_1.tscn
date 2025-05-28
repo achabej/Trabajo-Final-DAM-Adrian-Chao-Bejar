@@ -191,16 +191,16 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -32, 0, -44)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 40, 0, 40)
 
 [node name="Copper_Deposit3" parent="NavigationRegion3D" instance=ExtResource("7_57pa5")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -69, 0, 22)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -70, 0, 22)
 
 [node name="Iron_Deposit3" parent="NavigationRegion3D" instance=ExtResource("5_jmu10")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -76, 0, 44)
 
 [node name="Cristal_Deposit" parent="NavigationRegion3D" instance=ExtResource("6_xvxgx")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -98, 0, -69)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -98, 0, -70)
 
 [node name="Cristal_Deposit2" parent="NavigationRegion3D" instance=ExtResource("6_xvxgx")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -91, 0, -86)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -92, 0, -86)
 
 [node name="Cristal_Deposit3" parent="NavigationRegion3D" instance=ExtResource("6_xvxgx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -74, 0, -88)
@@ -212,13 +212,13 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 62, 0, -56)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 58, 0, -40)
 
 [node name="Iron_Deposit4" parent="NavigationRegion3D" instance=ExtResource("5_jmu10")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18, 0, -57)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18, 0, -56)
 
 [node name="Iron_Deposit5" parent="NavigationRegion3D" instance=ExtResource("5_jmu10")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -20, 0, -82)
 
 [node name="Copper_Deposit4" parent="NavigationRegion3D" instance=ExtResource("7_57pa5")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -41, 0, 72)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -40, 0, 72)
 
 [node name="Cristal_Deposit6" parent="NavigationRegion3D" instance=ExtResource("6_xvxgx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -78, 0, 72)
@@ -227,13 +227,13 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -78, 0, 72)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, 75)
 
 [node name="Iron_Deposit7" parent="NavigationRegion3D" instance=ExtResource("5_jmu10")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 53, 0, 24)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 52, 0, 24)
 
 [node name="Iron_Deposit8" parent="NavigationRegion3D" instance=ExtResource("5_jmu10")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -69, 0, -21)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -70, 0, -21)
 
 [node name="Cristal_Deposit7" parent="NavigationRegion3D" instance=ExtResource("6_xvxgx")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -65, 0, 76)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -64, 0, 76)
 
 [node name="Player" parent="." instance=ExtResource("2_ua367")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0833791, -0.0786052, 0.183024)
