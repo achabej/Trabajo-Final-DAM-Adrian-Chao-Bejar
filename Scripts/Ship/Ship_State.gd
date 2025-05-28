@@ -35,3 +35,12 @@ func _set_particles_emitting(root: Node, emitting: bool):
 			child.emitting = emitting
 		elif child.has_method("get_children"):
 			_set_particles_emitting(child, emitting)
+			
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	pass # Replace with function body.
