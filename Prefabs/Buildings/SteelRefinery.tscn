@@ -1,11 +1,25 @@
-[gd_scene load_steps=92 format=4 uid="uid://duw4g116ovu3k"]
+[gd_scene load_steps=95 format=4 uid="uid://duw4g116ovu3k"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="1_ad2xr"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/On_Build_Destroy.gd" id="2_ul86r"]
 [ext_resource type="Texture2D" uid="uid://dnmdoxetf4saf" path="res://Models/Original/Convey_Line_colormap.png" id="3_s3yni"]
+[ext_resource type="Texture2D" uid="uid://drupcovi6w2ub" path="res://Textures/black_arrow.png" id="3_wnx26"]
 [ext_resource type="PackedScene" uid="uid://m7abq6t83gon" path="res://Prefabs/Buildings/Materials/Steel_Ingot.tscn" id="4_ns6yf"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Machine_Script.gd" id="5_2lqxp"]
-[ext_resource type="Script" path="res://Scripts/Systems/Building/Enter_Filter_Script.gd" id="6_6xraj"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Label_Factory_Script.gd" id="6_cm1lp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ld7kf"]
+transparency = 2
+alpha_scissor_threshold = 0.163
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+albedo_color = Color(0.67069, 0.67069, 0.67069, 1)
+albedo_texture = ExtResource("3_wnx26")
+albedo_texture_msdf = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ctkc0"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4ir5c"]
 points = PackedVector3Array(0.996336, 0.423354, 0.996336, -1, -2.54794, -1, -1, -2.54794, 0.988733, 0.996232, -2.5591, 0.996232, 0.988733, -2.54794, -1, -1, 0.412038, -1, -1, 0.412038, 0.988733, 0.988733, 0.412038, -1)
@@ -799,6 +813,27 @@ size = Vector3(0.560303, 0.324555, 0.59668)
 script = ExtResource("1_ad2xr")
 notBuildList = Array[String](["Build", "Deposit", "Tree", "Player"])
 
+[node name="Arrows" type="Node3D" parent="."]
+script = ExtResource("2_ul86r")
+
+[node name="Arrow" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, -1.49059, 0.619562, -1)
+material_override = SubResource("StandardMaterial3D_ld7kf")
+mesh = SubResource("PlaneMesh_ctkc0")
+skeleton = NodePath("../Mesh")
+
+[node name="Arrow2" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, 1.50941, 0.619562, 0)
+material_override = SubResource("StandardMaterial3D_ld7kf")
+mesh = SubResource("PlaneMesh_ctkc0")
+skeleton = NodePath("../Mesh")
+
+[node name="Arrow3" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, -1.49059, 0.619562, 1)
+material_override = SubResource("StandardMaterial3D_ld7kf")
+mesh = SubResource("PlaneMesh_ctkc0")
+skeleton = NodePath("../Mesh")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.12369, 0, 0, 0, 0.817739, 0, 0, 0, 1.70144, 0.00275648, 2.10218, 0.00580597)
 shape = SubResource("ConvexPolygonShape3D_4ir5c")
@@ -969,8 +1004,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.77153e-08, 0, 1.00335)
 
 [node name="Enter1" type="StaticBody3D" parent="Test_Generator_Manager/MatEnterPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.79044, 0.418138, -0.0417464)
-script = ExtResource("6_6xraj")
-allowed_material = "Iron_Ingot"
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
@@ -983,8 +1016,6 @@ shape = SubResource("BoxShape3D_5341l")
 
 [node name="Enter2" type="StaticBody3D" parent="Test_Generator_Manager/MatEnterPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76937, 0.418138, -2.01607)
-script = ExtResource("6_6xraj")
-allowed_material = "Copper_Ingot"
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)

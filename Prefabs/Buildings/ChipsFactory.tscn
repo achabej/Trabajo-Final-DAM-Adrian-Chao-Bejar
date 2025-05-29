@@ -1,12 +1,26 @@
-[gd_scene load_steps=56 format=4 uid="uid://d1at21fcbuwp5"]
+[gd_scene load_steps=59 format=4 uid="uid://d1at21fcbuwp5"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="1_squtq"]
 [ext_resource type="Texture2D" uid="uid://d3up50xuy5oan" path="res://Models/Original/ChipRefinery_colormap.png" id="2_nx4e4"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/On_Build_Destroy.gd" id="2_sc4px"]
 [ext_resource type="Texture2D" uid="uid://dnmdoxetf4saf" path="res://Models/Original/Convey_Line_colormap.png" id="3_y2tw0"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Machine_Script.gd" id="5_mb0eg"]
 [ext_resource type="PackedScene" uid="uid://d35y1023ave83" path="res://Prefabs/Buildings/Materials/Chips.tscn" id="5_wn8ty"]
+[ext_resource type="Texture2D" uid="uid://drupcovi6w2ub" path="res://Textures/black_arrow.png" id="7_c4ytd"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Label_Factory_Script.gd" id="7_r6nbq"]
-[ext_resource type="Script" path="res://Scripts/Systems/Building/Enter_Filter_Script.gd" id="8_xqgyt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsa2e"]
+transparency = 2
+alpha_scissor_threshold = 0.163
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+albedo_color = Color(0.67069, 0.67069, 0.67069, 1)
+albedo_texture = ExtResource("7_c4ytd")
+albedo_texture_msdf = true
+emission_enabled = true
+emission = Color(0.903598, 0.903598, 0.903598, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3nopu"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4ir5c"]
 points = PackedVector3Array(0.996336, 0.423354, 0.996336, -1, -2.54794, -1, -1, -2.54794, 0.988733, 0.996232, -2.5591, 0.996232, 0.988733, -2.54794, -1, -1, 0.412038, -1, -1, 0.412038, 0.988733, 0.988733, 0.412038, -1)
@@ -542,6 +556,33 @@ size = Vector3(0.560303, 0.324555, 0.59668)
 script = ExtResource("1_squtq")
 notBuildList = Array[String](["Build", "Deposit", "Tree", "Player"])
 
+[node name="Arrows" type="Node3D" parent="."]
+script = ExtResource("2_sc4px")
+
+[node name="Arrow" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, -1.74375, 0.619562, 0)
+material_override = SubResource("StandardMaterial3D_vsa2e")
+mesh = SubResource("PlaneMesh_3nopu")
+skeleton = NodePath("../Mesh")
+
+[node name="Arrow2" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, 1.73048, 0.619562, 0)
+material_override = SubResource("StandardMaterial3D_vsa2e")
+mesh = SubResource("PlaneMesh_3nopu")
+skeleton = NodePath("../Mesh")
+
+[node name="Arrow3" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-0.310939, 0, -2.71831e-08, 0, 0.310939, 0, 2.71831e-08, 0, -0.310939, -0.0132859, 0.619562, 1.72079)
+material_override = SubResource("StandardMaterial3D_vsa2e")
+mesh = SubResource("PlaneMesh_3nopu")
+skeleton = NodePath("../Mesh")
+
+[node name="Arrow4" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(0.310939, 0, 5.43662e-08, 0, 0.310939, 0, -5.43662e-08, 0, 0.310939, -0.0132859, 0.619562, -1.69493)
+material_override = SubResource("StandardMaterial3D_vsa2e")
+mesh = SubResource("PlaneMesh_3nopu")
+skeleton = NodePath("../Mesh")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.12369, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55772, 0)
 shape = SubResource("ConvexPolygonShape3D_4ir5c")
@@ -662,8 +703,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51479, 0.492797, -8.614e-0
 
 [node name="Enter1" type="StaticBody3D" parent="Test_Generator_Manager/MatEnterPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69616, 0.418138, -0.0417465)
-script = ExtResource("8_xqgyt")
-allowed_material = "Copper_Plate"
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
@@ -676,8 +715,6 @@ shape = SubResource("BoxShape3D_6ul7n")
 
 [node name="Enter2" type="StaticBody3D" parent="Test_Generator_Manager/MatEnterPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016121, 0.418138, 1.62464)
-script = ExtResource("8_xqgyt")
-allowed_material = "Steel_Plate"
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
@@ -690,8 +727,6 @@ shape = SubResource("BoxShape3D_6ul7n")
 
 [node name="Enter3" type="StaticBody3D" parent="Test_Generator_Manager/MatEnterPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0161213, 0.418138, -1.5968)
-script = ExtResource("8_xqgyt")
-allowed_material = "Refined_Cristal"
 
 [node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)

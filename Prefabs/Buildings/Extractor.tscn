@@ -1,10 +1,25 @@
-[gd_scene load_steps=38 format=4 uid="uid://oi24c6owo6ky"]
+[gd_scene load_steps=42 format=4 uid="uid://oi24c6owo6ky"]
 
 [ext_resource type="Material" uid="uid://qorfm5rakhmf" path="res://Materials/Basic_Mat.tres" id="1_ex52v"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="1_g6mu8"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/On_Build_Destroy.gd" id="2_aij87"]
+[ext_resource type="Texture2D" uid="uid://drupcovi6w2ub" path="res://Textures/black_arrow.png" id="3_sac87"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Extractor_Script.gd" id="4_3hxt4"]
 [ext_resource type="Texture2D" uid="uid://b1q8vnfcnx1dg" path="res://Textures/Convey_Line_colormap.png" id="5_84cpa"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/DepositDetector.gd" id="8_17wdj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqsof"]
+transparency = 2
+alpha_scissor_threshold = 0.163
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+albedo_color = Color(0.67069, 0.67069, 0.67069, 1)
+albedo_texture = ExtResource("3_sac87")
+albedo_texture_msdf = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yj3la"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4ir5c"]
 points = PackedVector3Array(0.996336, 0.423354, 0.996336, -1, -2.54794, -1, -1, -2.54794, 0.988733, 0.996232, -2.5591, 0.996232, 0.988733, -2.54794, -1, -1, 0.412038, -1, -1, 0.412038, 0.988733, 0.988733, 0.412038, -1)
@@ -352,6 +367,15 @@ size = Vector3(0.113037, 1, 0.110352)
 [node name="Extractor" type="StaticBody3D" groups=["Extractor", "Machine"]]
 script = ExtResource("1_g6mu8")
 notBuildList = Array[String](["Player", "Tree", "Build"])
+
+[node name="Arrows" type="Node3D" parent="."]
+script = ExtResource("2_aij87")
+
+[node name="Arrow2" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, 1.50941, 0.619562, 0)
+material_override = SubResource("StandardMaterial3D_eqsof")
+mesh = SubResource("PlaneMesh_yj3la")
+skeleton = NodePath("../Mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.27057, 0, 0, 0, 1.5121, 0, 0, 0, 1.07597, 0, 3.86567, 0)

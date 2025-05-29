@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://crvoxf27nk5jy"]
+[gd_scene load_steps=61 format=4 uid="uid://crvoxf27nk5jy"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Building_Object.gd" id="1_wyyx8"]
 [ext_resource type="Texture2D" uid="uid://dnmdoxetf4saf" path="res://Models/Original/Convey_Line_colormap.png" id="3_gpdo3"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Machine_Script.gd" id="5_xae8m"]
 [ext_resource type="PackedScene" uid="uid://bbw8ytli38188" path="res://Prefabs/Buildings/Materials/Steel_Plate.tscn" id="6_uiu0e"]
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Label_Factory_Script.gd" id="7_dwsyy"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/On_Build_Destroy.gd" id="8_8h8m4"]
+[ext_resource type="Texture2D" uid="uid://drupcovi6w2ub" path="res://Textures/black_arrow.png" id="9_votqt"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4ir5c"]
 points = PackedVector3Array(0.996336, 0.423354, 0.996336, -1, -2.54794, -1, -1, -2.54794, 0.988733, 0.996232, -2.5591, 0.996232, 0.988733, -2.54794, -1, -1, 0.412038, -1, -1, 0.412038, 0.988733, 0.988733, 0.412038, -1)
@@ -484,6 +486,19 @@ size = Vector3(0.647461, 0.5, 0.610352)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ku0f"]
 size = Vector3(0.560303, 0.324555, 0.59668)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_546w2"]
+transparency = 2
+alpha_scissor_threshold = 0.163
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.0
+albedo_color = Color(0.67069, 0.67069, 0.67069, 1)
+albedo_texture = ExtResource("9_votqt")
+albedo_texture_msdf = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_267vd"]
+
 [node name="Extractor" type="StaticBody3D" groups=["Extractor", "Machine"]]
 script = ExtResource("1_wyyx8")
 notBuildList = Array[String](["Build", "Deposit", "Tree", "Player"])
@@ -638,6 +653,21 @@ shape = SubResource("BoxShape3D_3ku0f")
 transform = Transform3D(1, 0, 0, 0, 0.873024, 0.487677, 0, -0.487677, 0.873024, 0, 2.92778, 0.624395)
 text = "Test"
 script = ExtResource("7_dwsyy")
+
+[node name="Arrows" type="Node3D" parent="."]
+script = ExtResource("8_8h8m4")
+
+[node name="Arrow" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, -1.49059, 0.619562, 0)
+material_override = SubResource("StandardMaterial3D_546w2")
+mesh = SubResource("PlaneMesh_267vd")
+skeleton = NodePath("../Mesh")
+
+[node name="Arrow2" type="MeshInstance3D" parent="Arrows"]
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, 1.50941, 0.619562, 0)
+material_override = SubResource("StandardMaterial3D_546w2")
+mesh = SubResource("PlaneMesh_267vd")
+skeleton = NodePath("../Mesh")
 
 [connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D" to="Test_Generator_Manager" method="_on_material_entered"]
 [connection signal="body_entered" from="Test_Generator_Manager/ConveyDetector" to="Test_Generator_Manager" method="_on_convey_detector_body_entered"]
