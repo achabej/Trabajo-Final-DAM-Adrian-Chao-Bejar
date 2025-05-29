@@ -64,6 +64,12 @@ func init():
 			BuildingUI.visible = false
 	else:
 		print("Player no encontrado.")
+		
+	var nodes = get_tree().get_nodes_in_group("GridMap")
+	if nodes != null:
+		grid_map = nodes[0]
+	else:
+		print("❌ No se encontró GridMap")
 
 func _process(delta):
 	# Gestiona el reloj de las construcciones

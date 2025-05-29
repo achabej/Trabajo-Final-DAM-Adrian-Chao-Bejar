@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://buv6x5ttnwmou"]
+[gd_scene load_steps=22 format=3 uid="uid://buv6x5ttnwmou"]
 
 [ext_resource type="MeshLibrary" uid="uid://cu4e8vajjvl1u" path="res://terrain_lib_1.tres" id="1_02uvw"]
 [ext_resource type="Texture2D" uid="uid://bpo8mm5d2dpml" path="res://Materials/Enviroment/Cartoon_green_texture_grass.jpg" id="2_3nb35"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c80cfwtax2msp" path="res://Textures/vecteezy_mountain-ridge-png_12806443.png" id="7_urlqs"]
 [ext_resource type="PackedScene" uid="uid://dk452euwfr3yv" path="res://Prefabs/Buildings/Main_Ship_Constructor.tscn" id="8_00dtk"]
 [ext_resource type="PackedScene" uid="uid://bqbncvwh4i4x8" path="res://Prefabs/Buildings/Main_Ship.tscn" id="11_grnq3"]
-[ext_resource type="PackedScene" uid="uid://cdxnnnra3fwod" path="res://Prefabs/NPC/Bug_Enemy.tscn" id="12_uy54c"]
 [ext_resource type="Script" path="res://Scripts/Systems/Managers/Scene_Loader_Script.gd" id="13_t2qre"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jny6f"]
@@ -288,8 +287,7 @@ mesh = SubResource("PlaneMesh_4us1h")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 
-[node name="BugEnemy" parent="." instance=ExtResource("12_uy54c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 22)
-
 [node name="Scene_Loader" type="Node3D" parent="."]
 script = ExtResource("13_t2qre")
+
+[node name="Tutorial_Controller" type="Node3D" parent="."]

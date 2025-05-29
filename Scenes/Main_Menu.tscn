@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcckwak36oq4l"]
+[gd_scene load_steps=9 format=3 uid="uid://bcckwak36oq4l"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Main_Menu_Controller.gd" id="1_b7ciy"]
+[ext_resource type="Texture2D" uid="uid://53jbr46sikab" path="res://addons/Large_Background_Texture 1024x1024/Purple Nebula/Purple_Nebula_06-1024x1024.png" id="2_w1txq"]
+[ext_resource type="Texture2D" uid="uid://dk87uev4lkeaf" path="res://addons/Large Planets 512x512/Gaseous/Blue Giant/BlueGiant_04-512x512.png" id="3_m78gf"]
+[ext_resource type="Texture2D" uid="uid://bdktnjolsn12p" path="res://addons/Large Planets 512x512/Solid/Tropical/Tropical_01-512x512.png" id="4_kabct"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_834k6"]
+bg_color = Color(0.376471, 0.376471, 0.376471, 0.678431)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88k75"]
+bg_color = Color(0.243893, 0.602565, 0.754479, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pabhr"]
+bg_color = Color(0.190956, 0.36866, 0.457038, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14smg"]
+bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,6 +29,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b7ciy")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(0.800491, 0.800491, 0.800491, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_w1txq")
+
+[node name="Tropical01-512x512" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_top = 441.0
+offset_right = 353.0
+offset_bottom = 349.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.466098
+scale = Vector2(0.274703, 0.274703)
+texture = ExtResource("4_kabct")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Tropical01-512x513" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = 10.0
+offset_right = 1645.0
+offset_bottom = 1177.0
+grow_vertical = 2
+rotation = 0.255774
+scale = Vector2(0.358578, 0.358578)
+texture = ExtResource("3_m78gf")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -47,8 +117,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_834k6")
 
 [node name="Play_Btn" type="Button" parent="Menu_Panel"]
 layout_mode = 1
@@ -63,6 +136,9 @@ offset_right = 82.0
 offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_88k75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
 text = "Jugar"
 
 [node name="Options_Btn" type="Button" parent="Menu_Panel"]
@@ -78,6 +154,9 @@ offset_right = 82.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_88k75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
 text = "Opciones"
 
 [node name="Exit_Btn" type="Button" parent="Menu_Panel"]
@@ -93,6 +172,9 @@ offset_right = 82.0
 offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_88k75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
 text = "Salir"
 
 [connection signal="pressed" from="Menu_Panel/Play_Btn" to="." method="_on_play_btn_pressed"]

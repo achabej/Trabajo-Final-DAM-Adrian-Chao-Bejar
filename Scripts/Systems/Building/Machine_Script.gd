@@ -121,7 +121,7 @@ func spawn_mat() -> void:
 	# Instanciar resultado
 	var prefab: PackedScene = best_recipe["Mat Spawn"]
 	var instance = prefab.instantiate()
-	get_tree().get_current_scene().add_child(instance)
+	get_tree().root.add_child(instance)
 	instance.global_position = spawn_position.global_position
 	instance.add_to_group("Ignore_Build_Validation")
 

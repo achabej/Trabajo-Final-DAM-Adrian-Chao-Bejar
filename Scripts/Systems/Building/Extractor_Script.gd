@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 func spawn_mat() -> void:
 	if material_scene and spawn_position and is_instance_valid(current_conveyor) and current_conveyor.is_in_group("Build"):
 		var mat = material_scene.instantiate()
-		get_tree().get_current_scene().add_child(mat)
+		get_tree().root.add_child(mat)
 		
 		mat.global_position = spawn_position.global_position
 		mat.add_to_group("Ignore_Build_Validation")

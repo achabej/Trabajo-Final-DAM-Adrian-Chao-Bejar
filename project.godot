@@ -23,6 +23,12 @@ ConveyorManager="*res://Scripts/Systems/Managers/Conveyor_Manager.gd"
 DebugManager="*res://Scripts/Systems/Managers/Debug_Manager.gd"
 DialogManager="*res://Scripts/Systems/Managers/Dialog_Manager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Proyect Mobile Space Game"
