@@ -53,13 +53,13 @@ bg_color = Color(0.0196078, 0.160784, 0.207843, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aym3"]
 size = Vector2(4792, 138)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrmhy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcxlj"]
 bg_color = Color(0.243893, 0.602565, 0.754479, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6o6k"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6lhk"]
 bg_color = Color(0.190956, 0.36866, 0.457038, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqbec"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2wmb"]
 bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs6gc"]
@@ -611,9 +611,9 @@ offset_right = 82.0
 offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Continuar"
 
 [node name="Options_Btn" type="Button" parent="CanvasLayer/Menu"]
@@ -629,9 +629,9 @@ offset_right = 82.0
 offset_bottom = 5.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Opciones"
 
 [node name="Exit_Btn" type="Button" parent="CanvasLayer/Menu"]
@@ -647,9 +647,9 @@ offset_right = 82.0
 offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Salir
 "
 
@@ -707,9 +707,9 @@ offset_right = -29.0
 offset_bottom = 45.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Salir
 "
 
@@ -726,9 +726,9 @@ offset_right = 133.0
 offset_bottom = 45.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Cancelar
 "
 

@@ -3,11 +3,7 @@ extends Control
 @onready var Planet1_scene = preload("res://Scenes/Planet_1.tscn")
 
 func _on_play_btn_pressed() -> void:
-	var scene = Planet1_scene.instantiate()
-	get_tree().root.add_child(scene)
-
-	await get_tree().process_frame
-	queue_free()
+	get_tree().change_scene_to_packed(Planet1_scene)
 
 func _on_options_btn_pressed() -> void:
 	pass # Replace with function body.
