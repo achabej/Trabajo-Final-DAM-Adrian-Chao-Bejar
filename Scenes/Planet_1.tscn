@@ -107,6 +107,9 @@ shape = SubResource("ConvexPolygonShape3D_oqbb4")
 [node name="Main_Ship_Constructor" parent="NavigationRegion3D" groups=["Build"] instance=ExtResource("8_00dtk")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, -21)
 
+[node name="Main_Ship" parent="NavigationRegion3D/Main_Ship_Constructor" instance=ExtResource("11_grnq3")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.5, 0)
+
 [node name="Tree1" parent="NavigationRegion3D" instance=ExtResource("3_sycws")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -22, 6, 6)
 
@@ -235,9 +238,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -70, 0, -21)
 
 [node name="Cristal_Deposit7" parent="NavigationRegion3D" instance=ExtResource("6_xvxgx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -64, 0, 76)
-
-[node name="Main_Ship" parent="NavigationRegion3D" instance=ExtResource("11_grnq3")]
-transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 6, 1, -21)
 
 [node name="Player" parent="." instance=ExtResource("2_ua367")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0833791, -0.0786052, 0.183024)

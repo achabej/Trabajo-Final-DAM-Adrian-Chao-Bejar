@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://bqbncvwh4i4x8"]
+[gd_scene load_steps=44 format=4 uid="uid://bqbncvwh4i4x8"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Ship_State.gd" id="1_u2o4g"]
 [ext_resource type="Texture2D" uid="uid://cxbbkml4ilvx5" path="res://Models/Original/Ship_Model_SteelRefinery_colormap.png" id="2_uj345"]
@@ -397,8 +397,6 @@ shadow_mesh = SubResource("ArrayMesh_o4p54")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_duyaf"]
 points = PackedVector3Array(0.535955, 0.846734, 0.119018, -0.895986, -0.822005, -0.988914, -0.988813, -0.821918, -0.896087, 0.895986, -0.822005, 0.988914, -0.980626, 0.625406, 0.888668, 0.988813, -0.821918, -0.896087, -0.888545, 0.625452, -0.980702, -0.895986, -0.822005, 0.988914, 0.888605, 0.625327, -0.980768, 0.980692, 0.625281, 0.888728, -0.548461, 0.865843, -0.670257, 0.675646, 0.626833, 0.982967, -0.888568, 0.717372, 0.88876, -0.980626, 0.625406, -0.888668, 0.980692, 0.625281, -0.888728, 0.548461, 0.865843, -0.670257, 0.895986, -0.822005, -0.988914, -0.988813, -0.821918, 0.896087, 0.988813, -0.821918, 0.896087, -0.888545, 0.625452, 0.980702, 0.888628, 0.717253, 0.88882, -0.535955, 0.846734, 0.119018, -0.888568, 0.717372, -0.88876, 0.888628, 0.717253, -0.88882, 0.888605, 0.625327, 0.980768, 0.675646, 0.626833, -0.982967, 0.644882, 0.718974, 0.890826, 0.675673, 0.718974, -0.890826)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_17si3"]
-
 [node name="Main_Ship" type="Node3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_u2o4g")
@@ -512,12 +510,3 @@ shape = SubResource("ConvexPolygonShape3D_duyaf")
 
 [node name="Node3D3" parent="Phase_5" instance=ExtResource("3_2t8yn")]
 transform = Transform3D(0.267137, 0, 0, 0, 0.267137, 0, 0, 0, 0.267137, 0, 3.14104, -1.99063)
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(10.5153, 0, 0, 0, 7.42055, 0, 0, 0, 10.5153, 0, 2.13162, 0)
-shape = SubResource("BoxShape3D_17si3")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

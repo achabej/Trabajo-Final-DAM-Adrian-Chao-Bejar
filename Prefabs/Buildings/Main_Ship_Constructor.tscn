@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dk452euwfr3yv"]
+[gd_scene load_steps=16 format=4 uid="uid://dk452euwfr3yv"]
 
 [ext_resource type="PackedScene" uid="uid://dfwax7fpafe1t" path="res://Models/Original/Convey_Line.glb" id="2_4qs1k"]
 [ext_resource type="Texture2D" uid="uid://dx32wr1quj112" path="res://Models/Original/Landing_Pad_SteelRefinery_colormap.png" id="2_15dpd"]
@@ -110,6 +110,8 @@ shadow_mesh = SubResource("ArrayMesh_jmu4c")
 [sub_resource type="BoxShape3D" id="BoxShape3D_5341l"]
 size = Vector3(0.647461, 0.5, 0.610352)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3yvmg"]
+
 [node name="Main_Ship_Constructor" type="StaticBody3D" groups=["Extractor", "Machine"]]
 collision_layer = 3
 collision_mask = 3
@@ -141,27 +143,36 @@ material_override = SubResource("StandardMaterial3D_2cc1x")
 mesh = SubResource("ArrayMesh_7x04m")
 skeleton = NodePath("")
 
-[node name="Test_Generator_Manager" type="StaticBody3D" parent="." groups=["Machine"]]
+[node name="Ship_Controller" type="StaticBody3D" parent="." groups=["Machine"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("3_yqy25")
 
-[node name="MatEnterPoints" type="Node3D" parent="Test_Generator_Manager"]
+[node name="MatEnterPoints" type="Node3D" parent="Ship_Controller"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03097, 0.00561142, 0.000459285)
 
-[node name="Enter1" type="StaticBody3D" parent="Test_Generator_Manager/MatEnterPoints"]
+[node name="Enter1" type="StaticBody3D" parent="Ship_Controller/MatEnterPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.17438, 0.418138, -0.0417473)
 collision_layer = 3
 collision_mask = 3
 
-[node name="Area3D" type="Area3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1"]
+[node name="Area3D" type="Area3D" parent="Ship_Controller/MatEnterPoints/Enter1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0281211, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ship_Controller/MatEnterPoints/Enter1/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000214577, 0.0977138, 0.00746679)
 shape = SubResource("BoxShape3D_5341l")
 
-[connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D" to="Test_Generator_Manager" method="_on_area_3d_body_entered"]
+[node name="Area3D2" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(10.5153, 0, 0, 0, 7.42055, 0, 0, 0, 10.5153, 0, 2.13162, 0)
+shape = SubResource("BoxShape3D_3yvmg")
+
+[connection signal="body_entered" from="Ship_Controller/MatEnterPoints/Enter1/Area3D" to="Ship_Controller" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D2" to="Ship_Controller" method="_on_area_3d_player_entered"]
+[connection signal="body_exited" from="Area3D2" to="Ship_Controller" method="_on_area_3d_player_exited"]

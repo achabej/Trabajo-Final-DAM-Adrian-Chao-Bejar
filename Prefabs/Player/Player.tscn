@@ -1,13 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=31 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Controller.gd" id="3_4bf5b"]
 [ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_ag43d"]
 [ext_resource type="PackedScene" uid="uid://cjyl78b8oqo5a" path="res://Prefabs/Player/Extractor_Tool.tscn" id="5_bjpnc"]
-[ext_resource type="Script" path="res://Scripts/Systems/Building/Build_Buttons_Controller.gd" id="6_glq1p"]
+[ext_resource type="Script" path="res://Scripts/UI/Build_Buttons_Controller.gd" id="6_glq1p"]
 [ext_resource type="Texture2D" uid="uid://cdg1rijy4ybsd" path="res://Textures/UI/Wood Log.png" id="6_jlrom"]
 [ext_resource type="Script" path="res://Scripts/UI/Materials_Manager.gd" id="6_oplyg"]
+[ext_resource type="Texture2D" uid="uid://djt0p30s5mwyh" path="res://addons/kenney_input_texture/tile_0087.png" id="7_a5rxf"]
 [ext_resource type="Texture2D" uid="uid://cwno4oyo5aq0g" path="res://Textures/UI/Iron.png" id="7_fc8pl"]
 [ext_resource type="Script" path="res://Scripts/Player/Mouse_Area_2d.gd" id="7_uq8yo"]
 [ext_resource type="Texture2D" uid="uid://ba04tjiq47c23" path="res://Textures/UI/Copper.png" id="8_bs4n8"]
@@ -35,6 +36,18 @@ bg_color = Color(0.960784, 0, 0, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_0f6ym"]
 subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hqmt"]
+bg_color = Color(2.31028e-06, 0.739849, 0.86787, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3ecr"]
+bg_color = Color(0.223709, 0.573534, 0.717214, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy6hv"]
+bg_color = Color(0.167876, 0.328924, 0.411124, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5uw1a"]
+bg_color = Color(0.0196078, 0.160784, 0.207843, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aym3"]
 size = Vector2(4792, 138)
@@ -153,6 +166,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Phase_Input_UI" type="Control" parent="CanvasLayer/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -183.0
+offset_top = 156.0
+offset_right = 183.0
+offset_bottom = 212.0
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HUD/Phase_Input_UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Presiona          para construir la pieza[center]"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/Phase_Input_UI"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = -6.0
+offset_right = 151.0
+offset_bottom = 34.0
+texture = ExtResource("7_a5rxf")
 
 [node name="Jetpack_Bar" type="ProgressBar" parent="CanvasLayer/HUD"]
 layout_mode = 1
@@ -352,9 +395,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1.19283)
 
 [node name="BtnBuildConveyLine" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
 layout_mode = 1
@@ -366,6 +409,11 @@ offset_top = 16.0
 offset_right = -234.0
 offset_bottom = 88.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
 text = "Cinta 
 transportadora"
 
@@ -379,6 +427,11 @@ offset_top = 16.0
 offset_right = -103.0
 offset_bottom = 88.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
 text = "Extractor"
 
 [node name="BtnBuildFurnace" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
@@ -391,6 +444,11 @@ offset_top = 16.0
 offset_right = 11.0
 offset_bottom = 88.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
 text = "Horno"
 
 [node name="BtnBuildSteelRefinery" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
@@ -403,6 +461,11 @@ offset_top = 16.0
 offset_right = 123.0
 offset_bottom = 88.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
 text = "Refineria 
 de Acero"
 
@@ -416,6 +479,11 @@ offset_top = 16.0
 offset_right = 356.0
 offset_bottom = 88.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
 text = "Fabrica
 de chips"
 
@@ -429,6 +497,11 @@ offset_top = 16.0
 offset_right = 239.0
 offset_bottom = 88.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
 text = "Fabrica de 
 placas"
 
