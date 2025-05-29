@@ -52,15 +52,8 @@ var BuildingUI: Control
 var Weapon_Holder
 var Building: bool = false
 
-func _ready():
-	# Busca el gridmap para construir
-	var grid_maps = get_tree().get_nodes_in_group("GridMap")
-	if grid_maps.size() > 0:
-		grid_map = grid_maps[0]
-	else:
-		print("Error: No se encontró ningún GridMap.")
-
-	# Busca el weapon_holder del jugador
+func init():
+	await get_tree().process_frame
 	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
 		Player = players[0]
@@ -69,6 +62,8 @@ func _ready():
 
 		if BuildingUI:
 			BuildingUI.visible = false
+	else:
+		print("Player no encontrado.")
 
 func _process(delta):
 	# Gestiona el reloj de las construcciones

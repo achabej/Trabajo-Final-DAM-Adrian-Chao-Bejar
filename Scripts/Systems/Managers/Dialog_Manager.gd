@@ -50,7 +50,7 @@ func show_dialogues_for_phase(phase: int) -> void:
 	if not dialogue_text.has(phase) or dialogue_node == null:
 		return
 
-	DialogManager.is_dialogue_active = true
+	is_dialogue_active = true
 	dialogue_list = dialogue_text[phase]
 	dialogue_index = 0
 	is_showing = true
@@ -61,7 +61,7 @@ func _hide_dialogue():
 	if dialogue_node:
 		dialogue_node.hide()
 	is_showing = false
-	DialogManager.is_dialogue_active = false
+	is_dialogue_active = false
 
 func _update_text():
 	if dialogue_index < dialogue_list.size():

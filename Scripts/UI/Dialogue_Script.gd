@@ -12,11 +12,14 @@ var is_typing: bool = false
 func _ready() -> void:
 	DialogManager.register_dialogue_node(self)
 	hide()
-
-	pause_timer.connect("timeout", Callable(self, "_on_pause_timer_timeout"))
-
-	await get_tree().create_timer(1.0).timeout
 	
+	type_timer.start()
+
+	pause_timer.connect("timeout", Callable(self, "_on_pause_timer_timeout"))  # Asegúrate de tener esta línea
+
+func _on_pause_timer_timeout() -> void:
+	type_timer.start()  # Reanudar la escritura
+
 func update_message(message: String, text_size: float, text_veloc: float) -> void:
 	is_typing = true
 	full_text = message
@@ -79,6 +82,3 @@ func _on_type_timer_timeout() -> void:
 	# Si no es un comando, mostrar el carácter
 	content.visible_characters += 1
 	current_index += 1
-
-func _on_pause_timer_timeout() -> void:
-	type_timer.start()

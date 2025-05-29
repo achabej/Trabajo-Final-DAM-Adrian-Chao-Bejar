@@ -54,18 +54,20 @@ var current_phase
 
 var storage = {}
 
-func _ready() -> void:
+func init():
 	tick_timer = tick_interval
 	current_phase = 1  
 	storage = {}
 
 	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
+	emit_signal("initialized")
 
 	_update_phase_storage()
 	_update_ui()
 	
 	await get_tree().process_frame
 	DialogManager.show_dialogues_for_phase(current_phase)
+	
 	
 func add_mat(material_type: String, amount: int = 1) -> void:
 	var phase_key = "Phase%d" % current_phase

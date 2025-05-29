@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcckwak36oq4l"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Main_Menu_Controller.gd" id="1_b7ciy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b7ciy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -217.0
+offset_right = 290.0
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 65
+bbcode_enabled = true
+text = "Overcomplicate it!"
+
+[node name="Menu_Panel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -92.0
+offset_right = 151.0
+offset_bottom = 189.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Menu_Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play_Btn" type="Button" parent="Menu_Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -102.0
+offset_right = 82.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Jugar"
+
+[node name="Options_Btn" type="Button" parent="Menu_Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -37.0
+offset_right = 82.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Opciones"
+
+[node name="Exit_Btn" type="Button" parent="Menu_Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 32.0
+offset_right = 82.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Salir"
+
+[connection signal="pressed" from="Menu_Panel/Play_Btn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="Menu_Panel/Options_Btn" to="." method="_on_options_btn_pressed"]
+[connection signal="pressed" from="Menu_Panel/Exit_Btn" to="." method="_on_exit_btn_pressed"]

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Controller.gd" id="3_4bf5b"]
 [ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_ag43d"]
 [ext_resource type="PackedScene" uid="uid://cjyl78b8oqo5a" path="res://Prefabs/Player/Extractor_Tool.tscn" id="5_bjpnc"]
-[ext_resource type="Script" path="res://Scripts/Systems/Managers/Interface_Manager.gd" id="6_glq1p"]
+[ext_resource type="Script" path="res://Scripts/Systems/Building/Build_Buttons_Controller.gd" id="6_glq1p"]
 [ext_resource type="Texture2D" uid="uid://cdg1rijy4ybsd" path="res://Textures/UI/Wood Log.png" id="6_jlrom"]
 [ext_resource type="Script" path="res://Scripts/UI/Materials_Manager.gd" id="6_oplyg"]
 [ext_resource type="Texture2D" uid="uid://cwno4oyo5aq0g" path="res://Textures/UI/Iron.png" id="7_fc8pl"]
@@ -52,6 +52,7 @@ camera = NodePath("CamNode/SpringArm3D/Camera3D")
 max_y_angle_deg = -10.0
 
 [node name="PlayerMesh" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Trail_Node" type="Node3D" parent="PlayerMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13177, 0.230398, 0)

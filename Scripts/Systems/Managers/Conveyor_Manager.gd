@@ -7,7 +7,7 @@ var conveyors: Array = []
 var tick_timer: Timer
 var tick_interval := 0.2
 
-func _ready():
+func init():
 	tick_timer = Timer.new()
 	tick_timer.wait_time = tick_interval
 	tick_timer.one_shot = false
