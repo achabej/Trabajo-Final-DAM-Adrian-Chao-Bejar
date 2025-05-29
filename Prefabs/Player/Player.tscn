@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=35 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://buyu3haltyjpm" path="res://Prefabs/Player/Material_Popup.tscn" id="9_w3rbo"]
 [ext_resource type="Script" path="res://Scripts/UI/Phase_Controller.gd" id="13_vqwf6"]
 [ext_resource type="Script" path="res://Scripts/UI/Dialogue_Script.gd" id="14_rt7f2"]
+[ext_resource type="Script" path="res://Scripts/UI/Game_Menu_Controller.gd" id="17_o71tr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
 
@@ -51,6 +52,15 @@ bg_color = Color(0.0196078, 0.160784, 0.207843, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aym3"]
 size = Vector2(4792, 138)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrmhy"]
+bg_color = Color(0.243893, 0.602565, 0.754479, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6o6k"]
+bg_color = Color(0.190956, 0.36866, 0.457038, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqbec"]
+bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs6gc"]
 radius = 2.0
@@ -114,6 +124,7 @@ fov = 60.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Dialogue" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -160,6 +171,7 @@ wait_time = 0.05
 wait_time = 0.04
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -567,6 +579,159 @@ grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 
+[node name="Menu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_o71tr")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume_Btn" type="Button" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -102.0
+offset_right = 82.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Continuar"
+
+[node name="Options_Btn" type="Button" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -40.5
+offset_right = 82.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Opciones"
+
+[node name="Exit_Btn" type="Button" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 22.0
+offset_right = 82.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Salir
+"
+
+[node name="Exit_Notif" type="Control" parent="CanvasLayer/Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -116.0
+offset_right = 174.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu/Exit_Notif"]
+modulate = Color(1, 1, 1, 0.690196)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Exit_Notif"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+[center]¿Estas seguro que deseas salir? 
+Los datos no se guardarán"
+fit_content = true
+
+[node name="Confirm_Btn" type="Button" parent="CanvasLayer/Menu/Exit_Notif"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -0.5
+offset_right = -29.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Salir
+"
+
+[node name="Cancel_Btn" type="Button" parent="CanvasLayer/Menu/Exit_Notif"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 29.0
+offset_top = -0.5
+offset_right = 133.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Cancelar
+"
+
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("7_uq8yo")
 
@@ -584,3 +749,8 @@ shape = SubResource("CircleShape2D_gs6gc")
 [connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildPlatesFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_plates_factory_button_down"]
 [connection signal="area_entered" from="CanvasLayer/HUD/Building_Buttons/Area2D2" to="CanvasLayer/HUD/Building_Buttons" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="CanvasLayer/HUD/Building_Buttons/Area2D2" to="CanvasLayer/HUD/Building_Buttons" method="_on_area_2d_area_exited"]
+[connection signal="pressed" from="CanvasLayer/Menu/Resume_Btn" to="CanvasLayer/Menu" method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Options_Btn" to="CanvasLayer/Menu" method="_on_options_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Exit_Btn" to="CanvasLayer/Menu" method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Exit_Notif/Confirm_Btn" to="CanvasLayer/Menu" method="_on_confirm_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Exit_Notif/Cancel_Btn" to="CanvasLayer/Menu" method="_on_cancel_btn_pressed"]

@@ -8,6 +8,8 @@ func _input(event):
 			toggle_time_scale()
 		elif event.keycode == KEY_F6:
 			auto_complete_phase()
+		elif event.keycode == KEY_F7:
+			add_mat_inventory()
 
 func toggle_time_scale():
 	fast_mode = not fast_mode
@@ -33,3 +35,9 @@ func auto_complete_phase():
 		GameManager.add_mat(mat, cantidad_requerida)
 
 	print("Fase %d completada automáticamente con F6." % current_phase)
+
+func add_mat_inventory():
+	BuildManager.increase_mat("Wood", 200)
+	BuildManager.increase_mat("Iron", 200)
+	BuildManager.increase_mat("Copper", 200)
+	BuildManager.increase_mat("Cristal", 200)

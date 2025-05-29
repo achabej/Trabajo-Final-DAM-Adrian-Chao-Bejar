@@ -17,37 +17,38 @@ var tick_timer : float = 0.0
 var phases : Dictionary = {
 	"Phase1": {
 		"Resources": {
-			"Iron_Ingot": 2,
-			"Copper_Ingot": 2
+			"Iron_Ingot": 15,
+			"Copper_Ingot": 15
 		}
 	},
 	"Phase2": {
 		"Resources": {
-			"Steel_Ingot": 2,
-			"Copper_Ingot": 2,
+			"Steel_Ingot": 10,
+			"Copper_Ingot": 15,
+			"Cristal": 15
 		}
 	},
 	"Phase3": {
 		"Resources": {
-			"Steel_Plate": 1,
-			"Iron_Plate": 2,
-			"Copper_Plate": 2,
+			"Steel_Plate": 10,
+			"Iron_Plate": 15,
+			"Copper_Plate": 15,
 		}
 	},
 	
 	"Phase4": {
 		"Resources": {	
-			"Chip": 2,
-			"Steel_Plate": 3,
-			"Cristal": 1
+			"Chip": 15,
+			"Steel_Plate": 20,
+			"Cristal": 30
 		}
 	},
 	"Phase5": {
 		"Resources": {
-			"Chip": 2,
-			"Steel_Plate": 5,
-			"Copper_Plate": 5,
-			"Cristal": 2
+			"Chip": 20,
+			"Steel_Plate": 20,
+			"Copper_Plate": 15,
+			"Cristal": 40
 		}
 	}
 }

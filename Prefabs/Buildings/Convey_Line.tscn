@@ -120,7 +120,7 @@ notBuildList = Array[String](["Deposit", "Build", "Tree", "Player"])
 script = ExtResource("2_kt2x3")
 
 [node name="Arrow2" type="MeshInstance3D" parent="Arrows"]
-transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, 0.0421599, 0.619562, 0)
+transform = Transform3D(-1.35915e-08, 0, 0.310939, 0, 0.310939, 0, -0.310939, 0, -1.35915e-08, 0.0421599, 0.488673, 0)
 material_override = SubResource("StandardMaterial3D_vpf0w")
 mesh = SubResource("PlaneMesh_a2emo")
 skeleton = NodePath("../Mesh")
