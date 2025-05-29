@@ -1,0 +1,756 @@
+[gd_scene load_steps=35 format=3 uid="uid://dtyqm35g18wg4"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
+[ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
+[ext_resource type="Script" path="res://Scripts/Player/Hand_Controller.gd" id="3_4bf5b"]
+[ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="4_ag43d"]
+[ext_resource type="PackedScene" uid="uid://cjyl78b8oqo5a" path="res://Prefabs/Player/Extractor_Tool.tscn" id="5_bjpnc"]
+[ext_resource type="Script" path="res://Scripts/UI/Build_Buttons_Controller.gd" id="6_glq1p"]
+[ext_resource type="Texture2D" uid="uid://cdg1rijy4ybsd" path="res://Textures/UI/Wood Log.png" id="6_jlrom"]
+[ext_resource type="Script" path="res://Scripts/UI/Materials_Manager.gd" id="6_oplyg"]
+[ext_resource type="Texture2D" uid="uid://djt0p30s5mwyh" path="res://addons/kenney_input_texture/tile_0087.png" id="7_a5rxf"]
+[ext_resource type="Texture2D" uid="uid://cwno4oyo5aq0g" path="res://Textures/UI/Iron.png" id="7_fc8pl"]
+[ext_resource type="Script" path="res://Scripts/Player/Mouse_Area_2d.gd" id="7_uq8yo"]
+[ext_resource type="Texture2D" uid="uid://ba04tjiq47c23" path="res://Textures/UI/Copper.png" id="8_bs4n8"]
+[ext_resource type="Script" path="res://Scripts/UI/PopupManager.gd" id="8_r3hhy"]
+[ext_resource type="Texture2D" uid="uid://j2n5cq8etnjh" path="res://Textures/UI/Cristal.png" id="9_5p1bq"]
+[ext_resource type="PackedScene" uid="uid://buyu3haltyjpm" path="res://Prefabs/Player/Material_Popup.tscn" id="9_w3rbo"]
+[ext_resource type="Script" path="res://Scripts/UI/Phase_Controller.gd" id="13_vqwf6"]
+[ext_resource type="Script" path="res://Scripts/UI/Dialogue_Script.gd" id="14_rt7f2"]
+[ext_resource type="Script" path="res://Scripts/UI/Game_Menu_Controller.gd" id="17_o71tr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbldf"]
+height = 1.95554
+
+[sub_resource type="Theme" id="Theme_p323m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh1a7"]
+bg_color = Color(0.297607, 0.308817, 0.318345, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wdt8"]
+bg_color = Color(1, 0.694118, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p44d7"]
+bg_color = Color(0.960784, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_0f6ym"]
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hqmt"]
+bg_color = Color(2.31028e-06, 0.739849, 0.86787, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3ecr"]
+bg_color = Color(0.223709, 0.573534, 0.717214, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy6hv"]
+bg_color = Color(0.167876, 0.328924, 0.411124, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5uw1a"]
+bg_color = Color(0.0196078, 0.160784, 0.207843, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aym3"]
+size = Vector2(4792, 138)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrmhy"]
+bg_color = Color(0.243893, 0.602565, 0.754479, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6o6k"]
+bg_color = Color(0.190956, 0.36866, 0.457038, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqbec"]
+bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gs6gc"]
+radius = 2.0
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera") groups=["Player"]]
+script = ExtResource("1_jhext")
+AIM_SPEED = 5
+MAX_JETPACK_HEIGHT = 4.0
+JETPACK_TIME = 3.0
+JETPACK_MAX_ABSOLUTE_Y = 8.0
+camera = NodePath("CamNode/SpringArm3D/Camera3D")
+max_y_angle_deg = -10.0
+
+[node name="PlayerMesh" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Trail_Node" type="Node3D" parent="PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13177, 0.230398, 0)
+visible = false
+
+[node name="Node3D" parent="PlayerMesh/Trail_Node" instance=ExtResource("2_24l4c")]
+transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.292246, -0.389208, 0)
+
+[node name="Node3D2" parent="PlayerMesh/Trail_Node" instance=ExtResource("2_24l4c")]
+transform = Transform3D(0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0440139, -0.389208, 0)
+
+[node name="Mesh" type="Node3D" parent="PlayerMesh"]
+transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 0, 0, 0)
+
+[node name="weapon_holder" type="Node3D" parent="PlayerMesh"]
+script = ExtResource("3_4bf5b")
+
+[node name="Extractor_Tool" parent="PlayerMesh/weapon_holder" instance=ExtResource("5_bjpnc")]
+visible = false
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_6k3mc")
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1.10651, 0, 0, 0, 1.10651, 0, 0, 0, 1.10651, 0, 1.00559, 0)
+shape = SubResource("CapsuleShape3D_dbldf")
+
+[node name="CamNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.68307, 0.730354, 0, -0.730354, 0.68307, 0, 1.53635, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamNode"]
+transform = Transform3D(1, 0, 0, 0, 0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0)
+collision_mask = 4
+spring_length = 18.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CamNode/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+fov = 60.0
+
+[node name="HealthController" parent="." instance=ExtResource("4_ag43d")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Dialogue" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 271.0
+offset_top = -300.0
+offset_right = -194.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.92, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("14_rt7f2")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Dialogue"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="RichTextLabel" parent="CanvasLayer/Dialogue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_p323m")
+bbcode_enabled = true
+
+[node name="TypeTimer" type="Timer" parent="CanvasLayer/Dialogue"]
+wait_time = 0.05
+
+[node name="PauseTimer" type="Timer" parent="CanvasLayer/Dialogue"]
+wait_time = 0.04
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Phase_Input_UI" type="Control" parent="CanvasLayer/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -183.0
+offset_top = 156.0
+offset_right = 183.0
+offset_bottom = 212.0
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HUD/Phase_Input_UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Presiona          para construir la pieza[center]"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/Phase_Input_UI"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = -6.0
+offset_right = 151.0
+offset_bottom = 34.0
+texture = ExtResource("7_a5rxf")
+
+[node name="Jetpack_Bar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = -119.0
+offset_right = 395.0
+offset_bottom = -92.0
+grow_vertical = 0
+rotation = -1.57079
+scale = Vector2(0.5, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_gh1a7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5wdt8")
+value = 100.0
+show_percentage = false
+
+[node name="Health_bar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -61.0
+offset_right = 372.0
+offset_bottom = -34.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_gh1a7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p44d7")
+value = 100.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HUD/Health_bar"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -36.0
+offset_right = 197.0
+offset_bottom = -5.0
+theme_override_fonts/normal_font = SubResource("SystemFont_0f6ym")
+theme_override_font_sizes/normal_font_size = 22
+text = "Health
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Materials" type="Control" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = 6.0
+offset_right = -66.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("6_oplyg")
+
+[node name="Wood" type="Control" parent="CanvasLayer/HUD/Materials"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 28.0
+offset_right = 10.0
+offset_bottom = 68.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HUD/Materials/Wood"]
+position = Vector2(20, 10)
+texture = ExtResource("6_jlrom")
+
+[node name="Amount" type="RichTextLabel" parent="CanvasLayer/HUD/Materials/Wood"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+autowrap_mode = 0
+
+[node name="Iron" type="Control" parent="CanvasLayer/HUD/Materials"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 62.0
+offset_right = 10.0
+offset_bottom = 102.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HUD/Materials/Iron"]
+position = Vector2(20, 9)
+texture = ExtResource("7_fc8pl")
+
+[node name="Amount" type="RichTextLabel" parent="CanvasLayer/HUD/Materials/Iron"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+autowrap_mode = 0
+
+[node name="Copper" type="Control" parent="CanvasLayer/HUD/Materials"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 94.0
+offset_right = 10.0
+offset_bottom = 134.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HUD/Materials/Copper"]
+position = Vector2(20, 10)
+texture = ExtResource("8_bs4n8")
+
+[node name="Amount" type="RichTextLabel" parent="CanvasLayer/HUD/Materials/Copper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+autowrap_mode = 0
+
+[node name="Cristal" type="Control" parent="CanvasLayer/HUD/Materials"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 126.0
+offset_right = 10.0
+offset_bottom = 166.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HUD/Materials/Cristal"]
+position = Vector2(20, 11)
+texture = ExtResource("9_5p1bq")
+
+[node name="Amount" type="RichTextLabel" parent="CanvasLayer/HUD/Materials/Cristal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+autowrap_mode = 0
+
+[node name="Mat_PopUp_Controller" type="Control" parent="CanvasLayer/HUD" node_paths=PackedStringArray("popup_spawn_point")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 53.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_r3hhy")
+popup_scene = ExtResource("9_w3rbo")
+popup_spawn_point = NodePath("Node2D")
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/HUD/Mat_PopUp_Controller"]
+position = Vector2(28, 19)
+
+[node name="Building_Buttons" type="Control" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 96.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+script = ExtResource("6_glq1p")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD/Building_Buttons"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BtnBuildConveyLine" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -361.0
+offset_top = 16.0
+offset_right = -234.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
+text = "Cinta 
+transportadora"
+
+[node name="BtnBuildExtractor" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 16.0
+offset_right = -103.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
+text = "Extractor"
+
+[node name="BtnBuildFurnace" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.0
+offset_top = 16.0
+offset_right = 11.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
+text = "Horno"
+
+[node name="BtnBuildSteelRefinery" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 123.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
+text = "Refineria 
+de Acero"
+
+[node name="BtnBuildChipsFactory" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 261.0
+offset_top = 16.0
+offset_right = 356.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
+text = "Fabrica
+de chips"
+
+[node name="BtnBuildPlatesFactory" type="Button" parent="CanvasLayer/HUD/Building_Buttons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 144.0
+offset_top = 16.0
+offset_right = 239.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5uw1a")
+text = "Fabrica de 
+placas"
+
+[node name="Area2D2" type="Area2D" parent="CanvasLayer/HUD/Building_Buttons"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HUD/Building_Buttons/Area2D2"]
+position = Vector2(574, 61)
+shape = SubResource("RectangleShape2D_1aym3")
+
+[node name="Materials_Needed" type="RichTextLabel" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = 60.0
+offset_right = 98.0
+offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 8
+bbcode_enabled = true
+autowrap_mode = 1
+
+[node name="Phase_Controller" type="Control" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 0.373
+anchor_right = 1.0
+anchor_bottom = 0.373
+offset_left = -198.0
+offset_top = -55.704
+offset_right = -14.0
+offset_bottom = 89.296
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("13_vqwf6")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD/Phase_Controller"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HUD/Phase_Controller"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
+[node name="Menu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_o71tr")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume_Btn" type="Button" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -102.0
+offset_right = 82.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Continuar"
+
+[node name="Options_Btn" type="Button" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -40.5
+offset_right = 82.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Opciones"
+
+[node name="Exit_Btn" type="Button" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 22.0
+offset_right = 82.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Salir
+"
+
+[node name="Exit_Notif" type="Control" parent="CanvasLayer/Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -116.0
+offset_right = 174.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu/Exit_Notif"]
+modulate = Color(1, 1, 1, 0.690196)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Exit_Notif"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+[center]¿Estas seguro que deseas salir? 
+Los datos no se guardarán"
+fit_content = true
+
+[node name="Confirm_Btn" type="Button" parent="CanvasLayer/Menu/Exit_Notif"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -0.5
+offset_right = -29.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Salir
+"
+
+[node name="Cancel_Btn" type="Button" parent="CanvasLayer/Menu/Exit_Notif"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 29.0
+offset_top = -0.5
+offset_right = 133.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_lrmhy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s6o6k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vqbec")
+text = "Cancelar
+"
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("7_uq8yo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(595, 3)
+shape = SubResource("CircleShape2D_gs6gc")
+
+[connection signal="timeout" from="CanvasLayer/Dialogue/TypeTimer" to="CanvasLayer/Dialogue" method="_on_type_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/Dialogue/PauseTimer" to="CanvasLayer/Dialogue" method="_on_pause_timer_timeout"]
+[connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildConveyLine" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_convey_merger_button_down"]
+[connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildExtractor" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_extractor_button_down"]
+[connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildFurnace" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_furnace_button_down"]
+[connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildSteelRefinery" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_steel_refinery_button_down"]
+[connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildChipsFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_chips_factory_button_down"]
+[connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildPlatesFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_plates_factory_button_down"]
+[connection signal="area_entered" from="CanvasLayer/HUD/Building_Buttons/Area2D2" to="CanvasLayer/HUD/Building_Buttons" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CanvasLayer/HUD/Building_Buttons/Area2D2" to="CanvasLayer/HUD/Building_Buttons" method="_on_area_2d_area_exited"]
+[connection signal="pressed" from="CanvasLayer/Menu/Resume_Btn" to="CanvasLayer/Menu" method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Options_Btn" to="CanvasLayer/Menu" method="_on_options_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Exit_Btn" to="CanvasLayer/Menu" method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Exit_Notif/Confirm_Btn" to="CanvasLayer/Menu" method="_on_confirm_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Exit_Notif/Cancel_Btn" to="CanvasLayer/Menu" method="_on_cancel_btn_pressed"]

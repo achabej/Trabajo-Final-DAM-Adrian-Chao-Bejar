@@ -24,9 +24,9 @@ func _on_exit_btn_pressed() -> void:
 	$Exit_Notif.visible = true
 
 func _on_confirm_btn_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Planet_1.tscn")
-
-
+	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")
+	get_parent().queue_free()
+	
 func _on_cancel_btn_pressed() -> void:
 	$Resume_Btn.visible = true
 	$Options_Btn.visible = true
