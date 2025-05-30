@@ -196,3 +196,23 @@ func _rotate_mesh_towards(direction: Vector3, delta: float) -> void:
 	
 	# Aplicar la nueva rotación (solo en Y)
 	mesh.rotation.y = new_yaw
+
+func die():
+	# Instanciar el efecto Poof y añadirlo como hijo al NPC
+	var poof_effect = preload("res://Prefabs/Effects/Poof_Effect.tscn").instantiate()
+	poof_effect.global_transform.origin = global_transform.origin
+	get_parent().add_child(poof_effect)
+
+	# Ejecutar animación power_off en el mesh
+	mesh.power_off()
+
+	# Crear tween para la animación de escala
+	var tween = create_tween()
+
+	# Escalar un poco más (por ejemplo 1.2x)
+	tween.tween_property(self, "scale", Vector3.ONE * 1.2, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	# Luego encoger hasta cero
+	tween.tween_property(self, "scale", Vector3.ZERO, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+	# Al finalizar la tween, eliminar el NPC
+	tween.connect("finished", Callable(self, "queue_free"))

@@ -4,6 +4,7 @@ extends Node
 @onready var laser_mesh: Node3D = $Laser/Laser_Mesh
 @onready var impact_particles: GPUParticles3D = $Laser/ParticleEndLaser
 @onready var extraction_timer: Timer = $ExtractorTimer
+@onready var attack_timer: Timer = $AttackTimer  
 
 @export var damage: float = 1
 @export var default_length: float = 1
@@ -31,10 +32,12 @@ func shoot():
 		
 		if collider.is_in_group("Deposit") or collider.is_in_group("Tree"):
 			current_deposit = collider
-			if not extraction_timer.is_stopped():
-				pass  # Timer ya corriendo
-			else:
+			if extraction_timer.is_stopped():
 				extraction_timer.start()
+		elif collider.is_in_group("Enemy"):
+			if attack_timer.is_stopped():
+				collider.get_node("HealthController").damage(5)
+				attack_timer.start()
 		else:
 			current_deposit = null
 			extraction_timer.stop()
@@ -63,9 +66,10 @@ func stop_shooting():
 	laser_mesh.visible = false
 	impact_particles.emitting = false
 	extraction_timer.stop()
+	attack_timer.stop() 
 	current_deposit = null
 
 func _on_extractor_timer_timeout() -> void:
 	if current_deposit and is_shooting:
-		var mat_name = current_deposit.resource_type  # Asume que el nodo depósito tiene esta variable
+		var mat_name = current_deposit.resource_type
 		BuildManager.increase_mat(mat_name, 1)
