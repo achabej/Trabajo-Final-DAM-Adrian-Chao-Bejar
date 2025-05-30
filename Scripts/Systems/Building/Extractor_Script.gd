@@ -25,11 +25,6 @@ func _ready() -> void:
 		detector.connect("body_entered", Callable(self, "_on_convey_detector_body_entered"))
 		detector.connect("body_exited", Callable(self, "_on_convey_detector_body_exited"))
 
-	# Detector de depósitos
-	var deposit_detector = get_node_or_null("DepositDetector")
-	if deposit_detector:
-		deposit_detector.connect("body_entered", Callable(self, "_on_deposit_detected"))
-
 func _process(delta: float) -> void:
 	if not is_active:
 		return

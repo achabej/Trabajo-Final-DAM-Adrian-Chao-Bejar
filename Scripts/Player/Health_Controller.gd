@@ -21,7 +21,6 @@ func damage(damage: float):
 #Destruye el npc
 func dead():
 	print("you died :(")
-	get_parent().queue_free()
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group(tag_group):

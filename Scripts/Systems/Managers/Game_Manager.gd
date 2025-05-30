@@ -68,7 +68,6 @@ func init():
 		ship.connect("player_ready_for_next_phase", Callable(self, "_on_player_confirm_phase"))
 
 	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
-	emit_signal("initialized")
 
 	_update_phase_storage()
 	_update_ui()

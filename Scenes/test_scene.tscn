@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://b8ounvi54kibq"]
+[gd_scene load_steps=18 format=3 uid="uid://b8ounvi54kibq"]
 
 [ext_resource type="PackedScene" uid="uid://dtyqm35g18wg4" path="res://Prefabs/Player/Player.tscn" id="1_7exgm"]
 [ext_resource type="Script" path="res://Scripts/Characters/NPC_AI.gd" id="1_ofglc"]
 [ext_resource type="Texture2D" uid="uid://dms1ix84cai3m" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="3_xgo2f"]
 [ext_resource type="PackedScene" uid="uid://8h5bxwo0hcp2" path="res://Prefabs/Enviroment/Resources/Iron_Deposit.tscn" id="4_pguqe"]
+[ext_resource type="PackedScene" uid="uid://cdxnnnra3fwod" path="res://Prefabs/NPC/Bug_Enemy.tscn" id="4_xdtfl"]
 [ext_resource type="PackedScene" uid="uid://dj07knm18ryuw" path="res://Prefabs/Enviroment/Resources/Tree1.tscn" id="5_5iddn"]
 [ext_resource type="PackedScene" uid="uid://cgwtdsnbck456" path="res://Prefabs/Enviroment/Resources/Tree2.tscn" id="6_tck10"]
 [ext_resource type="PackedScene" uid="uid://ctw2wck1wf3xv" path="res://Prefabs/Enviroment/Resources/Copper_Deposit.tscn" id="7_vc2xy"]
@@ -76,6 +77,9 @@ shape = SubResource("BoxShape3D_qx2ds")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Floor"]
 material_override = SubResource("StandardMaterial3D_c2e56")
 mesh = SubResource("PlaneMesh_x77c1")
+
+[node name="BugEnemy" parent="NavigationRegion3D/Floor" instance=ExtResource("4_xdtfl")]
+transform = Transform3D(0.0425, 0, 0, 0, 0.0425, 0, 0, 0, 0.0425, 0.438011, 0.00431061, -0.0112037)
 
 [node name="Iron_Deposit" parent="NavigationRegion3D" instance=ExtResource("4_pguqe")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, -6.082, 0.0513344, 5.85042)

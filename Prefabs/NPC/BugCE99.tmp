@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdxnnnra3fwod"]
+
+[ext_resource type="PackedScene" uid="uid://bpjqcswabdtyb" path="res://addons/Godot_4_3D_Characters/addons/gdquest_beetle_bot/beetlebot_skin.tscn" id="1_6h4l5"]
+[ext_resource type="Script" path="res://Scripts/Characters/NPC_Movement.gd" id="1_jrpmj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8i26r"]
+radius = 1.00435
+height = 2.0087
+
+[node name="BugEnemy" type="CharacterBody3D"]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
+script = ExtResource("1_jrpmj")
+wander_radius = null
+wander_wait_time = null
+alert_distance = null
+
+[node name="Mesh" type="Node3D" parent="."]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
+
+[node name="BeetlebotSkin" parent="." instance=ExtResource("1_6h4l5")]
+script = null
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.936262, 0, 0, 0, 0.936262, 0, 0, 0, 0.936262, 0, 0.388479, 0.114972)
+shape = SubResource("CapsuleShape3D_8i26r")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

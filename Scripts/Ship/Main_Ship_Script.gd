@@ -33,7 +33,8 @@ func _on_area_3d_player_exited(body: Node3D) -> void:
 		player_inside = false
 
 func _process(_delta: float) -> void:
-	GameManager.input_message.visible = (player_inside and GameManager._check_phase_complete())
+	if GameManager.input_message != null:
+		GameManager.input_message.visible = (player_inside and GameManager._check_phase_complete())
 
 	if player_inside and Input.is_action_just_pressed("Interact"): 
 		emit_signal("player_ready_for_next_phase")
