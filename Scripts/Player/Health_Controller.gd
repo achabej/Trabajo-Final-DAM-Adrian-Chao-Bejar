@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 func damage(damage: float):
 	current_health -= damage
-	
+	print("daño recibido")
 	if current_health <= 0:
 		dead()
 

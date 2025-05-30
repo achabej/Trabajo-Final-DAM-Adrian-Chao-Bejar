@@ -37,4 +37,5 @@ func _process(_delta: float) -> void:
 		GameManager.input_message.visible = (player_inside and GameManager._check_phase_complete())
 
 	if player_inside and Input.is_action_just_pressed("Interact"): 
+		print("Interact")
 		emit_signal("player_ready_for_next_phase")

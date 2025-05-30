@@ -20,34 +20,31 @@ func shoot():
 	laser_raycast.enabled = true
 	laser_mesh.visible = true
 
-	# Actualizar el raycast
 	laser_raycast.force_raycast_update()
 
 	var hit_distance = default_length
-	var did_hit = false
 
 	if laser_raycast.is_colliding():
 		var collider = laser_raycast.get_collider()
 		print(collider)
-		
+
 		if collider.is_in_group("Deposit") or collider.is_in_group("Tree"):
 			current_deposit = collider
 			if extraction_timer.is_stopped():
 				extraction_timer.start()
 		elif collider.is_in_group("Enemy"):
+			current_deposit = null
 			if attack_timer.is_stopped():
-				collider.get_node("HealthController").damage(5)
-				attack_timer.start()
+				attack_timer.start()  # Solo arrancamos el timer aquí
 		else:
 			current_deposit = null
 			extraction_timer.stop()
+			attack_timer.stop()
 
-		did_hit = true
 		var origin = laser_raycast.global_transform.origin
 		var collision_point = laser_raycast.get_collision_point()
 		hit_distance = origin.distance_to(collision_point) / 8.5
 
-		# Posicionar partículas
 		impact_particles.global_position = collision_point
 		if not impact_particles.emitting:
 			impact_particles.restart()
@@ -56,9 +53,10 @@ func shoot():
 		impact_particles.emitting = false
 		current_deposit = null
 		extraction_timer.stop()
+		attack_timer.stop()
 
-	# Ajustar tamaño del láser
 	laser_mesh.scale.z = hit_distance
+
 
 func stop_shooting():
 	is_shooting = false
@@ -73,3 +71,11 @@ func _on_extractor_timer_timeout() -> void:
 	if current_deposit and is_shooting:
 		var mat_name = current_deposit.resource_type
 		BuildManager.increase_mat(mat_name, 1)
+
+func _on_attack_timer_timeout() -> void:
+	if is_shooting and laser_raycast.is_colliding():
+		var collider = laser_raycast.get_collider()
+		if collider.is_in_group("Enemy"):
+			print("Dañando enemigo por timer")
+			collider.get_node("HealthController").damage(5)
+			attack_timer.start()  # Reinicia timer para siguiente daño

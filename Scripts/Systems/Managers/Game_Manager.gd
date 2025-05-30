@@ -63,8 +63,9 @@ func init():
 
 	input_message = get_tree().get_root().get_node("Node3D/Player/CanvasLayer/HUD/Phase_Input_UI")
 
-	var ship = get_tree().get_root().get_node("Node3D/NavigationRegion3D/Main_Ship_Constructor/Ship_Controller")
+	var ship = get_tree().get_root().get_node("Node3D/Terrain/Main_Ship_Constructor/Ship_Controller")
 	if ship:
+		print("Nave encontrada")
 		ship.connect("player_ready_for_next_phase", Callable(self, "_on_player_confirm_phase"))
 
 	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
@@ -121,8 +122,6 @@ func _on_player_confirm_phase():
 	storage.clear()
 	_update_phase_storage()
 	_update_ui()
-
-
 
 func _update_phase_storage() -> void:
 	# Inicializar el storage para la fase actual, para que tenga todas las claves con 0

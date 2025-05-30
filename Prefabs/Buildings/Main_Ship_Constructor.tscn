@@ -145,7 +145,6 @@ skeleton = NodePath("")
 
 [node name="Ship_Controller" type="StaticBody3D" parent="." groups=["Machine"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-visible = false
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("3_yqy25")

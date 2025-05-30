@@ -26,7 +26,8 @@ enum State {
 	Wandering,
 	Alert,
 	Follow,
-	Attack
+	Attack,
+	Dead
 }
 
 func _ready():
@@ -68,6 +69,8 @@ func _process(delta):
 			_state_follow(delta)
 		State.Attack:
 			_state_attack(delta)
+		State.Dead:
+			_state_dead()
 	
 	match current_state:
 		State.Wandering, State.Follow:
@@ -198,21 +201,19 @@ func _rotate_mesh_towards(direction: Vector3, delta: float) -> void:
 	mesh.rotation.y = new_yaw
 
 func die():
-	# Instanciar el efecto Poof y añadirlo como hijo al NPC
-	var poof_effect = preload("res://Prefabs/Effects/Poof_Effect.tscn").instantiate()
-	poof_effect.global_transform.origin = global_transform.origin
-	get_parent().add_child(poof_effect)
+	current_state = State.Dead
 
-	# Ejecutar animación power_off en el mesh
+func _state_dead():
 	mesh.power_off()
 
-	# Crear tween para la animación de escala
 	var tween = create_tween()
 
-	# Escalar un poco más (por ejemplo 1.2x)
-	tween.tween_property(self, "scale", Vector3.ONE * 1.2, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	# Luego encoger hasta cero
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	# Crear el primer tween y configurar easing
+	var step1 = tween.tween_property(self, "scale", Vector3.ONE * 0.2, 0.5)
+	step1.set_trans(Tween.TRANS_SINE)
+	step1.set_ease(Tween.EASE_OUT)
 
-	# Al finalizar la tween, eliminar el NPC
-	tween.connect("finished", Callable(self, "queue_free"))
+	# Esperar a que termine step1
+	await step1.finished
+
+	queue_free()
