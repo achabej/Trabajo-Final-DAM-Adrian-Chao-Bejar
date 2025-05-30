@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var mesh = preload("res://addons/Godot_4_3D_Characters/addons/gdquest_beetle_bot/beetlebot_skin.tscn").instantiate()
 
 @export var wander_radius: float = 5.0
-@export var wander_wait_time: float = 2.0
+@export var wander_wait_time: float = randf() * 2
 @export var speed: float = 5.0                       # Velocidad del NPC
 @export var min_distance_to_player: float = 6.0     # Distancia mínima para acercarse al jugador
 @export var alert_time: float = 0.7                 # Tiempo que está en estado alerta

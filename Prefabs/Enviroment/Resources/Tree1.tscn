@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://dj07knm18ryuw"]
+[gd_scene load_steps=9 format=4 uid="uid://dj07knm18ryuw"]
 
+[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Controller.gd" id="2_po6v8"]
 [ext_resource type="Script" path="res://Scripts/Systems/Enviroment/Deposit.gd" id="2_yx2bt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s820e"]
@@ -104,6 +105,7 @@ shape = SubResource("BoxShape3D_rsriy")
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22146, 0)
 aabb = AABB(-1.75391, -2.59619, -1.82299, 3.50783, 5.19238, 3.64598)
+script = ExtResource("2_po6v8")
 
-[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="." method="_on_visible_on_screen_enabler_3d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="." method="_on_visible_on_screen_enabler_3d_screen_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]

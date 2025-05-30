@@ -299,4 +299,25 @@ script = ExtResource("13_t2qre")
 [node name="Tutorial_Controller" type="Node3D" parent="."]
 
 [node name="BugEnemy" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 16.5728, 0.0349208, 0.540381)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 66.7565, 0.0349208, -44.8036)
+
+[node name="BugEnemy2" parent="." instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 42.9631, 0.0349216, -43.6032)
+
+[node name="BugEnemy3" parent="." instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -91.2677, 0.0349205, -60.6547)
+
+[node name="BugEnemy4" parent="." instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -82.8164, 0.0349205, -82.9703)
+
+[node name="BugEnemy5" parent="." instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -75.3223, 0.0349163, 64.6463)
+
+[node name="BugEnemy6" parent="." instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -50.9083, 0.0349289, 69.7684)
+
+[node name="BugEnemy7" parent="." instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 33.2727, 0.0349247, 38.031)
+
+[node name="BugEnemy8" parent="." instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -43.3211, 0.0349184, 14.6019)

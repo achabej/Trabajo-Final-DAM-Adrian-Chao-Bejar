@@ -1,12 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdxnnnra3fwod"]
+[gd_scene load_steps=11 format=3 uid="uid://cdxnnnra3fwod"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/NPC_Movement.gd" id="1_jrpmj"]
+[ext_resource type="PackedScene" uid="uid://c7tx5do8av2lf" path="res://Prefabs/Systems/health_controller.tscn" id="2_5d4l1"]
+[ext_resource type="Script" path="res://Scripts/UI/NPC_UI_Controller.gd" id="3_rhuwv"]
+[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Controller.gd" id="4_j0qa4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8i26r"]
 radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a2e3r"]
 radius = 10.8828
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gy0h5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_agryb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfm6n"]
+bg_color = Color(0.297607, 0.308817, 0.318345, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dld1x"]
+bg_color = Color(0.960784, 0, 0, 1)
 
 [node name="BugEnemy" type="CharacterBody3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -26,5 +39,37 @@ shape = SubResource("CapsuleShape3D_8i26r")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_a2e3r")
 
+[node name="HealthController" parent="." instance=ExtResource("2_5d4l1")]
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22146, 0)
+aabb = AABB(-1.75391, -2.59619, -1.82299, 3.50783, 5.19238, 3.64598)
+script = ExtResource("4_j0qa4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.54742, 0)
+material_override = SubResource("StandardMaterial3D_gy0h5")
+mesh = SubResource("QuadMesh_agryb")
+script = ExtResource("3_rhuwv")
+npc = NodePath("..")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D"]
+size = Vector2i(256, 64)
+
+[node name="Health_bar" type="ProgressBar" parent="MeshInstance3D/SubViewport"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -61.0
+offset_right = 372.0
+offset_bottom = -34.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_rfm6n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dld1x")
+value = 100.0
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]
