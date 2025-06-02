@@ -1,5 +1,6 @@
 extends Node
 signal phase_changed(new_phase: int)
+signal initialized
 
 enum State {
 	Play,
@@ -74,6 +75,8 @@ func init():
 	_update_phase_storage()
 	_update_ui()
 	
+	emit_signal("initialized")
+
 	await get_tree().process_frame
 	DialogManager.show_dialogues_for_phase(current_phase)
 	

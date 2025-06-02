@@ -22,8 +22,6 @@ func _ready() -> void:
 	var detector = get_node_or_null("ConveyDetector")
 	if detector:
 		detector.monitoring = true
-		detector.connect("body_entered", Callable(self, "_on_convey_detector_body_entered"))
-		detector.connect("body_exited", Callable(self, "_on_convey_detector_body_exited"))
 
 func _process(delta: float) -> void:
 	if not is_active:

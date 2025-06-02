@@ -15,8 +15,6 @@ func _ready() -> void:
 	
 	type_timer.start()
 
-	pause_timer.connect("timeout", Callable(self, "_on_pause_timer_timeout"))  # Asegúrate de tener esta línea
-
 func _on_pause_timer_timeout() -> void:
 	type_timer.start()  # Reanudar la escritura
 

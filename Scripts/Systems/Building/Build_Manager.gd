@@ -48,7 +48,7 @@ var tick_interval := 0.2 # segundos
 var tick_timer := 0.0
 
 # Referencias
-@onready var Player = $Player
+@onready var Player
 var BuildingUI: Control
 var Weapon_Holder
 var Building: bool = false

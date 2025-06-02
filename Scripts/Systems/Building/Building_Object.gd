@@ -8,11 +8,6 @@ var isBuild = false
 @export var SpawnActor: bool = true
 @export var Actor: PackedScene
 
-
-func _ready() -> void:
-	$Area3D.connect("body_entered", Callable(self, "_on_body_entered"))
-	$Area3D.connect("body_exited", Callable(self, "_on_body_exited"))
-
 func _process(delta: float) -> void:
 	if ActiveBuildableObject and not isBuild:
 		collision_mask = (1 << 3)
