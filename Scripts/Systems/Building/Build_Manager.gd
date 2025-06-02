@@ -25,7 +25,7 @@ var building_costs = {
 @onready var grid_map : GridMap
 var CurrentSpawnable: StaticBody3D = null
 var AbleToBuild: bool = false
-var OnGrid: bool = false
+var OnGrid: bool = true
 var TargetGridCell: Vector3 = Vector3.ZERO
 var MoveSpeed: float = 15.0
 
@@ -198,6 +198,9 @@ func material_controller():
 		return
 
 	var name = CurrentSpawnable.scene_file_path.get_file().get_basename()
+
+	print(OnGrid)
+	print(AbleToBuild)
 
 	if OnGrid and AbleToBuild and has_required_materials(name): 
 		change_material(CurrentSpawnable, building_green)
