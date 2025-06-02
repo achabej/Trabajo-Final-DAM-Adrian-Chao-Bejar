@@ -49,61 +49,66 @@ capture_included = true
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.0333333, 1, 6.13543, 2.62961, -13.9497)
-tracks/1/type = "position_3d"
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.5, 0, 1.26667, 1, 0, 2.38663, 0, 2.96667, 1, 0, 10.3465, 11.0798)
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship")
-tracks/1/interp = 2
+tracks/1/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:rotation")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.5, 0, 1.26667, 1, 0, 2.38663, 0, 2.96667, 1, 0, 10.3465, 11.0798)
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/keys = {
 "times": PackedFloat32Array(1.33333, 2.96667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 2,
 "values": [Vector3(0, 0, 0), Vector3(-0.623432, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 2,
+"values": [Vector3(0, 3.14159, 0), Vector3(-1.5347, 3.14159, 0)]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2:rotation")
+tracks/3/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_3/Phase3:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(1.3, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 2,
-"values": [Vector3(0, 3.14159, 0), Vector3(-1.5347, 3.14159, 0)]
+"values": [Vector3(0, 0, 0), Vector3(1.48583, 0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_3/Phase3:rotation")
+tracks/4/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.3, 2.5),
+"times": PackedFloat32Array(0.0333333, 0.2),
 "transitions": PackedFloat32Array(1, 1),
-"update": 2,
-"values": [Vector3(0, 0, 0), Vector3(1.48583, 0, 0)]
+"update": 1,
+"values": [false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D:visible")
+tracks/5/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D2:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0333333, 0.2),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -111,22 +116,10 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D2:visible")
+tracks/6/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_1/Node3D2:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_1/Node3D2:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0, 1.36667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -135,13 +128,105 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_hmbjw"]
 length = 0.001
-tracks/0/type = "position_3d"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Player")
+tracks/0/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.106785, 0, -0.0839446)
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_3/Phase3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_1/Node3D2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3ha70"]
+resource_name = "default_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0)]
+}
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -181,7 +266,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D:visible")
+tracks/4/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_1/Node3D2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -193,7 +278,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D2:visible")
+tracks/5/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -205,133 +290,10 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_1/Node3D2:visible")
+tracks/6/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D2:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.5, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Player:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.106785, 0, -0.0839446)]
-}
-
-[sub_resource type="Animation" id="Animation_3ha70"]
-resource_name = "default_anim"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.106785, 0, -0.0839446)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.5, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 3.14159, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_3/Phase3:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_1/Node3D2:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2/Node3D2:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -399,7 +361,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.01, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_oqbb4")
 
 [node name="Player" parent="." instance=ExtResource("2_ua367")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.106785, 0, -0.0839446)
 
 [node name="Terrain" type="Node3D" parent="."]
 
@@ -639,6 +600,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -43.3211, 0.0349184, 14
 script = ExtResource("13_t2qre")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Scene_Manager"]
+active = false
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_jl1ly")

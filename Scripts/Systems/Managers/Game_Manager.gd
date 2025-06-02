@@ -69,7 +69,7 @@ func init():
 
 	anim_player = get_tree().get_root().get_node_or_null("Node3D/Scene_Manager/AnimationPlayer")
 	if anim_player:
-		anim_player.play("default_anim")
+		anim_player.active = false  
 	
 	var ship = get_tree().get_root().get_node("Node3D/Terrain/Main_Ship_Constructor/Ship_Controller")
 	if ship:
@@ -198,6 +198,7 @@ func _on_phase_changed(new_phase: int):
 		BuildManager.CurrentSpawnable = null
 
 func _on_play_ending_anim():
+	anim_player.active = true
 	anim_player.play("Ending_Anim")
 	currentState = State.Ending
 	
