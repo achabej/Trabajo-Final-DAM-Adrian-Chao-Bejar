@@ -25,11 +25,11 @@ hue_variation_min = 0.42
 hue_variation_max = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h353f"]
-albedo_color = Color(0.267621, 0.709119, 1, 1)
+albedo_color = Color(0.717139, 0.174877, 0.672878, 1)
 metallic_specular = 0.2
 roughness = 0.0
 emission_enabled = true
-emission = Color(0.16333, 0.710232, 0.875032, 1)
+emission = Color(0.617794, 0.102419, 0.728982, 1)
 emission_energy_multiplier = 4.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_00e7m"]

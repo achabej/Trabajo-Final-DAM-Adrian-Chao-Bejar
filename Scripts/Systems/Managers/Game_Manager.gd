@@ -58,6 +58,7 @@ var phases : Dictionary = {
 var current_phase 
 var all_phases_completed = false
 var storage = {}
+var anim_player 
 
 func init():
 	tick_timer = tick_interval
@@ -66,12 +67,16 @@ func init():
 
 	input_message = get_tree().get_root().get_node("Node3D/Player/CanvasLayer/HUD/Phase_Input_UI")
 
+	anim_player = get_tree().get_root().get_node_or_null("Node3D/Scene_Manager/AnimationPlayer")
+	if anim_player:
+		anim_player.play("default_anim")
+	
 	var ship = get_tree().get_root().get_node("Node3D/Terrain/Main_Ship_Constructor/Ship_Controller")
 	if ship:
 		print("Nave encontrada")
 		ship.connect("player_ready_for_next_phase", Callable(self, "_on_player_confirm_phase"))
 		ship.connect("play_ending_anim", Callable(self, "_on_play_ending_anim"))
-
+		
 	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
 
 	_update_phase_storage()
@@ -193,10 +198,7 @@ func _on_phase_changed(new_phase: int):
 		BuildManager.CurrentSpawnable = null
 
 func _on_play_ending_anim():
-	var anim_player = get_tree().get_root().get_node_or_null("Node3D/Terrain/Main_Ship_Constructor/Ship_Controller/AnimationPlayer")
-	if anim_player:
-		anim_player.play("Ending")
-	else:
-		print("⚠️ No se encontró AnimationPlayer para la animación final")
-	
+	anim_player.play("Ending_Anim")
 	currentState = State.Ending
+	
+	

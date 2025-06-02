@@ -69,6 +69,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if GameManager.currentState == GameManager.State.Ending:
+		player_mesh.visible = false
 		return
 	
 	#Detener el movimiento si hay un dialogo

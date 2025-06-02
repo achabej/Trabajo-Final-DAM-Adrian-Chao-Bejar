@@ -3,10 +3,6 @@ extends Node
 var phases_part := ["Phase_1", "Phase_2", "Phase_3", "Phase_4", "Phase_5"]
 
 func _ready():
-	var main_ship = get_node("/root/Terrain/Main_Ship_Constructor/Main_Ship")
-	if main_ship:
-		main_ship.connect("play_ending_anim", Callable(self, "_on_play_ending_anim"))
-	
 	for part in phases_part:
 		var node = get_node_or_null(part)
 		if node:

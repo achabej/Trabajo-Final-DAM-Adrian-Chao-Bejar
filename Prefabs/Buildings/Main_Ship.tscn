@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=4 uid="uid://bqbncvwh4i4x8"]
+[gd_scene load_steps=45 format=4 uid="uid://bqbncvwh4i4x8"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Ship_State.gd" id="1_u2o4g"]
 [ext_resource type="Texture2D" uid="uid://cxbbkml4ilvx5" path="res://Models/Original/Ship_Model_SteelRefinery_colormap.png" id="2_uj345"]
 [ext_resource type="PackedScene" uid="uid://cipi3wx325pae" path="res://Prefabs/Effects/Poof_Effect.tscn" id="3_2t8yn"]
+[ext_resource type="PackedScene" uid="uid://crbyywny7i7l0" path="res://Prefabs/Effects/Rocket_Effect.tscn" id="4_6xvyb"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vgu14"]
 points = PackedVector3Array(-0.449099, -0.512101, 2.74988, -0.866404, 0.969126, 1.29174, 0.615296, 0.99598, -2.92767, 0.421823, -0.830827, -1.45104, -0.71114, 0.901728, -2.90948, 0.85709, 0.969138, 1.29176, 0.512136, -0.58177, 2.49646, -0.86358, -0.666369, -1.54793, 0.693778, -0.0667336, -2.88368, 1.67826, -0.169997, -0.180786, -1.50761, 0.391864, 0.287069, -0.766447, -0.740869, 1.35304, 0.433999, 0.107954, 2.72636, 1.67826, 0.673084, -0.08745, -0.611934, -0.152566, -2.86262, 0.419112, -0.824499, 1.85866, -1.50761, -0.357605, 0.00588626, -1.3536, 0.865447, -0.677835, -0.443877, 0.107847, 2.71949, 0.93687, -0.663439, -1.37104, -0.349165, -0.840746, -1.46616, -0.623466, 0.99078, -2.91183, -0.351887, -0.8471, 1.90816, -1.4508, 0.531976, -0.768254, 0.929363, -0.657361, 1.27048, 1.52773, 0.531981, -0.768261, -0.701472, -0.0662381, -2.87308, 0.438453, -0.513759, 2.75804, 1.34611, 0.865447, -0.677835, 0.769704, -0.494972, -2.15218, 0.432827, 0.283174, 2.54226, 0.703511, 0.906397, -2.92521)
@@ -421,6 +422,10 @@ skeleton = NodePath("")
 [node name="Node3D" parent="Phase_1" instance=ExtResource("3_2t8yn")]
 transform = Transform3D(1.03333, 0, 0, 0, 1.03333, 0, 0, 0, 1.03333, 0, 1.51962, 0)
 
+[node name="Node3D2" parent="Phase_1" groups=["Particle"] instance=ExtResource("4_6xvyb")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0024209, 2.09219, -4.19335)
+visible = false
+
 [node name="Phase_2" type="StaticBody3D" parent="."]
 
 [node name="Phase2" type="MeshInstance3D" parent="Phase_2"]
@@ -428,6 +433,14 @@ transform = Transform3D(-0.82731, 0, 2.69572e-07, 0, 1.12336, 0, -2.69572e-07, 0
 material_override = SubResource("StandardMaterial3D_1jl7l")
 mesh = SubResource("ArrayMesh_f1ugb")
 skeleton = NodePath("")
+
+[node name="Node3D" parent="Phase_2/Phase2" groups=["Particle"] instance=ExtResource("4_6xvyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6265, 0)
+visible = false
+
+[node name="Node3D2" parent="Phase_2/Phase2" groups=["Particle"] instance=ExtResource("4_6xvyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.59881, -1.6265, -2.14577e-06)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Phase_2"]
 transform = Transform3D(-0.82731, 0, 2.69572e-07, 0, 1.12336, 0, -2.69572e-07, 0, -0.82731, 2.68059, 1.87162, -0.530708)
