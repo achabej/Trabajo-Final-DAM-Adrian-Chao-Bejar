@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=34 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" path="res://Scripts/UI/Materials_Manager.gd" id="6_oplyg"]
 [ext_resource type="Texture2D" uid="uid://djt0p30s5mwyh" path="res://addons/kenney_input_texture/tile_0087.png" id="7_a5rxf"]
 [ext_resource type="Texture2D" uid="uid://cwno4oyo5aq0g" path="res://Textures/UI/Iron.png" id="7_fc8pl"]
-[ext_resource type="Script" path="res://Scripts/Player/Mouse_Area_2d.gd" id="7_uq8yo"]
 [ext_resource type="Texture2D" uid="uid://ba04tjiq47c23" path="res://Textures/UI/Copper.png" id="8_bs4n8"]
 [ext_resource type="Script" path="res://Scripts/UI/PopupManager.gd" id="8_r3hhy"]
 [ext_resource type="Texture2D" uid="uid://j2n5cq8etnjh" path="res://Textures/UI/Cristal.png" id="9_5p1bq"]
@@ -19,6 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/Dialogue_Script.gd" id="14_rt7f2"]
 [ext_resource type="Script" path="res://Scripts/UI/Game_Menu_Controller.gd" id="17_o71tr"]
 [ext_resource type="FontFile" uid="uid://83h32egk0jtl" path="res://Textures/Fonts/kleptocracy titling bd.otf" id="18_bs3kl"]
+[ext_resource type="Script" path="res://Scripts/UI/Game_Over_Screen.gd" id="19_vdfpx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
 
@@ -59,9 +59,6 @@ bg_color = Color(0.190956, 0.36866, 0.457038, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2wmb"]
 bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gs6gc"]
-radius = 2.0
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera") groups=["Player"]]
 script = ExtResource("1_jhext")
@@ -123,7 +120,6 @@ health_bar = NodePath("../CanvasLayer/HUD/Health_bar")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Dialogue" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -759,12 +755,78 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Cancelar
 "
 
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("7_uq8yo")
+[node name="Game_Over" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_vdfpx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(595, 3)
-shape = SubResource("CircleShape2D_gs6gc")
+[node name="Panel" type="Panel" parent="CanvasLayer/Game_Over"]
+modulate = Color(1, 1, 1, 0.690196)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="RichTextLabel" parent="CanvasLayer/Game_Over"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 21.0
+offset_right = -4.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_p323m")
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+bbcode_enabled = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Game_Over"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -151.0
+offset_right = 186.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.817022, 0, 0.254468, 1)
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 80
+text = "Has muerto"
+
+[node name="Confirm_Btn" type="Button" parent="CanvasLayer/Game_Over"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -28.5
+offset_right = 116.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
+text = "Volver al menu"
 
 [connection signal="timeout" from="CanvasLayer/Dialogue/TypeTimer" to="CanvasLayer/Dialogue" method="_on_type_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Dialogue/PauseTimer" to="CanvasLayer/Dialogue" method="_on_pause_timer_timeout"]
@@ -781,3 +843,4 @@ shape = SubResource("CircleShape2D_gs6gc")
 [connection signal="pressed" from="CanvasLayer/Menu/Exit_Btn" to="CanvasLayer/Menu" method="_on_exit_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/Exit_Notif/Confirm_Btn" to="CanvasLayer/Menu" method="_on_confirm_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/Exit_Notif/Cancel_Btn" to="CanvasLayer/Menu" method="_on_cancel_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Game_Over/Confirm_Btn" to="CanvasLayer/Game_Over" method="_on_confirm_btn_pressed"]

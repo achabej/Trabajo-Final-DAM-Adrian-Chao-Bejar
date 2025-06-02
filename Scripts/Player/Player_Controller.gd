@@ -241,6 +241,7 @@ func look_in_direction(direction: Vector3, delta: float, rotationSpeed: float) -
 	var current_rotation = player_mesh.rotation.y
 	player_mesh.rotation.y = lerp_angle(current_rotation, target_rotation, rotationSpeed * delta)
 
+# Controla el estado del jugador cuando hay un dialogo
 func check_dialog_state(delta: float) -> void:
 	# Bloqueo por diálogo activo
 	if DialogManager.is_dialogue_active:
@@ -271,3 +272,6 @@ func check_dialog_state(delta: float) -> void:
 		$CanvasLayer/HUD.visible = true
 		camera.fov = lerp(camera.fov, 60.0, 3.0 * delta)  # Zoom out
 		hand_controller.show_weapon()
+
+func die():
+	$CanvasLayer/Game_Over.show_game_over()

@@ -335,6 +335,7 @@ script = ExtResource("13_t2qre")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="black_overlay" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

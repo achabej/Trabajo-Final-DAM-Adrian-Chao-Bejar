@@ -3,7 +3,7 @@ extends Control
 var active = false
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Menu"):
+	if Input.is_action_just_pressed("Menu") and GameManager.currentState != GameManager.State.Die:
 		active = !active
 	visible = active
 	get_tree().paused = active

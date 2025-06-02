@@ -4,7 +4,8 @@ signal phase_changed(new_phase: int)
 enum State {
 	Play,
 	Building,
-	Destroying
+	Destroying,
+	Die
 }
 
 var currentState = State.Play

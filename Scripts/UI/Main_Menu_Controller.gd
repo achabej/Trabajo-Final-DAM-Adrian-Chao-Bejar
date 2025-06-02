@@ -1,6 +1,5 @@
 extends Control
 
-@onready var Planet1_scene = preload("res://Scenes/Planet_1.tscn")
 @onready var title_text = $RichTextLabel
 @onready var menu_panel = $Menu_Panel
 @onready var space_station_sprite = $Background/Space_station
@@ -91,6 +90,7 @@ func start_play_transition():
 	)
 
 func _load_next_scene():
+	var Planet1_scene = preload("res://Scenes/Planet_1.tscn")
 	get_tree().change_scene_to_packed(Planet1_scene)
 
 func _on_options_btn_pressed() -> void:
