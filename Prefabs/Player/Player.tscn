@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/Phase_Controller.gd" id="13_vqwf6"]
 [ext_resource type="Script" path="res://Scripts/UI/Dialogue_Script.gd" id="14_rt7f2"]
 [ext_resource type="Script" path="res://Scripts/UI/Game_Menu_Controller.gd" id="17_o71tr"]
+[ext_resource type="FontFile" uid="uid://83h32egk0jtl" path="res://Textures/Fonts/kleptocracy titling bd.otf" id="18_bs3kl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
 
@@ -34,9 +35,6 @@ bg_color = Color(1, 0.694118, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p44d7"]
 bg_color = Color(0.960784, 0, 0, 1)
-
-[sub_resource type="SystemFont" id="SystemFont_0f6ym"]
-subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hqmt"]
 bg_color = Color(2.31028e-06, 0.739849, 0.86787, 1)
@@ -163,6 +161,7 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_p323m")
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 bbcode_enabled = true
 
 [node name="TypeTimer" type="Timer" parent="CanvasLayer/Dialogue"]
@@ -172,7 +171,6 @@ wait_time = 0.05
 wait_time = 0.04
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -181,7 +179,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Phase_Input_UI" type="Control" parent="CanvasLayer/HUD"]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -197,10 +194,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 11.0
+offset_right = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "[center]Presiona          para construir la pieza[center]"
+text = "[center]Presiona       para construir la pieza[center]"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/Phase_Input_UI"]
 layout_mode = 0
@@ -247,8 +248,8 @@ offset_left = 5.0
 offset_top = -36.0
 offset_right = 197.0
 offset_bottom = -5.0
-theme_override_fonts/normal_font = SubResource("SystemFont_0f6ym")
-theme_override_font_sizes/normal_font_size = 22
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 24
 text = "Health
 "
 metadata/_edit_use_anchors_ = true
@@ -291,6 +292,7 @@ offset_right = 82.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 text = "0"
 autowrap_mode = 0
 
@@ -317,6 +319,7 @@ offset_right = 82.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 text = "0"
 autowrap_mode = 0
 
@@ -343,6 +346,7 @@ offset_right = 82.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 text = "0"
 autowrap_mode = 0
 
@@ -369,6 +373,7 @@ offset_right = 82.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 text = "0"
 autowrap_mode = 0
 
@@ -423,6 +428,8 @@ offset_right = -234.0
 offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
@@ -441,6 +448,8 @@ offset_right = -103.0
 offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
@@ -458,6 +467,8 @@ offset_right = 11.0
 offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
@@ -475,6 +486,8 @@ offset_right = 123.0
 offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
@@ -493,6 +506,8 @@ offset_right = 356.0
 offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
@@ -511,6 +526,8 @@ offset_right = 239.0
 offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_4hqmt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_a3ecr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fy6hv")
@@ -541,6 +558,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 bbcode_enabled = true
 autowrap_mode = 1
 
@@ -578,10 +596,12 @@ offset_right = -6.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 bbcode_enabled = true
 
 [node name="Menu" type="Control" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -612,6 +632,7 @@ offset_right = 82.0
 offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_bs3kl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
@@ -630,6 +651,7 @@ offset_right = 82.0
 offset_bottom = 5.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_bs3kl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
@@ -648,6 +670,7 @@ offset_right = 82.0
 offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_bs3kl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
@@ -689,6 +712,7 @@ offset_right = -6.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 bbcode_enabled = true
 text = "
 [center]¿Estas seguro que deseas salir? 
@@ -708,6 +732,7 @@ offset_right = -29.0
 offset_bottom = 45.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_bs3kl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
@@ -727,6 +752,7 @@ offset_right = 133.0
 offset_bottom = 45.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_bs3kl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")

@@ -693,9 +693,6 @@ required_materials = Array[Dictionary]([{
 "Mat Spawn": ExtResource("5_wn8ty")
 }])
 
-[node name="Label3D" type="Label3D" parent="Test_Generator_Manager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.82015e-08, 3.37166, -0.436974)
-
 [node name="MatExitPoint" type="Node3D" parent="Test_Generator_Manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51479, 0.492797, -8.614e-08)
 
@@ -754,6 +751,7 @@ shape = SubResource("BoxShape3D_o3kg5")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.873024, 0.487677, 0, -0.487677, 0.873024, 0, 2.92778, -0.00898534)
+visible = false
 text = "Test"
 script = ExtResource("7_r6nbq")
 

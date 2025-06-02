@@ -623,6 +623,7 @@ shape = SubResource("BoxShape3D_k65re")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.873024, 0.487677, 0, -0.487677, 0.873024, 0, 2.92778, 0.41799)
+visible = false
 text = "Test"
 script = ExtResource("7_rv50k")
 

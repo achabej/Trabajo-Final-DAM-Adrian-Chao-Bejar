@@ -261,63 +261,83 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4d2ix")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="Tutorial_Controller" type="Node3D" parent="."]
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(95.04, 0, 0, 0, -1.55787e-06, -59.4, 0, 35.64, -2.59646e-06, -49, 33, -400)
 material_override = SubResource("StandardMaterial3D_xk3fc")
 mesh = SubResource("PlaneMesh_4us1h")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(200, 0, 0, 0, -1.31134e-06, -30, 0, 30, -1.31134e-06, -145, 10, -220)
 material_override = SubResource("StandardMaterial3D_xk3fc")
 mesh = SubResource("PlaneMesh_4us1h")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(180, 0, 0, 0, -1.31134e-06, -30, 0, 30, -1.31134e-06, 122, 0, -281)
 material_override = SubResource("StandardMaterial3D_xk3fc")
 mesh = SubResource("PlaneMesh_4us1h")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(176.4, 0, 0, 0, -3.30458e-06, -60, 0, 75.6, -2.62268e-06, 120, 19, -662)
 material_override = SubResource("StandardMaterial3D_xk3fc")
 mesh = SubResource("PlaneMesh_4us1h")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(150, 0, 0, 0, -1.31134e-06, -30, 0, 30, -1.31134e-06, -373, 10, -385)
 material_override = SubResource("StandardMaterial3D_xk3fc")
 mesh = SubResource("PlaneMesh_4us1h")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(200, 0, 0, 0, -1.31134e-06, -30, 0, 30, -1.31134e-06, 310, 11, -432)
 material_override = SubResource("StandardMaterial3D_xk3fc")
 mesh = SubResource("PlaneMesh_4us1h")
+skeleton = NodePath("../..")
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="BugEnemy" parent="Enemies" instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 66.7565, 0.0349208, -44.8036)
+
+[node name="BugEnemy2" parent="Enemies" instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 42.9631, 0.0349216, -43.6032)
+
+[node name="BugEnemy3" parent="Enemies" instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -91.2677, 0.0349205, -60.6547)
+
+[node name="BugEnemy4" parent="Enemies" instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -82.8164, 0.0349205, -82.9703)
+
+[node name="BugEnemy5" parent="Enemies" instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -75.3223, 0.0349163, 64.6463)
+
+[node name="BugEnemy6" parent="Enemies" instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -50.9083, 0.0349289, 69.7684)
+
+[node name="BugEnemy7" parent="Enemies" instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 33.2727, 0.0349247, 38.031)
+
+[node name="BugEnemy8" parent="Enemies" instance=ExtResource("13_c8b5h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -43.3211, 0.0349184, 14.6019)
 
 [node name="Scene_Loader" type="Node3D" parent="."]
 script = ExtResource("13_t2qre")
 
-[node name="Tutorial_Controller" type="Node3D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BugEnemy" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 66.7565, 0.0349208, -44.8036)
-
-[node name="BugEnemy2" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 42.9631, 0.0349216, -43.6032)
-
-[node name="BugEnemy3" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -91.2677, 0.0349205, -60.6547)
-
-[node name="BugEnemy4" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -82.8164, 0.0349205, -82.9703)
-
-[node name="BugEnemy5" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -75.3223, 0.0349163, 64.6463)
-
-[node name="BugEnemy6" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -50.9083, 0.0349289, 69.7684)
-
-[node name="BugEnemy7" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 33.2727, 0.0349247, 38.031)
-
-[node name="BugEnemy8" parent="." instance=ExtResource("13_c8b5h")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -43.3211, 0.0349184, 14.6019)
+[node name="black_overlay" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
