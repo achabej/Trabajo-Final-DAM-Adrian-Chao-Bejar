@@ -6,7 +6,8 @@ enum State {
 	Play,
 	Building,
 	Destroying,
-	Die
+	Die,
+	Ending
 }
 
 var currentState = State.Play
@@ -55,7 +56,7 @@ var phases : Dictionary = {
 	}
 }
 var current_phase 
-
+var all_phases_completed = false
 var storage = {}
 
 func init():
@@ -69,6 +70,7 @@ func init():
 	if ship:
 		print("Nave encontrada")
 		ship.connect("player_ready_for_next_phase", Callable(self, "_on_player_confirm_phase"))
+		ship.connect("play_ending_anim", Callable(self, "_on_play_ending_anim"))
 
 	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
 
@@ -158,6 +160,7 @@ func _update_ui() -> void:
 	# Si ya se completaron todas las fases
 	if current_phase > phases.size():
 		phase_controller.update_phase_text("[color=green][b]FASES COMPLETADAS[/b][/color]")
+		all_phases_completed = true
 		return
 	
 	var phase_key = "Phase%d" % current_phase
@@ -188,3 +191,12 @@ func _on_phase_changed(new_phase: int):
 	if BuildManager.CurrentSpawnable != null:
 		BuildManager.CurrentSpawnable.queue_free()
 		BuildManager.CurrentSpawnable = null
+
+func _on_play_ending_anim():
+	var anim_player = get_tree().get_root().get_node_or_null("Node3D/Terrain/Main_Ship_Constructor/Ship_Controller/AnimationPlayer")
+	if anim_player:
+		anim_player.play("Ending")
+	else:
+		print("⚠️ No se encontró AnimationPlayer para la animación final")
+	
+	currentState = State.Ending

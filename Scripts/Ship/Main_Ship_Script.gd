@@ -1,6 +1,7 @@
 extends Node3D
 
 signal player_ready_for_next_phase
+signal play_ending_anim
 
 var player_inside := false
 
@@ -33,9 +34,21 @@ func _on_area_3d_player_exited(body: Node3D) -> void:
 		player_inside = false
 
 func _process(_delta: float) -> void:
-	if GameManager.input_message != null:
-		GameManager.input_message.visible = (player_inside and GameManager._check_phase_complete())
+	if player_inside and GameManager.all_phases_completed:
+		GameManager.input_message.visible = true
+		GameManager.input_message.get_node("RichTextLabel").bbcode_enabled = true
+		GameManager.input_message.get_node("RichTextLabel").text = "[center]   Presiona        para montarse en la nave[center]"
+	elif player_inside and GameManager._check_phase_complete():
+		GameManager.input_message.visible = true
+		GameManager.input_message.get_node("RichTextLabel").bbcode_enabled = true
+		GameManager.input_message.get_node("RichTextLabel").text = "[center]Presiona        para construir la pieza[center]"
+	else:
+		GameManager.input_message.visible = false
 
 	if player_inside and Input.is_action_just_pressed("Interact"): 
-		print("Interact")
-		emit_signal("player_ready_for_next_phase")
+		if GameManager.all_phases_completed:
+			emit_signal("play_ending_anim")
+		else:
+			print("Interact")
+			emit_signal("player_ready_for_next_phase")
+	

@@ -68,6 +68,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_vertical_angle = clamp(target_vertical_angle, deg_to_rad(min_y_angle_deg), deg_to_rad(max_y_angle_deg))
 
 func _physics_process(delta: float) -> void:
+	if GameManager.currentState == GameManager.State.Ending:
+		return
+	
 	#Detener el movimiento si hay un dialogo
 	check_dialog_state(delta)
 	
