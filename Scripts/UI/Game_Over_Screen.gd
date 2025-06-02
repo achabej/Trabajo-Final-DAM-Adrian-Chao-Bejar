@@ -19,4 +19,5 @@ func show_game_over():
 
 func _on_confirm_btn_pressed() -> void:
 	get_tree().paused = false
+	GameManager.currentState = GameManager.State.Play
 	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")
