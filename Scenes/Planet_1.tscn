@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://buv6x5ttnwmou"]
+[gd_scene load_steps=25 format=3 uid="uid://buv6x5ttnwmou"]
 
 [ext_resource type="MeshLibrary" uid="uid://cu4e8vajjvl1u" path="res://terrain_lib_1.tres" id="1_02uvw"]
 [ext_resource type="Texture2D" uid="uid://bpo8mm5d2dpml" path="res://Materials/Enviroment/Cartoon_green_texture_grass.jpg" id="2_3nb35"]
@@ -41,6 +41,14 @@ albedo_color = Color(0.940868, 0.509015, 0.942208, 1)
 albedo_texture = ExtResource("7_urlqs")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4us1h"]
+
+[sub_resource type="Animation" id="Animation_84v23"]
+resource_name = "Ending_Anim"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jl1ly"]
+_data = {
+"Ending_Anim": SubResource("Animation_84v23")
+}
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bbnah"]
 sky_top_color = Color(0.499606, 0.429979, 0.945948, 1)
@@ -94,6 +102,9 @@ mesh = SubResource("PlaneMesh_e4bld")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.01, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_oqbb4")
+
+[node name="Player" parent="." instance=ExtResource("2_ua367")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0833791, -0.0786052, 0.183024)
 
 [node name="Terrain" type="Node3D" parent="."]
 
@@ -245,9 +256,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -70, 0, -21)
 [node name="Cristal_Deposit7" parent="Terrain" instance=ExtResource("6_xvxgx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -64, 0, 76)
 
-[node name="Player" parent="." instance=ExtResource("2_ua367")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0833791, -0.0786052, 0.183024)
-
 [node name="Grass" type="GridMap" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh_library = ExtResource("1_02uvw")
@@ -331,6 +339,9 @@ script = ExtResource("13_t2qre")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Scene_Manager"]
 root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_jl1ly")
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Scene_Manager"]
 
