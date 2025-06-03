@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://bfa3fl0naekqi"]
+[gd_scene load_steps=60 format=4 uid="uid://bfa3fl0naekqi"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Managers/Ending_Scene_Manager.gd" id="1_lgcyy"]
 [ext_resource type="Texture2D" uid="uid://cxbbkml4ilvx5" path="res://Models/Original/Ship_Model_SteelRefinery_colormap.png" id="1_ujvxy"]
@@ -853,6 +853,13 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_0lmpd"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jpm8"]
+bg_color = Color(0.0768359, 0.0768358, 0.0768358, 0.729412)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hqq27"]
 emission_shape = 2
 emission_sphere_radius = 5.75
@@ -1031,15 +1038,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("5_egjsv")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Dialogue"]
-modulate = Color(1, 1, 1, 0.47451)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Content" type="RichTextLabel" parent="CanvasLayer/Dialogue"]
 layout_mode = 1
 anchors_preset = 15
@@ -1060,6 +1058,16 @@ wait_time = 0.05
 
 [node name="PauseTimer" type="Timer" parent="CanvasLayer/Dialogue"]
 wait_time = 0.04
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Dialogue"]
+modulate = Color(1, 1, 1, 0.47451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5jpm8")
 
 [node name="black_overlay" type="ColorRect" parent="CanvasLayer" groups=["Black_overlay"]]
 visible = false
@@ -1122,5 +1130,9 @@ speed_scale = 2.2
 process_material = SubResource("ParticleProcessMaterial_hqq27")
 draw_pass_1 = SubResource("SphereMesh_f2eh0")
 
+[node name="Next_Scene_Timer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="CanvasLayer/Dialogue/TypeTimer" to="CanvasLayer/Dialogue" method="_on_type_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Dialogue/PauseTimer" to="CanvasLayer/Dialogue" method="_on_pause_timer_timeout"]
+[connection signal="timeout" from="Next_Scene_Timer" to="." method="_on_next_scene_timer_timeout"]

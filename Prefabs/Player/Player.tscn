@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=35 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -24,6 +24,13 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dbldf"]
 height = 1.95554
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhlr0"]
+bg_color = Color(0.0768359, 0.0768358, 0.0768358, 0.729412)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
 
 [sub_resource type="Theme" id="Theme_p323m"]
 
@@ -144,6 +151,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lhlr0")
 
 [node name="Content" type="RichTextLabel" parent="CanvasLayer/Dialogue"]
 layout_mode = 1
