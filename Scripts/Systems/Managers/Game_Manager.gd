@@ -12,6 +12,7 @@ enum State {
 
 var currentState = State.Play
 var input_message
+@onready var black_overlay = get_tree().get_nodes_in_group("Black_overlay")
 
 # Reloj para los conveys
 @export var tick_interval : float = 1.0 
@@ -64,7 +65,9 @@ func init():
 	tick_timer = tick_interval
 	current_phase = 1  
 	storage = {}
-
+	
+	init_black_overlay()
+	
 	input_message = get_tree().get_root().get_node("Node3D/Player/CanvasLayer/HUD/Phase_Input_UI")
 
 	anim_player = get_tree().get_root().get_node_or_null("Node3D/Scene_Manager/AnimationPlayer")
@@ -86,7 +89,11 @@ func init():
 
 	await get_tree().process_frame
 	DialogManager.show_dialogues_for_phase(current_phase)
-	
+
+func init_black_overlay():
+	if black_overlay != null:
+		black_overlay = black_overlay[0]
+
 func add_mat(material_type: String, amount: int = 1) -> void:
 	var phase_key = "Phase%d" % current_phase
 	if not phases.has(phase_key):
@@ -199,7 +206,37 @@ func _on_phase_changed(new_phase: int):
 
 func _on_play_ending_anim():
 	anim_player.active = true
-	anim_player.play("Ending_Anim")
+	anim_player.play("Ending_Anim")	
 	currentState = State.Ending
 	
-	
+	await get_tree().create_timer(3.0).timeout
+	fade_black_overlay(false)
+	# //Cargar escena del final
+
+func fade_black_overlay(fade_in: bool, duration := 1.2, wait_before := 0.5, hide_on_finish := true) -> void:
+	black_overlay.visible = true
+
+	if wait_before > 0:
+		await get_tree().create_timer(wait_before).timeout
+
+	var from: float
+	var to: float
+
+	if fade_in:
+		from = 1.0
+		to = 0.0
+	else:
+		from = 0.0
+		to = 1.0
+
+	black_overlay.modulate.a = from
+
+	var tween := create_tween()
+	tween.tween_property(black_overlay, "modulate:a", to, duration)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+
+	await tween.finished
+
+	if fade_in and hide_on_finish:
+		black_overlay.visible = false

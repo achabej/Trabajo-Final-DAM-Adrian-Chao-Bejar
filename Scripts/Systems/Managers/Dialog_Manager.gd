@@ -1,4 +1,5 @@
 extends Node
+signal dialog_finished
 
 var dialogue_text := {
 	1: [
@@ -27,8 +28,8 @@ var dialogue_text := {
 		"[0.04]Mejor despego y continuaré en otro planeta",
 	],
 	7: [
-		"[0.1]...",
-		"[0.04]Vaya... Creo que me he... Sobrecomplicado un poco... jejeje",
+		"[0.2]...",
+		"[0.1]Vaya... Creo que me he[0.1]... [0.1]Sobrecomplicado un poco[0.2]... [0.1]jejeje",
 	]
 }
 
@@ -62,6 +63,7 @@ func _hide_dialogue():
 		dialogue_node.hide()
 	is_showing = false
 	is_dialogue_active = false
+	emit_signal("dialog_finished")
 
 func _update_text():
 	if dialogue_index < dialogue_list.size():

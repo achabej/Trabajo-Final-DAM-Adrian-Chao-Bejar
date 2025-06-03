@@ -28,10 +28,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	total_time += delta
-
+	
+	# Animación de la estación
 	var y_offset = sin(total_time * 1.2) * 5.0
 	space_station_sprite.position.y = 100 + y_offset
 
+	#Animación del título 
 	var r = (sin(total_time * speed) + 1.0) * 0.5
 	var g = (sin(total_time * speed + TAU / 3) + 1.0) * 0.5
 	var b = (sin(total_time * speed + 2.0 * TAU / 3) + 1.0) * 0.5

@@ -44,7 +44,7 @@ albedo_texture = ExtResource("7_urlqs")
 
 [sub_resource type="Animation" id="Animation_84v23"]
 resource_name = "Ending_Anim"
-length = 3.0
+length = 4.0
 capture_included = true
 tracks/0/type = "position_3d"
 tracks/0/imported = false
@@ -52,7 +52,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.5, 0, 1.26667, 1, 0, 2.38663, 0, 2.96667, 1, 0, 10.3465, 11.0798)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.5, 0, 1.03333, 1, 0, 0.5, 0, 2.16667, 1, 0, 2.38663, 0, 3.9, 1, 0, 12.2922, 13.7855)
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -60,7 +60,7 @@ tracks/1/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.33333, 2.96667),
+"times": PackedFloat32Array(2.23333, 3.86667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 2,
 "values": [Vector3(0, 0, 0), Vector3(-0.623432, 0, 0)]
@@ -72,7 +72,7 @@ tracks/2/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_2/Phase2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.3, 2.5),
+"times": PackedFloat32Array(2.2, 3.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 2,
 "values": [Vector3(0, 3.14159, 0), Vector3(-1.5347, 3.14159, 0)]
@@ -84,7 +84,7 @@ tracks/3/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_3/Phase3
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.3, 2.5),
+"times": PackedFloat32Array(2.2, 3.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 2,
 "values": [Vector3(0, 0, 0), Vector3(1.48583, 0, 0)]
@@ -120,7 +120,7 @@ tracks/6/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship/Phase_1/Node3D
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1.36667),
+"times": PackedFloat32Array(0, 2.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -212,6 +212,13 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(0, 0.5, 0)]
 }
+tracks/7/type = "position_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Terrain/Main_Ship_Constructor/Main_Ship")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0, 12.2922, 13.7855)
 
 [sub_resource type="Animation" id="Animation_3ha70"]
 resource_name = "default_anim"
@@ -316,12 +323,12 @@ ground_horizon_color = Color(0.737857, 0.186087, 0.672489, 1)
 sun_angle_max = 24.31
 energy_multiplier = 1.2
 
-[sub_resource type="Sky" id="Sky_ispar"]
+[sub_resource type="Sky" id="Sky_ljsdm"]
 sky_material = SubResource("ProceduralSkyMaterial_bbnah")
 
 [sub_resource type="Environment" id="Environment_4d2ix"]
 background_mode = 2
-sky = SubResource("Sky_ispar")
+sky = SubResource("Sky_ljsdm")
 ambient_light_color = Color(0.75014, 0.88178, 0.974935, 1)
 ambient_light_sky_contribution = 0.7
 ambient_light_energy = 1.5
@@ -381,13 +388,14 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, -21)
 
 [node name="Main_Ship" parent="Terrain/Main_Ship_Constructor" instance=ExtResource("11_grnq3")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.5, 0)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 12.2922, 13.7855)
 
 [node name="Phase2" parent="Terrain/Main_Ship_Constructor/Main_Ship/Phase_2" index="0"]
-transform = Transform3D(-0.82731, 0, 3.22166e-07, 0, 1.12336, 0, -3.22166e-07, 0, -0.82731, 2.68059, 1.87162, -0.530708)
+transform = Transform3D(-0.82731, 0, 2.09738e-06, 0, 1.12336, 0, -2.09738e-06, 0, -0.82731, 2.68059, 1.87162, -0.530708)
 
-[node name="Phase3" parent="Terrain/Main_Ship_Constructor/Main_Ship/Phase_3" index="0"]
-transform = Transform3D(0.228226, 0, 0, 0, 0.869966, 0, 0, 0, 0.0427347, 3.61199, 1.95194, -0.560194)
+[node name="Cinematic_Camera" type="Camera3D" parent="Terrain/Main_Ship_Constructor"]
+transform = Transform3D(-4.37114e-08, -0.277097, 0.960842, 0, 0.960842, 0.277097, -1, 1.21123e-08, -4.19997e-08, 12.2204, 6.05065, -2.42183e-07)
+fov = 60.0
 
 [node name="Tree1" parent="Terrain" instance=ExtResource("3_sycws")]
 transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -22, 6, 6)
@@ -600,16 +608,16 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -43.3211, 0.0349184, 14
 script = ExtResource("13_t2qre")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Scene_Manager"]
-active = false
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_jl1ly")
 }
 autoplay = "Ending_Anim"
+speed_scale = 0.8
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Scene_Manager"]
 
-[node name="black_overlay" type="ColorRect" parent="Scene_Manager/CanvasLayer"]
+[node name="black_overlay" type="ColorRect" parent="Scene_Manager/CanvasLayer" groups=["Black_overlay"]]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0

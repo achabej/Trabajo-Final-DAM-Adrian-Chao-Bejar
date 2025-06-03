@@ -73,6 +73,7 @@ func _physics_process(delta: float) -> void:
 		$CanvasLayer/HUD.visible = false
 		$CanvasLayer/Game_Over.visible = false
 		$CanvasLayer/Dialogue.visible = false
+		camera.current = false
 		return
 	
 	#Detener el movimiento si hay un dialogo
