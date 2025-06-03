@@ -372,7 +372,7 @@ shape = SubResource("ConvexPolygonShape3D_oqbb4")
 [node name="Terrain" type="Node3D" parent="."]
 
 [node name="Terrain" type="GridMap" parent="Terrain" groups=["GridMap"]]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0286436, -0.0215998, 0.0233288)
 rotation_order = 1
 mesh_library = ExtResource("1_02uvw")
 cell_size = Vector3(1, 1, 1)
@@ -384,7 +384,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Main_Ship_Constructor" parent="Terrain" instance=ExtResource("8_00dtk")]
+[node name="Main_Ship_Constructor" parent="Terrain" groups=["Tree"] instance=ExtResource("8_00dtk")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, -21)
 
 [node name="Main_Ship" parent="Terrain/Main_Ship_Constructor" instance=ExtResource("11_grnq3")]

@@ -10,10 +10,9 @@ var isBuild = false
 
 func _process(delta: float) -> void:
 	if ActiveBuildableObject and not isBuild:
-		collision_mask = (1 << 3)
 		var can_build := true
 		for obj in objects:
-			if isInProhibitedGroup(obj):
+			if isInProhibitedGroup(obj):			
 				can_build = false
 				break
 		BuildManager.AbleToBuild = can_build
