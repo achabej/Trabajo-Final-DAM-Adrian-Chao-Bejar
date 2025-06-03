@@ -152,7 +152,7 @@ func _state_follow(delta):
 func _state_attack(delta):
 	if not is_attacking:
 		NPC_mesh.attack()
-		player.get_node("HealthController").damage(50)
+		player.get_node("HealthController").damage(5)
 		is_attacking = true
 		attack_timer = 0.0
 
