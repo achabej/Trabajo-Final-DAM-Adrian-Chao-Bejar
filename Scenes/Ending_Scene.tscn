@@ -853,7 +853,7 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_0lmpd"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jpm8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kcqm"]
 bg_color = Color(0.0768359, 0.0768358, 0.0768358, 0.729412)
 corner_radius_top_left = 22
 corner_radius_top_right = 22
@@ -1021,7 +1021,6 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Dialogue" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -1050,6 +1049,7 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_0lmpd")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("6_dmyn0")
 bbcode_enabled = true
 
@@ -1067,7 +1067,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5jpm8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4kcqm")
 
 [node name="black_overlay" type="ColorRect" parent="CanvasLayer" groups=["Black_overlay"]]
 visible = false
@@ -1113,7 +1113,7 @@ offset_right = 307.0
 offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(450, 77)
+pivot_offset = Vector2(296, 29)
 theme_override_colors/font_shadow_color = Color(0, 0.597004, 0.954521, 1)
 theme_override_constants/shadow_offset_y = 6
 theme_override_constants/shadow_offset_x = 6
@@ -1133,6 +1133,7 @@ draw_pass_1 = SubResource("SphereMesh_f2eh0")
 [node name="Next_Scene_Timer" type="Timer" parent="."]
 wait_time = 5.0
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="timeout" from="CanvasLayer/Dialogue/TypeTimer" to="CanvasLayer/Dialogue" method="_on_type_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Dialogue/PauseTimer" to="CanvasLayer/Dialogue" method="_on_pause_timer_timeout"]
 [connection signal="timeout" from="Next_Scene_Timer" to="." method="_on_next_scene_timer_timeout"]

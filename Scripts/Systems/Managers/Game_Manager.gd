@@ -12,7 +12,7 @@ enum State {
 
 var currentState = State.Play
 var input_message
-@onready var black_overlay = get_tree().get_nodes_in_group("Black_overlay")
+var black_overlay
 
 # Reloj para los conveys
 @export var tick_interval : float = 1.0 
@@ -91,6 +91,7 @@ func init():
 	DialogManager.show_dialogues_for_phase(current_phase)
 
 func init_black_overlay():
+	black_overlay = get_tree().get_nodes_in_group("Black_overlay")
 	if black_overlay != null:
 		black_overlay = black_overlay[0]
 
@@ -211,7 +212,10 @@ func _on_play_ending_anim():
 	
 	await get_tree().create_timer(3.0).timeout
 	fade_black_overlay(false)
-	# //Cargar escena del final
+
+	await get_tree().create_timer(3.0).timeout
+
+	get_tree().change_scene_to_file("res://Scenes/Ending_Scene.tscn")
 
 func fade_black_overlay(fade_in: bool, duration := 1.2, wait_before := 0.5, hide_on_finish := true) -> void:
 	black_overlay.visible = true

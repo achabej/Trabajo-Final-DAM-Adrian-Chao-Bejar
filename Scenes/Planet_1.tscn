@@ -384,7 +384,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Main_Ship_Constructor" parent="Terrain" groups=["Build"] instance=ExtResource("8_00dtk")]
+[node name="Main_Ship_Constructor" parent="Terrain" instance=ExtResource("8_00dtk")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 6, 0, -21)
 
 [node name="Main_Ship" parent="Terrain/Main_Ship_Constructor" instance=ExtResource("11_grnq3")]
