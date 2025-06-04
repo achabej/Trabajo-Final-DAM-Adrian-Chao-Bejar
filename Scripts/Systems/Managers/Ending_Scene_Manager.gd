@@ -80,7 +80,7 @@ func _show_title() -> void:
 	is_subtitle_animating = false
 
 	# ⏱️ Iniciar temporizador para cambiar escena
-	next_scene_timer.start(20.0)
+	next_scene_timer.start(15.0)
 
 # 🛫 Cambia de escena cuando el temporizador termina
 func _on_next_scene_timer_timeout() -> void:	

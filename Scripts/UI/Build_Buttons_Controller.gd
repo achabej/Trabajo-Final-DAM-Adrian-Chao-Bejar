@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 @onready var unlocks_for_phase := {
 	1: [$BtnBuildExtractor, $BtnBuildConveyLine,$BtnBuildFurnace, $BtnBuildSteelRefinery, $BtnBuildPlatesFactory, $BtnBuildChipsFactory],
@@ -6,6 +6,9 @@ extends Node
 
 func _ready():
 	GameManager.connect("initialized", Callable(self, "_on_game_manager_initialized"))
+
+func _process(_delta):
+	$MouseArea.global_position = get_global_mouse_position()
 
 func _on_game_manager_initialized():
 	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
@@ -45,9 +48,7 @@ func _on_btn_build_plates_factory_button_down() -> void:
 	#BuildManager.SpawnTestCubeGenerator()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("Raton dentro")
 	BuildManager.OnGrid = false
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
-	print("Raton fuera")
 	BuildManager.OnGrid = true

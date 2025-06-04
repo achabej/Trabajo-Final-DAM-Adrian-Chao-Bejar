@@ -602,6 +602,76 @@ tracks/13/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_wvfjl"]
+resource_name = "Ending_Cutscene_Final"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_Ship:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(8.7467e-05, 4.48475e-13, -0.097126), Vector3(7.82792e-05, 5.27014e-13, 3.52699), Vector3(0.000302301, 6.38082e-12, -84.8381)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main_Ship:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.22912e-14, 3.14159, -0.196612), Vector3(1.28738e-13, 3.14159, -0.55615), Vector3(2.81924e-13, 3.14159, 0.290702)]
+}
+
+[sub_resource type="Animation" id="Animation_bm481"]
+resource_name = "Ending_Cutscene_Loop"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main_Ship:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(8.7467e-05, 4.48475e-13, -0.097126)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main_Ship:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.03333, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.22912e-14, 3.14159, -0.196612), Vector3(-1.46374e-13, 3.14159, 0.223733), Vector3(1.22912e-14, 3.14159, -0.196612)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_loop"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_72ga6"]
 length = 0.001
 tracks/0/type = "value"
@@ -773,76 +843,6 @@ tracks/13/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_bm481"]
-resource_name = "Ending_Cutscene_Loop"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Main_Ship:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(8.7467e-05, 4.48475e-13, -0.097126)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Main_Ship:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.03333, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1.22912e-14, 3.14159, -0.196612), Vector3(-1.46374e-13, 3.14159, 0.223733), Vector3(1.22912e-14, 3.14159, -0.196612)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"on_loop"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_wvfjl"]
-resource_name = "Ending_Cutscene_Final"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Main_Ship:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.666667, 1.96667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(8.7467e-05, 4.48475e-13, -0.097126), Vector3(7.82792e-05, 5.27014e-13, 3.52699), Vector3(0.000302301, 6.38082e-12, -84.8381)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Main_Ship:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.566667, 1.53333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1.22912e-14, 3.14159, -0.196612), Vector3(1.28738e-13, 3.14159, -0.55615), Vector3(2.81924e-13, 3.14159, 0.290702)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j7nm5"]
 _data = {
 "Ending_Cutscene_Anim": SubResource("Animation_r12hb"),
@@ -913,7 +913,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.002
 [node name="Phase_2" type="StaticBody3D" parent="Main_Ship"]
 
 [node name="Phase2" type="MeshInstance3D" parent="Main_Ship/Phase_2"]
-transform = Transform3D(-0.82731, -4.37452e-07, -1.40823e-14, 0, -4.91036e-08, 0.82731, -3.22166e-07, 1.12336, 3.61629e-08, 2.68059, 1.87162, -0.530708)
+transform = Transform3D(-0.82731, -2.84792e-06, -7.5925e-12, 0, -4.06655e-06, 0.82731, -2.09738e-06, 1.12336, 2.99485e-06, 2.68059, 1.87162, -0.530708)
 material_override = SubResource("StandardMaterial3D_1jl7l")
 mesh = SubResource("ArrayMesh_f1ugb")
 skeleton = NodePath("")
@@ -943,7 +943,7 @@ transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, -2.66667, 1.33333, -
 [node name="Phase_3" type="StaticBody3D" parent="Main_Ship"]
 
 [node name="Phase3" type="MeshInstance3D" parent="Main_Ship/Phase_3"]
-transform = Transform3D(0.228226, 0, 0, 0, -3.80274e-08, -0.0427347, 0, 0.869966, -1.86799e-09, 3.61199, 1.95194, -0.560194)
+transform = Transform3D(0.228226, 0, 0, 0, -3.14927e-06, -0.0427347, 0, 0.869966, -1.54699e-07, 3.61199, 1.95194, -0.560194)
 material_override = SubResource("StandardMaterial3D_5ymod")
 mesh = SubResource("ArrayMesh_dql52")
 skeleton = NodePath("")
@@ -953,7 +953,7 @@ transform = Transform3D(0.228226, 0, 0, 0, 0.869966, 0, 0, 0, 0.0427347, 3.61199
 shape = SubResource("ConvexPolygonShape3D_pmurn")
 
 [node name="Phase3_001" type="MeshInstance3D" parent="Main_Ship/Phase_3"]
-transform = Transform3D(0.155173, 0.198911, 0.029775, 0.163189, 0.00350648, -0.029875, -0.0371205, 0.846913, -0.00686944, 1.12057, 2.82519, -2.88738)
+transform = Transform3D(0.155173, 0.19891, 0.029775, 0.163189, 0.00350611, -0.029875, -0.0371203, 0.846913, -0.00686942, 1.12057, 2.82519, -2.88738)
 material_override = SubResource("StandardMaterial3D_rqraj")
 mesh = SubResource("ArrayMesh_cg02n")
 skeleton = NodePath("")
@@ -976,7 +976,7 @@ mesh = SubResource("ArrayMesh_o4f8g")
 skeleton = NodePath("")
 
 [node name="Phase4_001" type="MeshInstance3D" parent="Main_Ship/Phase_4"]
-transform = Transform3D(0.0508085, 0, 0, 0, -2.22091e-09, 0.0508085, 0, -0.0508085, -2.22091e-09, -0.25067, 0.984758, 3.55221)
+transform = Transform3D(0.0508085, 0, 0, 0, -1.83926e-07, 0.0508085, 0, -0.0508085, -1.83926e-07, -0.25067, 0.984758, 3.55221)
 material_override = SubResource("StandardMaterial3D_82l05")
 mesh = SubResource("ArrayMesh_61drb")
 skeleton = NodePath("")

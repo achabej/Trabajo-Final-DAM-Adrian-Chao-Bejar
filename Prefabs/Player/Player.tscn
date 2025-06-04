@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=36 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -56,7 +56,10 @@ bg_color = Color(0.167876, 0.328924, 0.411124, 1)
 bg_color = Color(0.0196078, 0.160784, 0.207843, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1aym3"]
-size = Vector2(4792, 138)
+size = Vector2(4792, 117)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj0gk"]
+size = Vector2(10, 10)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcxlj"]
 bg_color = Color(0.243893, 0.602565, 0.754479, 1)
@@ -541,8 +544,13 @@ placas"
 [node name="Area2D2" type="Area2D" parent="CanvasLayer/HUD/Building_Buttons"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HUD/Building_Buttons/Area2D2"]
-position = Vector2(574, 61)
+position = Vector2(574, 50.5)
 shape = SubResource("RectangleShape2D_1aym3")
+
+[node name="MouseArea" type="Area2D" parent="CanvasLayer/HUD/Building_Buttons"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HUD/Building_Buttons/MouseArea"]
+shape = SubResource("RectangleShape2D_oj0gk")
 
 [node name="Materials_Needed" type="RichTextLabel" parent="CanvasLayer/HUD"]
 layout_mode = 1

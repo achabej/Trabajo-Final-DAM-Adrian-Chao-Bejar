@@ -18,6 +18,7 @@ var black_overlay
 @export var tick_interval : float = 1.0 
 var tick_timer : float = 0.0 
 
+#Lista de materiales necesarios para cada fase
 var phases : Dictionary = {
 	"Phase1": {
 		"Resources": {
@@ -56,9 +57,10 @@ var phases : Dictionary = {
 		}
 	}
 }
+
 var current_phase 
 var all_phases_completed = false
-var storage = {}
+var storage = {} #inventario de las fases, aqui se guardan los maeteriales de las fases
 var anim_player 
 
 func init():
@@ -66,7 +68,16 @@ func init():
 	current_phase = 1  
 	storage = {}
 	
+	#Inicia el fundido en negro
 	init_black_overlay()
+	
+	#Resetea el inventario del jugador
+	BuildManager.materiales = {
+		"Wood" : 0,
+		"Iron" : 25,
+		"Copper" : 0,
+		"Cristal" : 0
+	}
 	
 	input_message = get_tree().get_root().get_node("Node3D/Player/CanvasLayer/HUD/Phase_Input_UI")
 
