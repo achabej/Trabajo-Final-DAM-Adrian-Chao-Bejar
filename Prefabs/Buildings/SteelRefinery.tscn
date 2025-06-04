@@ -810,8 +810,10 @@ size = Vector3(0.647461, 0.5, 0.610352)
 size = Vector3(0.560303, 0.324555, 0.59668)
 
 [node name="SteelRefinery" type="StaticBody3D" groups=["Extractor", "Machine"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_ad2xr")
-notBuildList = Array[String](["Build", "Deposit", "Tree", "Player"])
+notBuildList = Array[String](["Build", "Deposit", "Tree", "Player", "GridMap"])
 
 [node name="Arrows" type="Node3D" parent="."]
 script = ExtResource("2_ul86r")
@@ -1047,6 +1049,8 @@ visible = false
 text = "Test"
 script = ExtResource("6_cm1lp")
 
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
 [connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D" to="Test_Generator_Manager" method="_on_material_entered"]
 [connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter1/Area3D" to="Test_Generator_Manager/MatEnterPoints/Enter1" method="_on_body_entered"]
 [connection signal="body_entered" from="Test_Generator_Manager/MatEnterPoints/Enter2/Area3D" to="Test_Generator_Manager" method="_on_material_entered"]

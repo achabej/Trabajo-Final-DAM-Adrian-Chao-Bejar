@@ -199,8 +199,8 @@ func material_controller():
 
 	var name = CurrentSpawnable.scene_file_path.get_file().get_basename()
 
-	print(OnGrid)
-	print(AbleToBuild)
+	#print(OnGrid)
+	#print(AbleToBuild)
 
 	if OnGrid and AbleToBuild and has_required_materials(name): 
 		change_material(CurrentSpawnable, building_green)

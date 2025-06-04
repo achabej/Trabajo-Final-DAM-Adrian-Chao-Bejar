@@ -365,8 +365,10 @@ size = Vector3(0.560303, 0.324555, 0.59668)
 size = Vector3(0.113037, 1, 0.110352)
 
 [node name="Extractor" type="StaticBody3D" groups=["Extractor", "Machine"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_g6mu8")
-notBuildList = Array[String](["Player", "Tree", "Build"])
+notBuildList = Array[String](["Player", "Tree", "Build", "GridMap"])
 
 [node name="Arrows" type="Node3D" parent="."]
 script = ExtResource("2_aij87")
@@ -486,6 +488,8 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0130549, -4.52088e-08)
 shape = SubResource("BoxShape3D_k65re")
 
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
 [connection signal="body_entered" from="Test_Generator_Manager/DepositDetector/Area3D" to="Test_Generator_Manager/DepositDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="Test_Generator_Manager/DepositDetector/Area3D" to="Test_Generator_Manager/DepositDetector" method="_on_body_exited"]
 [connection signal="body_entered" from="Test_Generator_Manager/ConveyDetector" to="Test_Generator_Manager" method="_on_convey_detector_body_entered"]
