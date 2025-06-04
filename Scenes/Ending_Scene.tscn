@@ -1069,15 +1069,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4kcqm")
 
-[node name="black_overlay" type="ColorRect" parent="CanvasLayer" groups=["Black_overlay"]]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="Title" type="RichTextLabel" parent="CanvasLayer"]
 visible = false
 anchors_preset = 8
@@ -1121,6 +1112,15 @@ theme_override_fonts/normal_font = ExtResource("6_dmyn0")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Hecho por Adrian Chao Béjar"
+
+[node name="black_overlay" type="ColorRect" parent="CanvasLayer" groups=["Black_overlay"]]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Stars" type="GPUParticles3D" parent="."]
 transform = Transform3D(3.96584, 0, 0, 0, 3.77886, 0, 0, 0, 4.21565, 0, 0, -33.0351)

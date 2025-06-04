@@ -68,7 +68,7 @@ func init():
 	current_phase = 1  
 	storage = {}
 	
-	#Inicia el fundido en negro
+	#Inicializa el elemento del fundido en negro
 	init_black_overlay()
 	
 	#Resetea el inventario del jugador
@@ -228,6 +228,7 @@ func _on_play_ending_anim():
 
 	get_tree().change_scene_to_file("res://Scenes/Ending_Scene.tscn")
 
+# Animación del fundido en negro
 func fade_black_overlay(fade_in: bool, duration := 1.2, wait_before := 0.5, hide_on_finish := true) -> void:
 	black_overlay.visible = true
 

@@ -17,6 +17,9 @@ var is_title_animating := false
 var is_subtitle_animating := false
 
 func _ready() -> void:
+	GameManager.init_black_overlay()
+	GameManager.fade_black_overlay(true)
+	
 	# Inicia la animación principal
 	animation_player.play("Ending_Cutscene_Anim")
 	# Conecta señal de fin de diálogo (si está disponible)
@@ -35,6 +38,7 @@ func _process(delta: float) -> void:
 
 	title_anim_time += delta
 	title_text.add_theme_color_override("font_shadow_color", color)
+	subtitle_text.add_theme_color_override("font_shadow_color", color)
 
 	if title_anim_time <= title_grow_duration:
 		var t = title_anim_time / title_grow_duration
@@ -48,7 +52,6 @@ func _process(delta: float) -> void:
 		if anim_t <= 1.0:
 			var scale = lerp(0.1, 1.0, ease_out_cubic(anim_t))
 			subtitle_text.scale = Vector2(scale, scale)
-			subtitle_text.add_theme_color_override("font_shadow_color", color)
 
 # 🎬 Cuando termina el diálogo
 func _on_dialog_finished() -> void:
@@ -81,7 +84,7 @@ func _show_title() -> void:
 
 	# ⏱️ Iniciar temporizador para cambiar escena
 	next_scene_timer.start(15.0)
-
+		
 # 🛫 Cambia de escena cuando el temporizador termina
 func _on_next_scene_timer_timeout() -> void:	
 	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")

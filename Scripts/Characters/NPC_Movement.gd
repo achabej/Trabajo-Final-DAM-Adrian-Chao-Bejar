@@ -200,6 +200,18 @@ func _rotate_mesh_towards(direction: Vector3, delta: float) -> void:
 	# Aplicar la nueva rotación (solo en Y)
 	mesh.rotation.y = new_yaw
 
+#Metodo para visualizar el daño en el Enemigo
+func is_damage_visual():
+	var tween = create_tween()
+	var mesh = NPC_mesh.get_node_or_null("Mesh/BeetlebotSkin/beetle_bot/Armature/Skeleton3D/Beetle")
+
+	var original_scale = NPC_mesh.scale
+	var enlarged_scale = original_scale * 1.2
+
+	# Escalado por daño
+	tween.tween_property(NPC_mesh, "scale", enlarged_scale, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(NPC_mesh, "scale", original_scale, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
 func die():
 	current_state = State.Dead
 

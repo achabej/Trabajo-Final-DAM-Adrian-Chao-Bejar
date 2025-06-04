@@ -281,5 +281,17 @@ func check_dialog_state(delta: float) -> void:
 		camera.fov = lerp(camera.fov, 60.0, 3.0 * delta)  # Zoom out
 		hand_controller.show_weapon()
 
+#Metodo para visualizar el daño en el jugador
+func is_damage_visual():
+	var tween = create_tween()
+	var mesh = player_mesh.get_node_or_null("Mesh/GDbotSkin/gdbot/Armature/Skeleton3D/gdbot_mesh")
+
+	var original_scale = player_mesh.scale
+	var enlarged_scale = original_scale * 1.2
+
+	# Escalado por daño
+	tween.tween_property(player_mesh, "scale", enlarged_scale, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(player_mesh, "scale", original_scale, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
 func die():
 	$CanvasLayer/Game_Over.show_game_over()
