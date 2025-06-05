@@ -87,6 +87,7 @@ func _show_title() -> void:
 		
 # 🛫 Cambia de escena cuando el temporizador termina
 func _on_next_scene_timer_timeout() -> void:	
+	await GameManager.fade_black_overlay(false)
 	get_tree().change_scene_to_file("res://Scenes/Main_Menu.tscn")
 
 # 🎚 Función de interpolación para animaciones suaves
