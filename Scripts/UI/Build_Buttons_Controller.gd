@@ -52,3 +52,24 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	BuildManager.OnGrid = true
+
+func _on_btn_build_convey_line_mouse_entered() -> void:
+	$Building_Info.text = "[center]Mueve materiales entre fabricas[center]"
+
+func _on_btn_build_extractor_mouse_entered() -> void:
+	$Building_Info.text = "[center]Extrae materiales de depositos[center]"
+
+func _on_btn_build_furnace_mouse_entered() -> void:
+	$Building_Info.text = "[center]Funde los metales en lingotes[center]"
+
+func _on_btn_build_steel_refinery_mouse_entered() -> void:
+	$Building_Info.text = "[center]Funde lingotes de hierro y cobre para hacer acero[center]"
+
+func _on_btn_build_plates_factory_mouse_entered() -> void:
+	$Building_Info.text = "[center]Convierte los lingotes en placas[center]"
+
+func _on_btn_build_chips_factory_mouse_entered() -> void:
+	$Building_Info.text = "[center]Crea chips a partir de placas de acero, placas de cobre y cristal[center]"
+
+func _on_btn_line_mouse_exited() -> void:
+	$Building_Info.text = ""

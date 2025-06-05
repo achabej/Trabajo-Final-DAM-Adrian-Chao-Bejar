@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=43 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -24,6 +24,8 @@
 [ext_resource type="Script" path="res://Scripts/UI/Game_Menu_Controller.gd" id="17_o71tr"]
 [ext_resource type="FontFile" uid="uid://83h32egk0jtl" path="res://Textures/Fonts/kleptocracy titling bd.otf" id="18_bs3kl"]
 [ext_resource type="Script" path="res://Scripts/UI/Game_Over_Screen.gd" id="19_vdfpx"]
+[ext_resource type="AudioStream" uid="uid://dl4bbcliotsol" path="res://Audio/Player/loopingthrust-95548.mp3" id="25_ssidd"]
+[ext_resource type="AudioStream" uid="uid://cjr2p61ktubic" path="res://Audio/metal-beaten-sfx-230501.mp3" id="26_mujt0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
 
@@ -563,6 +565,21 @@ shape = SubResource("RectangleShape2D_1aym3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/HUD/Building_Buttons/MouseArea"]
 shape = SubResource("RectangleShape2D_oj0gk")
 
+[node name="Building_Info" type="RichTextLabel" parent="CanvasLayer/HUD/Building_Buttons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 391.0
+offset_top = 116.0
+offset_right = -407.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+
 [node name="Materials_Needed" type="RichTextLabel" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 8
@@ -854,14 +871,34 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Volver al menu"
 
+[node name="JetpackLoop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("25_ssidd")
+volume_db = -10.0
+
+[node name="Hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("26_mujt0")
+volume_db = -10.0
+
 [connection signal="timeout" from="CanvasLayer/Dialogue/TypeTimer" to="CanvasLayer/Dialogue" method="_on_type_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Dialogue/PauseTimer" to="CanvasLayer/Dialogue" method="_on_pause_timer_timeout"]
 [connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildConveyLine" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_convey_merger_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/HUD/Building_Buttons/BtnBuildConveyLine" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_convey_line_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/HUD/Building_Buttons/BtnBuildConveyLine" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_line_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildExtractor" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_extractor_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/HUD/Building_Buttons/BtnBuildExtractor" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_extractor_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/HUD/Building_Buttons/BtnBuildExtractor" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_line_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildFurnace" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_furnace_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/HUD/Building_Buttons/BtnBuildFurnace" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_furnace_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/HUD/Building_Buttons/BtnBuildFurnace" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_line_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildSteelRefinery" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_steel_refinery_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/HUD/Building_Buttons/BtnBuildSteelRefinery" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_steel_refinery_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/HUD/Building_Buttons/BtnBuildSteelRefinery" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_line_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildChipsFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_chips_factory_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/HUD/Building_Buttons/BtnBuildChipsFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_chips_factory_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/HUD/Building_Buttons/BtnBuildChipsFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_line_mouse_exited"]
 [connection signal="button_down" from="CanvasLayer/HUD/Building_Buttons/BtnBuildPlatesFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_plates_factory_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/HUD/Building_Buttons/BtnBuildPlatesFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_build_plates_factory_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/HUD/Building_Buttons/BtnBuildPlatesFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_line_mouse_exited"]
 [connection signal="area_entered" from="CanvasLayer/HUD/Building_Buttons/Area2D2" to="CanvasLayer/HUD/Building_Buttons" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="CanvasLayer/HUD/Building_Buttons/Area2D2" to="CanvasLayer/HUD/Building_Buttons" method="_on_area_2d_area_exited"]
 [connection signal="pressed" from="CanvasLayer/Menu/Resume_Btn" to="CanvasLayer/Menu" method="_on_resume_btn_pressed"]

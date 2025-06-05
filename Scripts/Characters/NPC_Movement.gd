@@ -166,7 +166,7 @@ func _state_attack(delta):
 		_rotate_mesh_towards(dir, delta)
 
 	# Duración del ataque
-	if attack_timer >= 1.2:
+	if attack_timer >= 0.8:
 		is_attacking = false
 
 		# Si jugador salió del área, regresa a wander
@@ -217,11 +217,13 @@ func die():
 
 func _state_dead():
 	mesh.power_off()
-
+	
+	$NPCDeathSound.play()
+	
 	var tween = create_tween()
 
 	# Crear el primer tween y configurar easing
-	var step1 = tween.tween_property(self, "scale", Vector3.ONE * 0.2, 0.5)
+	var step1 = tween.tween_property(self, "scale", Vector3.ONE * 0.2, 1)
 	step1.set_trans(Tween.TRANS_SINE)
 	step1.set_ease(Tween.EASE_OUT)
 

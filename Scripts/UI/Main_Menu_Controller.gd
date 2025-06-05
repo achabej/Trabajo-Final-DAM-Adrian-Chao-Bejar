@@ -66,7 +66,8 @@ func _on_play_btn_pressed() -> void:
 	start_play_transition()
 
 func start_play_transition():
-	$AudioStreamPlayer2D.stop()
+	$Main_Menu_Loop.stop()
+	$Explosion.play()
 	flash_overlay.visible = true
 
 	var tween := create_tween()

@@ -10,6 +10,8 @@ var cristalRefinery : PackedScene
 var chipsFactory : PackedScene = preload("res://Prefabs/Buildings/ChipsFactory.tscn")
 var platesFactory : PackedScene = preload("res://Prefabs/Buildings/PlatesFactory.tscn")
 
+var build_sound
+
 #var test_cube_generator : PackedScene = preload("res://Prefabs/Buildings/Test_Cube_Generator.tscn")
 #var convey_curve : PackedScene = preload("res://Prefabs/Buildings/Convey_Curve.tscn")
 
@@ -71,6 +73,8 @@ func init():
 		grid_map = nodes[0]
 	else:
 		print("❌ No se encontró GridMap")
+	
+	build_sound = get_tree().get_root().get_node("Node3D/Audio/Build_Sound")
 
 func _process(delta):
 	# Gestiona el reloj de las construcciones
@@ -142,6 +146,9 @@ func place_building(delta):
 			print("No hay suficientes materiales para construir ", name)
 			return
 		
+		if build_sound != null:
+			build_sound.play()
+		
 		consume_materials(name)
 		update_materials_needed_UI(name)
 
@@ -177,6 +184,9 @@ func handle_deletion(delta):
 
 				refund_materials(name) 
 				update_materials_needed_UI(name)
+				
+				if build_sound != null:
+					build_sound.play()
 				
 				body.queue_free()
 				print("Edificio eliminado: ", body.name)

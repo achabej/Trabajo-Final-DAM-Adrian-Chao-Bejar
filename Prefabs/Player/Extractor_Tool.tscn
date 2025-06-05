@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://cllpuobcbn1m7" path="res://Materials/Tools/MT_laser.tres" id="4_7lnwr"]
 [ext_resource type="Material" uid="uid://dph5t22057fld" path="res://Materials/Test/MT_test_orange.tres" id="4_kadxa"]
 [ext_resource type="PackedScene" uid="uid://cboevmluhe4ao" path="res://Materials/Particle_End_Laser.tscn" id="5_77so6"]
-[ext_resource type="AudioStream" uid="uid://dpw3wspfw3o5m" path="res://Audio/Player/continuous_beam_1.wav" id="6_bqyk3"]
+[ext_resource type="AudioStream" uid="uid://bvju1tdtbfvci" path="res://Audio/Player/continuous_beam_1_Loop.mp3" id="7_vxa5x"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6jirl"]
 
@@ -50,8 +50,9 @@ target_position = Vector3(0, -8, 0)
 
 [node name="ParticleEndLaser" parent="Laser" instance=ExtResource("5_77so6")]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_bqyk3")
+[node name="LaserLoop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_vxa5x")
+volume_db = -10.0
 
 [node name="ExtractorTimer" type="Timer" parent="."]
 wait_time = 0.2

@@ -6,6 +6,8 @@ extends Node
 @onready var extraction_timer: Timer = $ExtractorTimer
 @onready var attack_timer: Timer = $AttackTimer  
 
+@onready var sound_loop: AudioStreamPlayer3D = $LaserLoop
+
 @export var damage: float = 1
 @export var default_length: float = 1
 
@@ -19,7 +21,9 @@ func shoot():
 	is_shooting = true
 	laser_raycast.enabled = true
 	laser_mesh.visible = true
-	$AudioStreamPlayer3D.play()
+
+	if !sound_loop.playing:  
+		sound_loop.play()
 
 	laser_raycast.force_raycast_update()
 
@@ -60,7 +64,8 @@ func shoot():
 
 
 func stop_shooting():
-	$AudioStreamPlayer3D.stop()
+	sound_loop.stop()
+
 	is_shooting = false
 	laser_raycast.enabled = false
 	laser_mesh.visible = false

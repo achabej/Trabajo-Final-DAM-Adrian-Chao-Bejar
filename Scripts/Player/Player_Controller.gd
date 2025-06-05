@@ -47,6 +47,9 @@ const BLEND_SPEED = 5.0
 @onready var hand_controller = $PlayerMesh/weapon_holder
 var current_y_rotation := 0.0
 
+@onready var jetpack_sound: AudioStreamPlayer3D = $JetpackLoop
+
+
 # Rotación horizontal del jugador
 const ROTATION_SPEED = 6.0
 const ROTATION_SHOOT_SPEED = 15.0
@@ -110,6 +113,12 @@ func handle_jetpack(delta: float) -> void:
 	
 	$PlayerMesh/Trail_Node.visible = is_jetpacking
 	
+	if is_jetpacking:
+		if !jetpack_sound.playing:
+			jetpack_sound.play()
+	else:
+		jetpack_sound.stop()
+
 	# Aplica gravedad personalizada si no está en el suelo
 	if not is_on_floor():
 		velocity.y += -10.0 * delta
@@ -289,6 +298,8 @@ func is_damage_visual():
 	var original_scale = player_mesh.scale
 	var enlarged_scale = original_scale * 1.2
 
+	$Hit.play()
+	
 	# Escalado por daño
 	tween.tween_property(player_mesh, "scale", enlarged_scale, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(player_mesh, "scale", original_scale, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)

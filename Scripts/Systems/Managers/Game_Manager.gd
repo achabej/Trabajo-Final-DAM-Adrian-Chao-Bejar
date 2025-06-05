@@ -116,6 +116,20 @@ func add_mat(material_type: String, amount: int = 1) -> void:
 		return
 	
 	if storage.get(material_type, 0) >= max_amount:
+		match material_type:
+			"Iron_Ingot":
+				BuildManager.increase_mat("Iron", 2)
+			"Copper_Ingot":
+				BuildManager.increase_mat("Copper", 2)
+			"Iron_Plate":
+				BuildManager.increase_mat("Iron", 3)
+			"Copper_Plate":
+				BuildManager.increase_mat("Copper", 3)
+			"Steel_Plate":
+				BuildManager.increase_mat("Iron", 2)
+				BuildManager.increase_mat("Copper", 2)
+			"Cristal":
+				BuildManager.increase_mat("Cristal", 1)
 		return
 	
 	if not storage.has(material_type):
@@ -124,7 +138,7 @@ func add_mat(material_type: String, amount: int = 1) -> void:
 	
 	if storage[material_type] > max_amount:
 		storage[material_type] = max_amount
-
+		
 	_update_ui()
 	
 	# Esperamos que el jugador confirme la fase acercándose a la nave
@@ -170,6 +184,7 @@ func _check_phase_complete() -> bool:
 		var required = phases[phase_key]["Resources"][mat]
 		if storage.get(mat, 0) < required:
 			return false
+	
 	return true
 
 func _update_ui() -> void:

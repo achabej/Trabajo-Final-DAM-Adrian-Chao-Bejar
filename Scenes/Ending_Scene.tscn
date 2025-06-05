@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://hbdca647teug" path="res://Audio/Dialog_Beeps/bleep016.mp3" id="9_shrkp"]
 [ext_resource type="AudioStream" uid="uid://bhanajf38p76y" path="res://Audio/Dialog_Beeps/bleep014.mp3" id="10_nhc35"]
 [ext_resource type="AudioStream" uid="uid://krn2pp5qmhuv" path="res://Audio/Dialog_Beeps/bleep027.mp3" id="11_yib4d"]
-[ext_resource type="AudioStream" uid="uid://co3qjy05uhj47" path="res://Audio/Music/629176__holizna__lofi-vinyl-e-piano-loop-95-bpm.wav" id="12_usu81"]
+[ext_resource type="AudioStream" uid="uid://cfyrvg8kdb3j5" path="res://Audio/Music/629176__holizna__lofi-vinyl-e-piano-loop-95-bpm.wav" id="12_usu81"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vgu14"]
 points = PackedVector3Array(-0.449099, -0.512101, 2.74988, -0.866404, 0.969126, 1.29174, 0.615296, 0.99598, -2.92767, 0.421823, -0.830827, -1.45104, -0.71114, 0.901728, -2.90948, 0.85709, 0.969138, 1.29176, 0.512136, -0.58177, 2.49646, -0.86358, -0.666369, -1.54793, 0.693778, -0.0667336, -2.88368, 1.67826, -0.169997, -0.180786, -1.50761, 0.391864, 0.287069, -0.766447, -0.740869, 1.35304, 0.433999, 0.107954, 2.72636, 1.67826, 0.673084, -0.08745, -0.611934, -0.152566, -2.86262, 0.419112, -0.824499, 1.85866, -1.50761, -0.357605, 0.00588626, -1.3536, 0.865447, -0.677835, -0.443877, 0.107847, 2.71949, 0.93687, -0.663439, -1.37104, -0.349165, -0.840746, -1.46616, -0.623466, 0.99078, -2.91183, -0.351887, -0.8471, 1.90816, -1.4508, 0.531976, -0.768254, 0.929363, -0.657361, 1.27048, 1.52773, 0.531981, -0.768261, -0.701472, -0.0662381, -2.87308, 0.438453, -0.513759, 2.75804, 1.34611, 0.865447, -0.677835, 0.769704, -0.494972, -2.15218, 0.432827, 0.283174, 2.54226, 0.703511, 0.906397, -2.92521)

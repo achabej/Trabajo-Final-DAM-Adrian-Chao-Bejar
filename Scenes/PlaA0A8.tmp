@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://buv6x5ttnwmou"]
+[gd_scene load_steps=28 format=3 uid="uid://buv6x5ttnwmou"]
 
 [ext_resource type="MeshLibrary" uid="uid://cu4e8vajjvl1u" path="res://terrain_lib_1.tres" id="1_02uvw"]
 [ext_resource type="Texture2D" uid="uid://bpo8mm5d2dpml" path="res://Materials/Enviroment/Cartoon_green_texture_grass.jpg" id="2_3nb35"]
@@ -14,8 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cdxnnnra3fwod" path="res://Prefabs/NPC/Bug_Enemy.tscn" id="13_c8b5h"]
 [ext_resource type="Script" path="res://Scripts/Systems/Managers/Scene_Loader_Script.gd" id="13_t2qre"]
 [ext_resource type="AudioStream" uid="uid://dn850pl5nr25r" path="res://Audio/Music/653695__betabeats__lofi-piano-beat.wav" id="14_iyyoy"]
-[ext_resource type="AudioStream" uid="uid://d2tpl3oeyml55" path="res://Audio/mixkit-mechanical-crate-pick-up-3154.wav" id="15_7gvxh"]
-[ext_resource type="AudioStream" uid="uid://cag2x0rgu3jry" path="res://Audio/mixkit-unlock-game-notification-253.wav" id="16_gmc63"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ybxnm"]
 vertices = PackedVector3Array(-111.246, 0.465079, -111.246, -111.246, 0.465079, 111.254, 111.254, 0.465079, 111.254, 111.254, 0.465079, -111.246)
@@ -371,6 +369,11 @@ transform = Transform3D(0.5, 0, 0, 0, 0.01, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_oqbb4")
 
 [node name="Player" parent="." instance=ExtResource("2_ua367")]
+WALK_SPEED = null
+RUN_SPEED = null
+JETPACK_LIFT = null
+jetpack_enabled = null
+min_y_angle_deg = null
 
 [node name="Terrain" type="Node3D" parent="."]
 
@@ -639,11 +642,5 @@ environment = SubResource("Environment_4d2ix")
 [node name="Planet_Loop" type="AudioStreamPlayer3D" parent="Audio"]
 stream = ExtResource("14_iyyoy")
 autoplay = true
-
-[node name="Build_Sound" type="AudioStreamPlayer3D" parent="Audio"]
-stream = ExtResource("15_7gvxh")
-
-[node name="MatCompleteSound" type="AudioStreamPlayer3D" parent="Audio"]
-stream = ExtResource("16_gmc63")
 
 [editable path="Terrain/Main_Ship_Constructor/Main_Ship"]
