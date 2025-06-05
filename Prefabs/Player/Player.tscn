@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=41 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -10,10 +10,15 @@
 [ext_resource type="Script" path="res://Scripts/UI/Materials_Manager.gd" id="6_oplyg"]
 [ext_resource type="Texture2D" uid="uid://djt0p30s5mwyh" path="res://addons/kenney_input_texture/tile_0087.png" id="7_a5rxf"]
 [ext_resource type="Texture2D" uid="uid://cwno4oyo5aq0g" path="res://Textures/UI/Iron.png" id="7_fc8pl"]
+[ext_resource type="AudioStream" uid="uid://ctutepqaxdci" path="res://Audio/Dialog_Beeps/bleep002.mp3" id="7_m4x0a"]
 [ext_resource type="Texture2D" uid="uid://ba04tjiq47c23" path="res://Textures/UI/Copper.png" id="8_bs4n8"]
+[ext_resource type="AudioStream" uid="uid://bw52lm3x7g6lk" path="res://Audio/Dialog_Beeps/bleep008.mp3" id="8_bth78"]
 [ext_resource type="Script" path="res://Scripts/UI/PopupManager.gd" id="8_r3hhy"]
 [ext_resource type="Texture2D" uid="uid://j2n5cq8etnjh" path="res://Textures/UI/Cristal.png" id="9_5p1bq"]
+[ext_resource type="AudioStream" uid="uid://hbdca647teug" path="res://Audio/Dialog_Beeps/bleep016.mp3" id="9_cg1tf"]
 [ext_resource type="PackedScene" uid="uid://buyu3haltyjpm" path="res://Prefabs/Player/Material_Popup.tscn" id="9_w3rbo"]
+[ext_resource type="AudioStream" uid="uid://bhanajf38p76y" path="res://Audio/Dialog_Beeps/bleep014.mp3" id="10_k5355"]
+[ext_resource type="AudioStream" uid="uid://krn2pp5qmhuv" path="res://Audio/Dialog_Beeps/bleep027.mp3" id="11_y0k01"]
 [ext_resource type="Script" path="res://Scripts/UI/Phase_Controller.gd" id="13_vqwf6"]
 [ext_resource type="Script" path="res://Scripts/UI/Dialogue_Script.gd" id="14_rt7f2"]
 [ext_resource type="Script" path="res://Scripts/UI/Game_Menu_Controller.gd" id="17_o71tr"]
@@ -146,6 +151,7 @@ scale = Vector2(0.92, 1)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("14_rt7f2")
+beeps_list = Array[AudioStream]([ExtResource("7_m4x0a"), ExtResource("8_bth78"), ExtResource("9_cg1tf"), ExtResource("10_k5355"), ExtResource("11_y0k01")])
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Dialogue"]
 modulate = Color(1, 1, 1, 0.47451)
@@ -177,6 +183,10 @@ wait_time = 0.05
 
 [node name="PauseTimer" type="Timer" parent="CanvasLayer/Dialogue"]
 wait_time = 0.04
+
+[node name="Dialog_Beeps" type="AudioStreamPlayer2D" parent="CanvasLayer/Dialogue"]
+stream = ExtResource("8_bth78")
+volume_db = 10.0
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
 layout_mode = 3

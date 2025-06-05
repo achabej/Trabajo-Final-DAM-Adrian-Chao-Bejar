@@ -5,6 +5,10 @@ class_name Dialogue
 @onready var type_timer: Timer = $TypeTimer
 @onready var pause_timer: Timer = $PauseTimer
 
+@onready var dialog_sound : AudioStreamPlayer2D = $Dialog_Beeps
+@export var beeps_list : Array[AudioStream] = []
+var char_beep_interval := 1 
+
 var full_text: String = ""
 var current_index: int = 0
 var is_typing: bool = false
@@ -25,7 +29,7 @@ func update_message(message: String, text_size: float, text_veloc: float) -> voi
 
 	var clean_text = ""
 	var i = 0
-	while i < message.length():
+	while i < message.length():		
 		if message[i] == "[":
 			var end_index = message.find("]", i)
 			if end_index == -1:
@@ -80,3 +84,10 @@ func _on_type_timer_timeout() -> void:
 	# Si no es un comando, mostrar el carácter
 	content.visible_characters += 1
 	current_index += 1
+
+	# 🔊 Reproducir sonido aleatorio de escritura
+	if (current_index % char_beep_interval == 0) and beeps_list.size() > 0:
+		if not dialog_sound.playing:
+			var random_sound = beeps_list[randi() % beeps_list.size()]
+			dialog_sound.stream = random_sound
+			dialog_sound.play()

@@ -19,6 +19,7 @@ func shoot():
 	is_shooting = true
 	laser_raycast.enabled = true
 	laser_mesh.visible = true
+	$AudioStreamPlayer3D.play()
 
 	laser_raycast.force_raycast_update()
 
@@ -59,6 +60,7 @@ func shoot():
 
 
 func stop_shooting():
+	$AudioStreamPlayer3D.stop()
 	is_shooting = false
 	laser_raycast.enabled = false
 	laser_mesh.visible = false

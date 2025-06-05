@@ -16,6 +16,7 @@ var has_shown_menu := false
 var play_pressed := false
 
 func _ready() -> void:
+	$Main_Menu_Intro.playing = true
 	title_text.scale = Vector2(0.01, 0.01)
 	menu_panel.modulate.a = 0.0
 	explosion_sprite.visible = false
@@ -25,6 +26,7 @@ func _ready() -> void:
 
 	black_overlay.modulate.a = 0.0
 	black_overlay.visible = false
+	$Main_Menu_Loop.playing = true	
 
 func _process(delta: float) -> void:
 	total_time += delta
@@ -64,6 +66,7 @@ func _on_play_btn_pressed() -> void:
 	start_play_transition()
 
 func start_play_transition():
+	$AudioStreamPlayer2D.stop()
 	flash_overlay.visible = true
 
 	var tween := create_tween()
