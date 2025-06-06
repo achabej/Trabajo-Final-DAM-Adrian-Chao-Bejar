@@ -1,7 +1,7 @@
 extends Control
 
 @onready var title_text = $RichTextLabel
-@onready var menu_panel = $Menu_Default
+@onready var menu_panel = $Menu_default
 @onready var space_station_sprite = $Background/Space_station
 @onready var explosion_sprite = $Background/Space_station/Explosion
 @onready var flash_overlay = $flash_overlay
@@ -100,7 +100,7 @@ func _load_next_scene():
 	get_tree().change_scene_to_packed(Planet1_scene)
 
 func _on_options_btn_pressed() -> void:
-	$Menu_Default.visible = false
+	$Menu_default.visible = false
 	$Configuration.visible = true
 
 func _on_exit_btn_pressed() -> void:

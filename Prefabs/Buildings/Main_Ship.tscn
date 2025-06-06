@@ -1,10 +1,11 @@
-[gd_scene load_steps=47 format=4 uid="uid://bqbncvwh4i4x8"]
+[gd_scene load_steps=48 format=4 uid="uid://bqbncvwh4i4x8"]
 
 [ext_resource type="Script" path="res://Scripts/Ship/Ship_State.gd" id="1_u2o4g"]
 [ext_resource type="Texture2D" uid="uid://cxbbkml4ilvx5" path="res://Models/Original/Ship_Model_SteelRefinery_colormap.png" id="2_uj345"]
 [ext_resource type="PackedScene" uid="uid://cipi3wx325pae" path="res://Prefabs/Effects/Poof_Effect.tscn" id="3_2t8yn"]
 [ext_resource type="PackedScene" uid="uid://crbyywny7i7l0" path="res://Prefabs/Effects/Rocket_Effect.tscn" id="4_6xvyb"]
 [ext_resource type="AudioStream" uid="uid://btbginyji1qny" path="res://Audio/bullet-impacting-metal-heavy-gamemaster-audio.mp3" id="5_qdd7b"]
+[ext_resource type="Script" path="res://Scripts/Systems/Volume_Script_3D.gd" id="6_ff88j"]
 [ext_resource type="AudioStream" uid="uid://bqq1rg1gjt25e" path="res://Audio/game-echo-message-alert-ni-sound-3-3-00-03.mp3" id="6_m8k2b"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vgu14"]
@@ -528,8 +529,10 @@ transform = Transform3D(0.267137, 0, 0, 0, 0.267137, 0, 0, 0, 0.267137, 0, 3.141
 
 [node name="HammerSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_qdd7b")
+script = ExtResource("6_ff88j")
 
 [node name="CompleteSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_m8k2b")
+script = ExtResource("6_ff88j")
 
 [connection signal="finished" from="HammerSound" to="." method="_on_building_sound_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=57 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://dknpp6b45m6is" path="res://addons/kenney_input_texture/tile_0123.png" id="34_bx84a"]
 [ext_resource type="Texture2D" uid="uid://dsdcxd27kj27q" path="res://addons/kenney_input_texture/tile_0082.png" id="35_u2l1k"]
 [ext_resource type="Script" path="res://Scripts/UI/Configuration_script.gd" id="36_0rlnq"]
+[ext_resource type="Script" path="res://Scripts/Systems/Volume_Script.gd" id="39_bmn0l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
 
@@ -1332,10 +1333,12 @@ text = "Volver al menu"
 [node name="JetpackLoop" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("25_ssidd")
 volume_db = -10.0
+script = ExtResource("39_bmn0l")
 
 [node name="Hit" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("26_mujt0")
 volume_db = -10.0
+script = ExtResource("39_bmn0l")
 
 [connection signal="timeout" from="CanvasLayer/Dialogue/TypeTimer" to="CanvasLayer/Dialogue" method="_on_type_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Dialogue/PauseTimer" to="CanvasLayer/Dialogue" method="_on_pause_timer_timeout"]

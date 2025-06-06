@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bvaity5bbsgsj" path="res://Audio/Music/752527__teffyd1__lofi-beat.mp3" id="8_nqjh6"]
 [ext_resource type="Script" path="res://Scripts/UI/Configuration_script.gd" id="8_qvrr1"]
 [ext_resource type="AudioStream" uid="uid://x6a55wbqa7fi" path="res://Audio/Music/sci-fi-reverse-1-proceesed-97689.mp3" id="9_27tff"]
-[ext_resource type="Script" path="res://Scripts/Systems/Volume_Script_2D.gd" id="10_08fo3"]
+[ext_resource type="Script" path="res://Scripts/Systems/Volume_Script.gd" id="10_mh6f1"]
 [ext_resource type="AudioStream" uid="uid://cidtp710ygarx" path="res://Audio/mixkit-distant-explosion-1690.wav" id="10_rtpv3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_834k6"]
@@ -386,15 +386,15 @@ color = Color(0, 0, 0, 1)
 
 [node name="Main_Menu_Loop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_nqjh6")
-script = ExtResource("10_08fo3")
+script = ExtResource("10_mh6f1")
 
 [node name="Main_Menu_Intro" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_27tff")
-script = ExtResource("10_08fo3")
+script = ExtResource("10_mh6f1")
 
 [node name="Explosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_rtpv3")
-script = ExtResource("10_08fo3")
+script = ExtResource("10_mh6f1")
 
 [connection signal="pressed" from="Menu_default/Play_Btn" to="." method="_on_play_btn_pressed"]
 [connection signal="pressed" from="Menu_default/Options_Btn" to="." method="_on_options_btn_pressed"]
