@@ -5,6 +5,7 @@ var active = false
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Menu") and GameManager.currentState != GameManager.State.Die:
 		active = !active
+		$"../HUD".visible = !active
 	visible = active
 	get_tree().paused = active
 
