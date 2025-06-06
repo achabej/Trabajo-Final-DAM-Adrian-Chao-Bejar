@@ -19,9 +19,9 @@ var building_costs = {
 	"Extractor": {"Wood": 10, "Iron": 10},
 	"Convey_Line": {"Iron": 2},
 	"Furnace": {"Iron": 20},
-	"SteelRefinery": {"Iron": 20, "Copper": 20, "Cristal": 15},
+	"SteelRefinery": {"Iron": 15, "Copper": 15, "Cristal": 15},
 	"PlatesFactory": {"Iron": 15, "Copper": 10, "Wood": 10},
-	"ChipsFactory": {"Iron": 15, "Copper": 15, "Cristal": 20}
+	"ChipsFactory": {"Iron": 20, "Copper": 20, "Cristal": 30}
 }
 
 @onready var grid_map : GridMap

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=56 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://b4eurubcvgs53" path="res://addons/kenney_input_texture/tile_0112.png" id="33_w0alw"]
 [ext_resource type="Texture2D" uid="uid://dknpp6b45m6is" path="res://addons/kenney_input_texture/tile_0123.png" id="34_bx84a"]
 [ext_resource type="Texture2D" uid="uid://dsdcxd27kj27q" path="res://addons/kenney_input_texture/tile_0082.png" id="35_u2l1k"]
+[ext_resource type="Script" path="res://Scripts/UI/Configuration_script.gd" id="36_0rlnq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6k3mc"]
 
@@ -150,6 +151,7 @@ mesh = NodePath("../PlayerMesh")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Dialogue" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -203,7 +205,6 @@ stream = ExtResource("8_bth78")
 volume_db = 10.0
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -681,6 +682,7 @@ text = "Menu"
 
 [node name="Menu" type="Control" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -698,7 +700,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Input_Info" type="Control" parent="CanvasLayer/Menu"]
+[node name="Menu_default" type="Control" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Input_Info" type="Control" parent="CanvasLayer/Menu/Menu_default"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -708,7 +718,7 @@ offset_right = 52.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Input_Info"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Menu_default/Input_Info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -724,14 +734,14 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center]Controles[center]"
 
-[node name="Movement_info" type="Control" parent="CanvasLayer/Menu/Input_Info"]
+[node name="Movement_info" type="Control" parent="CanvasLayer/Menu/Menu_default/Input_Info"]
 anchors_preset = 0
 offset_left = 42.0
 offset_top = 146.0
 offset_right = 82.0
 offset_bottom = 186.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Input_Info/Movement_info"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Menu_default/Input_Info/Movement_info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -747,27 +757,27 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]Mover[center]"
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Movement_info"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Movement_info"]
 position = Vector2(-13, 13.5)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("25_qxboe")
 
-[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Movement_info"]
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Movement_info"]
 position = Vector2(15, -14.5)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("26_cx8x2")
 
-[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Movement_info"]
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Movement_info"]
 position = Vector2(42, 13.5)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("27_137mq")
 
-[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Movement_info"]
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Movement_info"]
 position = Vector2(15, 13.5)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("28_5cew4")
 
-[node name="Jetpack_Info" type="Control" parent="CanvasLayer/Menu/Input_Info"]
+[node name="Jetpack_Info" type="Control" parent="CanvasLayer/Menu/Menu_default/Input_Info"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 139.0
@@ -775,7 +785,7 @@ offset_top = 146.0
 offset_right = 179.0
 offset_bottom = 186.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Input_Info/Jetpack_Info"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Menu_default/Input_Info/Jetpack_Info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -791,12 +801,12 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]Jetpack[center]"
 
-[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Jetpack_Info"]
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Jetpack_Info"]
 position = Vector2(17, 7)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("29_k0oi7")
 
-[node name="Sprint_info" type="Control" parent="CanvasLayer/Menu/Input_Info"]
+[node name="Sprint_info" type="Control" parent="CanvasLayer/Menu/Menu_default/Input_Info"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 229.0
@@ -804,7 +814,7 @@ offset_top = 146.0
 offset_right = 269.0
 offset_bottom = 186.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Input_Info/Sprint_info"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Menu_default/Input_Info/Sprint_info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -820,17 +830,17 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]Correr[center]"
 
-[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Sprint_info"]
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Sprint_info"]
 position = Vector2(2.5, 6.5)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("30_iyu88")
 
-[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Sprint_info"]
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Sprint_info"]
 position = Vector2(29.5, 6.5)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("31_50dbq")
 
-[node name="Tool_Info" type="Control" parent="CanvasLayer/Menu/Input_Info"]
+[node name="Tool_Info" type="Control" parent="CanvasLayer/Menu/Menu_default/Input_Info"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -242.0
@@ -838,7 +848,7 @@ offset_top = 146.0
 offset_right = -202.0
 offset_bottom = 186.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Input_Info/Tool_Info"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Menu_default/Input_Info/Tool_Info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -854,7 +864,7 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]Apuntar[center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Menu/Input_Info/Tool_Info"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Menu/Menu_default/Input_Info/Tool_Info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -870,17 +880,17 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]Disparar[center]"
 
-[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Tool_Info"]
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Tool_Info"]
 position = Vector2(106, 8)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("32_eats2")
 
-[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Tool_Info"]
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Tool_Info"]
 position = Vector2(18, 6)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("33_w0alw")
 
-[node name="Building_Info" type="Control" parent="CanvasLayer/Menu/Input_Info"]
+[node name="Building_Info" type="Control" parent="CanvasLayer/Menu/Menu_default/Input_Info"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 316.0
@@ -888,7 +898,7 @@ offset_top = 146.0
 offset_right = 356.0
 offset_bottom = 186.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Input_Info/Building_Info"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Menu_default/Input_Info/Building_Info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -904,12 +914,12 @@ theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[center]Construir[center]"
 
-[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Building_Info"]
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Building_Info"]
 position = Vector2(18, 6)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("34_bx84a")
 
-[node name="Cam_Info" type="Control" parent="CanvasLayer/Menu/Input_Info"]
+[node name="Cam_Info" type="Control" parent="CanvasLayer/Menu/Menu_default/Input_Info"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -55.0
@@ -917,7 +927,7 @@ offset_top = 146.0
 offset_right = -15.0
 offset_bottom = 186.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Input_Info/Cam_Info"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Menu_default/Input_Info/Cam_Info"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -934,12 +944,12 @@ bbcode_enabled = true
 text = "[center]Rotar 
 camara[center]"
 
-[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Input_Info/Cam_Info"]
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Menu/Menu_default/Input_Info/Cam_Info"]
 position = Vector2(18, 6)
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("35_u2l1k")
 
-[node name="Resume_Btn" type="Button" parent="CanvasLayer/Menu"]
+[node name="Resume_Btn" type="Button" parent="CanvasLayer/Menu/Menu_default"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -958,7 +968,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Continuar"
 
-[node name="Options_Btn" type="Button" parent="CanvasLayer/Menu"]
+[node name="Save_Btn" type="Button" parent="CanvasLayer/Menu/Menu_default"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -975,9 +985,9 @@ theme_override_fonts/font = ExtResource("18_bs3kl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
-text = "Opciones"
+text = "Guardar"
 
-[node name="Exit_Btn" type="Button" parent="CanvasLayer/Menu"]
+[node name="Options_Btn" type="Button" parent="CanvasLayer/Menu/Menu_default"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -985,9 +995,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -82.0
-offset_top = 22.0
+offset_top = 21.0
 offset_right = 82.0
-offset_bottom = 68.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
+text = "Opciones"
+
+[node name="Exit_Btn" type="Button" parent="CanvasLayer/Menu/Menu_default"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 83.5
+offset_right = 82.0
+offset_bottom = 129.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("18_bs3kl")
@@ -996,6 +1025,153 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
 text = "Salir
 "
+
+[node name="Configuration" type="Control" parent="CanvasLayer/Menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -116.0
+offset_right = 174.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("36_0rlnq")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Menu/Configuration"]
+modulate = Color(1, 1, 1, 0.690196)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -125.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Menu/Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -163.0
+offset_right = -6.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "
+[center]Configuración"
+fit_content = true
+
+[node name="Return_Btn" type="Button" parent="CanvasLayer/Menu/Configuration"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 109.5
+offset_right = 51.0
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("18_bs3kl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
+text = "Vovler
+"
+
+[node name="Volume_Slider" type="HSlider" parent="CanvasLayer/Menu/Configuration"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -111.5
+offset_right = -22.0
+offset_bottom = -74.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Menu/Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -64.0
+offset_right = -5.0
+offset_bottom = -209.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]Volumen"
+fit_content = true
+
+[node name="Screen_Option" type="OptionButton" parent="CanvasLayer/Menu/Configuration"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 64.0
+offset_right = 232.0
+offset_bottom = 112.0
+scale = Vector2(1, 0.92)
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Menu/Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = -141.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]Pantalla"
+fit_content = true
+
+[node name="Resolution_Option" type="OptionButton" parent="CanvasLayer/Menu/Configuration"]
+offset_left = 93.0
+offset_top = 148.0
+offset_right = 243.0
+offset_bottom = 196.0
+scale = Vector2(1, 0.96)
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Menu/Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 88.0
+offset_right = -8.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]resolución"
+fit_content = true
 
 [node name="Exit_Notif" type="Control" parent="CanvasLayer/Menu"]
 visible = false
@@ -1182,9 +1358,10 @@ volume_db = -10.0
 [connection signal="mouse_exited" from="CanvasLayer/HUD/Building_Buttons/BtnBuildPlatesFactory" to="CanvasLayer/HUD/Building_Buttons" method="_on_btn_line_mouse_exited"]
 [connection signal="area_entered" from="CanvasLayer/HUD/Building_Buttons/Area2D2" to="CanvasLayer/HUD/Building_Buttons" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="CanvasLayer/HUD/Building_Buttons/Area2D2" to="CanvasLayer/HUD/Building_Buttons" method="_on_area_2d_area_exited"]
-[connection signal="pressed" from="CanvasLayer/Menu/Resume_Btn" to="CanvasLayer/Menu" method="_on_resume_btn_pressed"]
-[connection signal="pressed" from="CanvasLayer/Menu/Options_Btn" to="CanvasLayer/Menu" method="_on_options_btn_pressed"]
-[connection signal="pressed" from="CanvasLayer/Menu/Exit_Btn" to="CanvasLayer/Menu" method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Menu_default/Resume_Btn" to="CanvasLayer/Menu" method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Menu_default/Options_Btn" to="CanvasLayer/Menu" method="_on_options_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Menu_default/Exit_Btn" to="CanvasLayer/Menu" method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Configuration/Return_Btn" to="CanvasLayer/Menu/Configuration" method="_on_return_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/Exit_Notif/Confirm_Btn" to="CanvasLayer/Menu" method="_on_confirm_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/Exit_Notif/Cancel_Btn" to="CanvasLayer/Menu" method="_on_cancel_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Game_Over/Confirm_Btn" to="CanvasLayer/Game_Over" method="_on_confirm_btn_pressed"]

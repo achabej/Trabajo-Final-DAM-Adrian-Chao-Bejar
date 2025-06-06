@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcckwak36oq4l"]
+[gd_scene load_steps=19 format=3 uid="uid://bcckwak36oq4l"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Main_Menu_Controller.gd" id="1_b7ciy"]
 [ext_resource type="Texture2D" uid="uid://53jbr46sikab" path="res://addons/Large_Background_Texture 1024x1024/Purple Nebula/Purple_Nebula_06-1024x1024.png" id="2_w1txq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cp6o2i4f2vtoy" path="res://Textures/Main_Menu/3debc95274cc405df4ec31af8f065593.png" id="6_gshoy"]
 [ext_resource type="FontFile" uid="uid://83h32egk0jtl" path="res://Textures/Fonts/kleptocracy titling bd.otf" id="6_yu010"]
 [ext_resource type="AudioStream" uid="uid://bvaity5bbsgsj" path="res://Audio/Music/752527__teffyd1__lofi-beat.mp3" id="8_nqjh6"]
+[ext_resource type="Script" path="res://Scripts/UI/Configuration_script.gd" id="8_qvrr1"]
 [ext_resource type="AudioStream" uid="uid://x6a55wbqa7fi" path="res://Audio/Music/sci-fi-reverse-1-proceesed-97689.mp3" id="9_27tff"]
 [ext_resource type="AudioStream" uid="uid://cidtp710ygarx" path="res://Audio/mixkit-distant-explosion-1690.wav" id="10_rtpv3"]
 
@@ -25,6 +26,15 @@ bg_color = Color(0.243893, 0.602565, 0.754479, 1)
 bg_color = Color(0.190956, 0.36866, 0.457038, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14smg"]
+bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07n1v"]
+bg_color = Color(0.243893, 0.602565, 0.754479, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6twv"]
+bg_color = Color(0.190956, 0.36866, 0.457038, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52ksq"]
 bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
 
 [node name="Control" type="Control"]
@@ -121,7 +131,7 @@ theme_override_font_sizes/normal_font_size = 120
 bbcode_enabled = true
 text = "Overcomplicate it!"
 
-[node name="Menu_Panel" type="Control" parent="."]
+[node name="Menu_default" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,7 +145,7 @@ offset_bottom = 265.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="Menu_Panel"]
+[node name="Panel" type="Panel" parent="Menu_default"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,7 +156,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_834k6")
 
-[node name="Play_Btn" type="Button" parent="Menu_Panel"]
+[node name="Play_Btn" type="Button" parent="Menu_default"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -166,7 +176,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
 text = "Jugar"
 
-[node name="Options_Btn" type="Button" parent="Menu_Panel"]
+[node name="Options_Btn" type="Button" parent="Menu_default"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -186,7 +196,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
 text = "Opciones"
 
-[node name="Exit_Btn" type="Button" parent="Menu_Panel"]
+[node name="Exit_Btn" type="Button" parent="Menu_default"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -205,6 +215,152 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_88k75")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
 text = "Salir"
+
+[node name="Configuration" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -55.0
+offset_right = 174.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_qvrr1")
+
+[node name="Panel" type="Panel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -122.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_834k6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -163.0
+offset_right = -6.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "
+[center]Configuración"
+fit_content = true
+
+[node name="Return_Btn" type="Button" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 109.5
+offset_right = 51.0
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_yu010")
+theme_override_styles/hover = SubResource("StyleBoxFlat_07n1v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p6twv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_52ksq")
+text = "Vovler
+"
+
+[node name="Volume_Slider" type="HSlider" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -111.5
+offset_right = -22.0
+offset_bottom = -74.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -64.0
+offset_right = -5.0
+offset_bottom = -209.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]Volumen"
+fit_content = true
+
+[node name="Screen_Option" type="OptionButton" parent="Configuration"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 64.0
+offset_right = 232.0
+offset_bottom = 112.0
+scale = Vector2(1, 0.92)
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = -141.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]Pantalla"
+fit_content = true
+
+[node name="Resolution_Option" type="OptionButton" parent="Configuration"]
+offset_left = 93.0
+offset_top = 148.0
+offset_right = 243.0
+offset_bottom = 196.0
+scale = Vector2(1, 0.96)
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 88.0
+offset_right = -8.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]resolución"
+fit_content = true
 
 [node name="flash_overlay" type="ColorRect" parent="."]
 visible = false
@@ -235,6 +391,7 @@ stream = ExtResource("9_27tff")
 [node name="Explosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_rtpv3")
 
-[connection signal="pressed" from="Menu_Panel/Play_Btn" to="." method="_on_play_btn_pressed"]
-[connection signal="pressed" from="Menu_Panel/Options_Btn" to="." method="_on_options_btn_pressed"]
-[connection signal="pressed" from="Menu_Panel/Exit_Btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="Menu_default/Play_Btn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="Menu_default/Options_Btn" to="." method="_on_options_btn_pressed"]
+[connection signal="pressed" from="Menu_default/Exit_Btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="Configuration/Return_Btn" to="Configuration" method="_on_return_btn_pressed"]

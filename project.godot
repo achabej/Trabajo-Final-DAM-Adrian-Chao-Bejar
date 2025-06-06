@@ -22,6 +22,7 @@ GameManager="*res://Scripts/Systems/Managers/Game_Manager.gd"
 ConveyorManager="*res://Scripts/Systems/Managers/Conveyor_Manager.gd"
 DebugManager="*res://Scripts/Systems/Managers/Debug_Manager.gd"
 DialogManager="*res://Scripts/Systems/Managers/Dialog_Manager.gd"
+ConfigurationManager="*res://Scripts/Systems/Managers/Configuration_Manager.gd"
 
 [display]
 

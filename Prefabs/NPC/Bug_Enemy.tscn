@@ -44,7 +44,11 @@ script = ExtResource("4_j0qa4")
 [node name="NPCDeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_lncl5")
 
+[node name="Wandering_timer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]
+[connection signal="timeout" from="Wandering_timer" to="." method="_on_wandering_timer_timeout"]

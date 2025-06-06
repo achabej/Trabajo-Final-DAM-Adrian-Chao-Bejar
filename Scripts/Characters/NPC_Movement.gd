@@ -231,3 +231,7 @@ func _state_dead():
 	await step1.finished
 
 	queue_free()
+
+
+func _on_wandering_timer_timeout() -> void:
+	pass # Replace with function body.
