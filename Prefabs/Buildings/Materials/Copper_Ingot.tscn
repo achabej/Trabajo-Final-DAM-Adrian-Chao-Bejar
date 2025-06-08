@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cp1s1y3t5m1ws"]
 
-[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Mat_Controller.gd" id="2_5es2m"]
+[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Controller.gd" id="2_kk5ot"]
 [ext_resource type="Material" uid="uid://d3ccf8xvmvoac" path="res://Materials/Enviroment/Copper_Mat.tres" id="2_s5j0y"]
 
 [sub_resource type="GDScript" id="GDScript_14snt"]
@@ -46,7 +46,7 @@ shape = SubResource("BoxShape3D_hvwqn")
 
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
 aabb = AABB(-0.644784, -0.382711, -0.627707, 1.28958, 0.765422, 1.25541)
-script = ExtResource("2_5es2m")
+script = ExtResource("2_kk5ot")
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]

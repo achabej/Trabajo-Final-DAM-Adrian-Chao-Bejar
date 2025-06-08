@@ -72,4 +72,3 @@ aabb = AABB(-0.644784, -0.382711, -0.627707, 1.28958, 0.765422, 1.25541)
 script = ExtResource("3_40m0r")
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]

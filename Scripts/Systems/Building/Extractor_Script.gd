@@ -9,7 +9,7 @@ var spawn_timer: float = 0.0
 var is_active: bool = false
 var blocking_materials := 0
 var current_conveyor: Node3D = null
-
+var can_produce: bool =  true
 var detected_material_scene: PackedScene = null  # Prefab detectado del depósito
 
 # Animación
@@ -22,6 +22,7 @@ func _ready() -> void:
 	var detector = get_node_or_null("ConveyDetector")
 	if detector:
 		detector.monitoring = true
+	set_physics_process(true)
 
 func _process(delta: float) -> void:
 	if not is_active:
@@ -42,13 +43,13 @@ func _process(delta: float) -> void:
 		mesh.scale = original_scale
 
 func spawn_mat() -> void:
-	if material_scene and spawn_position and is_instance_valid(current_conveyor) and current_conveyor.is_in_group("Build"):
+	if can_produce and material_scene and spawn_position and is_instance_valid(current_conveyor) and current_conveyor.is_in_group("Build"):
 		var mat = material_scene.instantiate()
 		get_tree().root.add_child(mat)
 		
 		mat.global_position = spawn_position.global_position
 		mat.add_to_group("Ignore_Build_Validation")
-
+		print("material spawneado")
 		var manager = current_conveyor.get_node_or_null("Convey_Manager")
 
 func activate():
@@ -59,15 +60,22 @@ func _on_convey_detector_body_entered(body: Node3D) -> void:
 		current_conveyor = body
 	elif body.is_in_group("Material"):
 		blocking_materials += 1
-		print("🚫 Zona de spawn bloqueada")
+		#print("🚫 Zona de spawn bloqueada")
 
 func _on_convey_detector_body_exited(body: Node3D) -> void:
 	if body == current_conveyor:
 		current_conveyor = null
 	elif body.is_in_group("Material"):
 		blocking_materials = max(0, blocking_materials - 1)
-		print("✅ Zona de spawn libre")
+		#print("✅ Zona de spawn libre")
 
 func snap_to_conveyor_center() -> void:
 	if is_instance_valid(current_conveyor):
 		global_position = current_conveyor.global_position
+
+
+func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
+	can_produce = false
+
+func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
+	can_produce = true

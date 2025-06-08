@@ -52,6 +52,8 @@ func _ready() -> void:
 			if area:
 				area.connect("body_entered", _on_material_entered)
 
+	set_physics_process(true)
+
 func _process(delta: float) -> void:
 	# Si tiene todos los materiales, empieza a producir
 	if not is_active and _has_all_required_materials():
@@ -179,7 +181,7 @@ func _on_material_entered(body: Node3D) -> void:
 		return
 
 	var mat_type = body.get_material_type()
-	print(mat_type)
+	#print(mat_type)
 
 	if not can_accept_material(mat_type):
 		# print("⛔ No se puede aceptar más de este material:", mat_type)
@@ -189,7 +191,7 @@ func _on_material_entered(body: Node3D) -> void:
 		material_storage[mat_type] += 1
 		body.queue_free()
 		_check_activation()
-	print(material_storage)
+	#print(material_storage)
 
 func _on_convey_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Build") and body.is_in_group("Convey") and is_instance_valid(body):
