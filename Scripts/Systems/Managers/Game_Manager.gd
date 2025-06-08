@@ -3,11 +3,11 @@ signal phase_changed(new_phase: int)
 signal initialized
 
 enum State {
-	Play,
-	Building,
-	Destroying,
-	Die,
-	Ending
+	Play, # Modo por defecto
+	Building, # Modo cuando vamos a colocar un edificio
+	Destroying, # Modo cuando vamos a destruir un edificio
+	Die, # Modo cuando morimos 
+	Ending # Modo cuando se inicia la cinematica del final (mayormente para que no se abra el menu)
 }
 
 var currentState = State.Play
@@ -68,6 +68,9 @@ func init():
 	current_phase = 1  
 	storage = {}
 	
+	# Iniciamos el juego en modo play
+	currentState = State.Play
+	
 	#Inicializa el elemento del fundido en negro
 	init_black_overlay()
 	
@@ -79,12 +82,15 @@ func init():
 		"Cristal" : 0
 	}
 	
+	#Mensaje de input al completar una fase
 	input_message = get_tree().get_root().get_node("Node3D/Player/CanvasLayer/HUD/Phase_Input_UI")
-
+	
+	#Animacion del final
 	anim_player = get_tree().get_root().get_node_or_null("Node3D/Scene_Manager/AnimationPlayer")
 	if anim_player:
 		anim_player.active = false  
 	
+	#Conectamos las señaels a la nave 
 	var ship = get_tree().get_root().get_node("Node3D/Terrain/Main_Ship_Constructor/Ship_Controller")
 	if ship:
 		print("Nave encontrada")
@@ -93,28 +99,44 @@ func init():
 		
 	GameManager.connect("phase_changed", Callable(self, "_on_phase_changed"))
 
+	#Cambiamos la prioridad de la camara del jugador
+	var player_camera = get_tree().get_root().get_node_or_null("Node3D/Player/CamNode/SpringArm3D/Camera3D")
+	if player_camera:
+		player_camera.current = true
+	else:
+		push_error("❌ No se encontró la cámara del jugador en Node3D/Player/CamNode/SpringArm3D/Camera3D")
+
+	#Actualizamos el inventario del jugador y la UI
 	_update_phase_storage()
 	_update_ui()
 	
+	#Señal para inicializar otros metodos
 	emit_signal("initialized")
 
+	#Muestra el dialogo del principio
 	await get_tree().process_frame
 	DialogManager.show_dialogues_for_phase(current_phase)
 
+# Busca en la escena actual el fundido negro
 func init_black_overlay():
 	black_overlay = get_tree().get_nodes_in_group("Black_overlay")
 	if black_overlay != null:
 		black_overlay = black_overlay[0]
 
+# Añade material a la fase
 func add_mat(material_type: String, amount: int = 1) -> void:
+	# Comprueba que la fase existe, en caso de que entre en un numero invalido
 	var phase_key = "Phase%d" % current_phase
 	if not phases.has(phase_key):
 		return
 	
+	# Coge la cantidad de material necesario para ese tipo
 	var max_amount = phases[phase_key]["Resources"].get(material_type, 0)
 	if max_amount == 0:
 		return
 	
+	# Si superamos el límite, depediendo del material se añadirá al inventario del jugador
+	# Se hace para que sea más facil obtener más materiales
 	if storage.get(material_type, 0) >= max_amount:
 		match material_type:
 			"Iron_Ingot":
@@ -132,32 +154,31 @@ func add_mat(material_type: String, amount: int = 1) -> void:
 				BuildManager.increase_mat("Cristal", 1)
 		return
 	
+	# Si el almacen no tiene el material guardado, lo inicializará
 	if not storage.has(material_type):
 		storage[material_type] = 0
+	# Añade la cantidad al almacen
 	storage[material_type] += amount
 	
+	# Evita que se desborde el almacén cuando esté lleno
 	if storage[material_type] > max_amount:
 		storage[material_type] = max_amount
-		
+	
 	_update_ui()
 	
 	# Esperamos que el jugador confirme la fase acercándose a la nave
 	if _check_phase_complete():
 		print("✅ Fase completada, esperando confirmación en la nave...")
-		_show_advance_instruction()
 
-func _show_advance_instruction():
-	var player = get_tree().get_root().get_node("Node3D/Player")
-	if not player:
-		return
-
+# Método para que el jugador confime pasar de fase
 func _on_player_confirm_phase():
 	if not _check_phase_complete():
 		return  # seguridad
 	
 	current_phase += 1
 	emit_signal("phase_changed", current_phase)
-
+	
+	# Limpia el almacén si se cambia de fase
 	if current_phase > phases.size():
 		storage.clear()
 		_update_ui()
@@ -167,14 +188,15 @@ func _on_player_confirm_phase():
 	_update_phase_storage()
 	_update_ui()
 
+# Inicializar el storage para la fase actual, para que tenga todas las claves con 0
 func _update_phase_storage() -> void:
-	# Inicializar el storage para la fase actual, para que tenga todas las claves con 0
 	var phase_key = "Phase%d" % current_phase
 	if phases.has(phase_key):
 		for mat in phases[phase_key]["Resources"].keys():
 			if not storage.has(mat):
 				storage[mat] = 0
 
+# Devuelve un booleano si la fase ha sido completada
 func _check_phase_complete() -> bool:
 	var phase_key = "Phase%d" % current_phase
 	if not phases.has(phase_key):
@@ -187,6 +209,7 @@ func _check_phase_complete() -> bool:
 	
 	return true
 
+# Actualiza la interfaz del jugador con los datos actualizados
 func _update_ui() -> void:
 	var player = get_tree().get_root().get_node("Node3D/Player")
 	if not player:
@@ -225,12 +248,14 @@ func _update_ui() -> void:
 	
 	phase_controller.update_phase_text(text)
 
+# Muestra el dialogo de la siguiente fase, oculta la construccion seleccionada si la tiene
 func _on_phase_changed(new_phase: int):
 	DialogManager.show_dialogues_for_phase(new_phase)
 	if BuildManager.CurrentSpawnable != null:
 		BuildManager.CurrentSpawnable.queue_free()
 		BuildManager.CurrentSpawnable = null
 
+# Inicia la animación del final, llama al fundido en negro y carga la escena final
 func _on_play_ending_anim():
 	anim_player.active = true
 	anim_player.play("Ending_Anim")	

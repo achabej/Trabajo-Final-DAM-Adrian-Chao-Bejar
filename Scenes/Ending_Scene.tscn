@@ -1,17 +1,23 @@
-[gd_scene load_steps=66 format=4 uid="uid://bfa3fl0naekqi"]
+[gd_scene load_steps=72 format=4 uid="uid://bfa3fl0naekqi"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Managers/Ending_Scene_Manager.gd" id="1_lgcyy"]
 [ext_resource type="Texture2D" uid="uid://cxbbkml4ilvx5" path="res://Models/Original/Ship_Model_SteelRefinery_colormap.png" id="1_ujvxy"]
 [ext_resource type="PackedScene" uid="uid://cipi3wx325pae" path="res://Prefabs/Effects/Poof_Effect.tscn" id="2_bx2io"]
 [ext_resource type="PackedScene" uid="uid://crbyywny7i7l0" path="res://Prefabs/Effects/Rocket_Effect.tscn" id="3_fct1x"]
 [ext_resource type="Script" path="res://Scripts/UI/Dialogue_Script.gd" id="5_egjsv"]
+[ext_resource type="AudioStream" uid="uid://bxjvhhcxre15x" path="res://Audio/metal-whoosh-hit-9-201909.mp3" id="5_rt2gf"]
 [ext_resource type="FontFile" uid="uid://83h32egk0jtl" path="res://Textures/Fonts/kleptocracy titling bd.otf" id="6_dmyn0"]
 [ext_resource type="AudioStream" uid="uid://ctutepqaxdci" path="res://Audio/Dialog_Beeps/bleep002.mp3" id="7_ypt66"]
 [ext_resource type="AudioStream" uid="uid://bw52lm3x7g6lk" path="res://Audio/Dialog_Beeps/bleep008.mp3" id="8_gdu4y"]
+[ext_resource type="AudioStream" uid="uid://nu1jeup12cqt" path="res://Audio/metal-pipe-329305.mp3" id="8_lbf5s"]
 [ext_resource type="AudioStream" uid="uid://hbdca647teug" path="res://Audio/Dialog_Beeps/bleep016.mp3" id="9_shrkp"]
 [ext_resource type="AudioStream" uid="uid://bhanajf38p76y" path="res://Audio/Dialog_Beeps/bleep014.mp3" id="10_nhc35"]
 [ext_resource type="AudioStream" uid="uid://krn2pp5qmhuv" path="res://Audio/Dialog_Beeps/bleep027.mp3" id="11_yib4d"]
+[ext_resource type="Texture2D" uid="uid://cn377usx22q4b" path="res://addons/kenney_input_texture/tile_0077.png" id="12_isk2c"]
 [ext_resource type="AudioStream" uid="uid://cfyrvg8kdb3j5" path="res://Audio/Music/629176__holizna__lofi-vinyl-e-piano-loop-95-bpm.wav" id="12_usu81"]
+[ext_resource type="Script" path="res://Scripts/Systems/Volume_Script_3D.gd" id="14_0qy4y"]
+[ext_resource type="AudioStream" uid="uid://dl4bbcliotsol" path="res://Audio/Player/loopingthrust-95548.mp3" id="14_o0p88"]
+[ext_resource type="AudioStream" uid="uid://cjr2p61ktubic" path="res://Audio/metal-beaten-sfx-230501.mp3" id="16_703yh"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vgu14"]
 points = PackedVector3Array(-0.449099, -0.512101, 2.74988, -0.866404, 0.969126, 1.29174, 0.615296, 0.99598, -2.92767, 0.421823, -0.830827, -1.45104, -0.71114, 0.901728, -2.90948, 0.85709, 0.969138, 1.29176, 0.512136, -0.58177, 2.49646, -0.86358, -0.666369, -1.54793, 0.693778, -0.0667336, -2.88368, 1.67826, -0.169997, -0.180786, -1.50761, 0.391864, 0.287069, -0.766447, -0.740869, 1.35304, 0.433999, 0.107954, 2.72636, 1.67826, 0.673084, -0.08745, -0.611934, -0.152566, -2.86262, 0.419112, -0.824499, 1.85866, -1.50761, -0.357605, 0.00588626, -1.3536, 0.865447, -0.677835, -0.443877, 0.107847, 2.71949, 0.93687, -0.663439, -1.37104, -0.349165, -0.840746, -1.46616, -0.623466, 0.99078, -2.91183, -0.351887, -0.8471, 1.90816, -1.4508, 0.531976, -0.768254, 0.929363, -0.657361, 1.27048, 1.52773, 0.531981, -0.768261, -0.701472, -0.0662381, -2.87308, 0.438453, -0.513759, 2.75804, 1.34611, 0.865447, -0.677835, 0.769704, -0.494972, -2.15218, 0.432827, 0.283174, 2.54226, 0.703511, 0.906397, -2.92521)
@@ -607,6 +613,30 @@ tracks/13/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Sound_Effects:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(12.3333, 13.9, 16.65, 16.75, 21.1333, 21.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Sound_Effects:stream")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.133333, 13.7333, 17.1333, 21.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_rt2gf"), ExtResource("16_703yh"), ExtResource("16_703yh"), ExtResource("8_lbf5s")]
+}
 
 [sub_resource type="Animation" id="Animation_wvfjl"]
 resource_name = "Ending_Cutscene_Final"
@@ -634,6 +664,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(1.22912e-14, 3.14159, -0.196612), Vector3(1.28738e-13, 3.14159, -0.55615), Vector3(2.81924e-13, 3.14159, 0.290702)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thrusters_Loop:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.76667),
+"transitions": PackedFloat32Array(1, 0.659754),
+"update": 0,
+"values": [2.0, -20.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thrusters_Loop:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.0333333, 1.73333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_bm481"]
@@ -848,6 +902,42 @@ tracks/13/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Thrusters_Loop:volume_db")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Thrusters_Loop:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Sound_Effects:stream")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_703yh")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j7nm5"]
 _data = {
@@ -857,14 +947,14 @@ _data = {
 "RESET": SubResource("Animation_72ga6")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dffjx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6xkx"]
 bg_color = Color(0.0768359, 0.0768358, 0.0768358, 0.729412)
 corner_radius_top_left = 22
 corner_radius_top_right = 22
 corner_radius_bottom_right = 22
 corner_radius_bottom_left = 22
 
-[sub_resource type="Theme" id="Theme_ks3vf"]
+[sub_resource type="Theme" id="Theme_4tau1"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hqq27"]
 emission_shape = 2
@@ -1070,15 +1160,6 @@ theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Hecho por Adrian Chao Béjar"
 
-[node name="black_overlay" type="ColorRect" parent="CanvasLayer" groups=["Black_overlay"]]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="Dialogue" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 12
@@ -1086,9 +1167,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 271.0
-offset_top = -300.0
+offset_top = -299.0
 offset_right = -194.0
-offset_bottom = -145.0
+offset_bottom = -144.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.92, 1)
@@ -1105,7 +1186,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dffjx")
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6xkx")
 
 [node name="Content" type="RichTextLabel" parent="CanvasLayer/Dialogue"]
 layout_mode = 1
@@ -1118,7 +1199,7 @@ offset_right = -6.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_ks3vf")
+theme = SubResource("Theme_4tau1")
 theme_override_fonts/normal_font = ExtResource("6_dmyn0")
 bbcode_enabled = true
 
@@ -1131,6 +1212,20 @@ wait_time = 0.04
 [node name="Dialog_Beeps" type="AudioStreamPlayer2D" parent="CanvasLayer/Dialogue"]
 stream = ExtResource("8_gdu4y")
 volume_db = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Dialogue"]
+position = Vector2(777.174, 118)
+scale = Vector2(2.80978, 2.80978)
+texture = ExtResource("12_isk2c")
+
+[node name="black_overlay" type="ColorRect" parent="CanvasLayer" groups=["Black_overlay"]]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Stars" type="GPUParticles3D" parent="."]
 transform = Transform3D(3.96584, 0, 0, 0, 3.77886, 0, 0, 0, 4.21565, 0, 0, -33.0351)
@@ -1146,6 +1241,17 @@ wait_time = 5.0
 [node name="Ending_Loop" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_usu81")
 autoplay = true
+script = ExtResource("14_0qy4y")
+
+[node name="Thrusters_Loop" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_o0p88")
+unit_size = 2.0
+autoplay = true
+script = ExtResource("14_0qy4y")
+
+[node name="Sound_Effects" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("16_703yh")
+script = ExtResource("14_0qy4y")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="timeout" from="CanvasLayer/Dialogue/TypeTimer" to="CanvasLayer/Dialogue" method="_on_type_timer_timeout"]

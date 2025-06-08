@@ -1,7 +1,7 @@
 extends VisibleOnScreenEnabler3D
 
 func _on_screen_entered() -> void:
-	$"../Mesh".visible = true
+	set_process(true)
 
 func _on_screen_exited() -> void:
-	$"../Mesh".visible = false
+	set_process(false)

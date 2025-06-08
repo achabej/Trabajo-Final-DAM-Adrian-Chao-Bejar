@@ -37,6 +37,11 @@ shape = SubResource("SphereShape3D_a2e3r")
 max_health = 50
 mesh = NodePath("../Mesh")
 
+[node name="Heal_Delay" type="Timer" parent="HealthController"]
+
+[node name="Heal_Timer" type="Timer" parent="HealthController"]
+wait_time = 2.0
+
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22146, 0)
 aabb = AABB(-1.75391, -2.59619, -1.82299, 3.50783, 5.19238, 3.64598)

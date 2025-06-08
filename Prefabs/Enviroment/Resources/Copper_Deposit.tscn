@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctw2wck1wf3xv"]
+[gd_scene load_steps=7 format=3 uid="uid://ctw2wck1wf3xv"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Enviroment/Deposit.gd" id="1_n732b"]
 [ext_resource type="PackedScene" uid="uid://driv7c25x05r" path="res://Prefabs/Buildings/Materials/Copper.tscn" id="2_j2syp"]
 [ext_resource type="Material" uid="uid://d3ccf8xvmvoac" path="res://Materials/Enviroment/Copper_Mat.tres" id="2_vdc3d"]
+[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Mat_Controller.gd" id="4_an3q8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ppfx"]
 size = Vector3(1.65527, 1.2251, 1.74219)
@@ -73,3 +74,4 @@ mesh = SubResource("BoxMesh_t1xey")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.630763, 0)
 
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+script = ExtResource("4_an3q8")

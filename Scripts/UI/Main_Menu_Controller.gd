@@ -15,6 +15,10 @@ var title_grow_duration := 1.2
 var has_shown_menu := false
 var play_pressed := false
 
+func _input(event):
+	if event.is_action_pressed("left_click") and not has_shown_menu:
+		skip_intro()
+		
 func _ready() -> void:
 	$Main_Menu_Intro.playing = true
 	title_text.scale = Vector2(0.01, 0.01)
@@ -51,20 +55,32 @@ func _process(delta: float) -> void:
 			show_menu_fade_in()
 			has_shown_menu = true
 
+func skip_intro():
+	# Detener animación de crecimiento
+	anim_time = title_grow_duration
+	title_text.scale = Vector2(1.2, 1.2) # Tamaño final
+	has_shown_menu = true
+
+	# Mostrar menú instantáneamente
+	menu_panel.modulate.a = 1.0
+
 func ease_out_cubic(t: float) -> float:
 	return 1.0 - pow(1.0 - t, 4)
 
+# Fundido para los botones del menu
 func show_menu_fade_in():
 	var fade_duration := 1.0
 	var tween := create_tween()
 	tween.tween_property(menu_panel, "modulate:a", 1.0, fade_duration)
 
+# Funcion para iniciar el juego
 func _on_play_btn_pressed() -> void:
 	play_pressed = true
 	menu_panel.visible = false
 	title_text.visible = false
 	start_play_transition()
 
+# Transicion entre el menu y el juego
 func start_play_transition():
 	$Main_Menu_Loop.stop()
 	$Explosion.play()
@@ -95,6 +111,7 @@ func start_play_transition():
 		black_tween.tween_callback(_load_next_scene)
 	)
 
+# Carga la siguiente escena
 func _load_next_scene():
 	var Planet1_scene = preload("res://Scenes/Planet_1.tscn")
 	get_tree().change_scene_to_packed(Planet1_scene)

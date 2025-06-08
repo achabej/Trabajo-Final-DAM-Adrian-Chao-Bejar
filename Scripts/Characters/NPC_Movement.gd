@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var nav = $"NavigationAgent3D"
 @onready var mesh = preload("res://addons/Godot_4_3D_Characters/addons/gdquest_beetle_bot/beetlebot_skin.tscn").instantiate()
 
-@export var wander_radius: float = 5.0
+@export var wander_radius: float = 12.0
 @export var wander_wait_time: float = randf() * 2
 @export var speed: float = 5.0                       # Velocidad del NPC
 @export var min_distance_to_player: float = 6.0     # Distancia mínima para acercarse al jugador
@@ -102,9 +102,9 @@ func _state_wandering(delta):
 
 func _choose_new_wander_target():
 	var random_direction = Vector3(
-		randf_range(-1, 1),
+		randf_range(-20, 20),
 		0,
-		randf_range(-1, 1)
+		randf_range(-20, 20)
 	).normalized()
 	var random_target = global_transform.origin + random_direction * wander_radius
 	nav_agent.target_position = random_target
@@ -226,12 +226,18 @@ func _state_dead():
 	var step1 = tween.tween_property(self, "scale", Vector3.ONE * 0.2, 1)
 	step1.set_trans(Tween.TRANS_SINE)
 	step1.set_ease(Tween.EASE_OUT)
-
+	
+	$Wandering_timer.start()	
+	
 	# Esperar a que termine step1
 	await step1.finished
 
 	queue_free()
 
-
+# Cambia de dirección si no se llega al objetivo actual
 func _on_wandering_timer_timeout() -> void:
-	pass # Replace with function body.
+	print("timer")
+	if not nav_agent.is_navigation_finished():
+		print("cambiando de dirección")
+		_choose_new_wander_target()
+		$Wandering_timer.start()  

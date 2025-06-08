@@ -1,21 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp70dvds381h8"]
+[gd_scene load_steps=6 format=3 uid="uid://cp70dvds381h8"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Mat_Type.gd" id="1_aablb"]
 [ext_resource type="Material" uid="uid://l51ulcokvh81" path="res://Materials/Enviroment/Iron_Mat.tres" id="1_kya8r"]
+[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Mat_Controller.gd" id="3_40m0r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bphbn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rllrh"]
 size = Vector3(0.913086, 0.878662, 0.827148)
-
-[sub_resource type="BoxMesh" id="BoxMesh_bphbn"]
 
 [node name="Iron" type="CharacterBody3D" groups=["Material"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_aablb")
 mat_type = "Iron"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_rllrh")
 
 [node name="Mesh" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -60,8 +58,18 @@ transform = Transform3D(0.280247, 0.077302, 0.160546, -0.0340217, 0.328664, -0.0
 material_override = ExtResource("1_kya8r")
 mesh = SubResource("BoxMesh_bphbn")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rllrh")
+
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000104666, -0.00506246, 0.000466704)
 shape = SubResource("BoxShape3D_rllrh")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+aabb = AABB(-0.644784, -0.382711, -0.627707, 1.28958, 0.765422, 1.25541)
+script = ExtResource("3_40m0r")
+
+[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]

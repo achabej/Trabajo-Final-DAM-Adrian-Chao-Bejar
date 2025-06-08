@@ -12,40 +12,46 @@ var resolutions = {
 }
 
 func _ready() -> void:
-	# Volumen
-	slider_volume.value = ConfigurationManager.volume
-	_update_volume(slider_volume.value)
-	slider_volume.connect("value_changed", _on_slider_volume_changed)
-
 	# Opciones de pantalla
 	option_screen.clear()
 	option_screen.add_item("Ventana")
 	option_screen.add_item("Pantalla completa")
 	option_screen.add_item("Sin bordes")
-	select_option_by_text(option_screen, ConfigurationManager.screen)
-	_update_screen_mode(ConfigurationManager.screen)
 	option_screen.connect("item_selected", _on_option_screen_selected)
 
 	# Resoluciones
 	option_resolution.clear()
 	for res_name in resolutions.keys():
 		option_resolution.add_item(res_name)
-	select_option_by_text(option_resolution, ConfigurationManager.resolution)
-	_update_resolution(ConfigurationManager.resolution)
 	option_resolution.connect("item_selected", _on_option_resolution_selected)
 
-func _on_slider_volume_changed(value: float) -> void:
-	ConfigurationManager.volume = value
-	_update_volume(value)
+	# Slider de volumen
+	slider_volume.connect("value_changed", _on_slider_volume_changed)
 
-func _update_volume(value: float) -> void:
-	var db = linear_to_db(value / 100.0)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db)
+	# Cargar datos actuales desde ConfigurationManager
+	_load_current_settings()
+
+func _load_current_settings() -> void:
+	# Volumen
+	slider_volume.value = ConfigurationManager.volume
+
+	# Modo de pantalla
+	select_option_by_text(option_screen, ConfigurationManager.screen)
+	_update_screen_mode(ConfigurationManager.screen)
+
+	# Resolución
+	select_option_by_text(option_resolution, ConfigurationManager.resolution)
+	_update_resolution(ConfigurationManager.resolution)
+
+func _on_slider_volume_changed(value: float) -> void:
+	ConfigurationManager.set_volume(value)
+	ConfigurationManager.save_settings()
 
 func _on_option_screen_selected(index: int) -> void:
 	var mode = option_screen.get_item_text(index)
-	ConfigurationManager.screen = mode
 	_update_screen_mode(mode)
+	ConfigurationManager.set_screen_mode(mode)
+	ConfigurationManager.save_settings()
 
 func _update_screen_mode(mode: String) -> void:
 	match mode:
@@ -60,8 +66,9 @@ func _update_screen_mode(mode: String) -> void:
 
 func _on_option_resolution_selected(index: int) -> void:
 	var res_text = option_resolution.get_item_text(index)
-	ConfigurationManager.resolution = res_text
 	_update_resolution(res_text)
+	ConfigurationManager.set_resolution(res_text)
+	ConfigurationManager.save_settings()
 
 func _update_resolution(res_text: String) -> void:
 	if resolutions.has(res_text):

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbw8ytli38188"]
+[gd_scene load_steps=7 format=3 uid="uid://bbw8ytli38188"]
 
 [ext_resource type="Material" uid="uid://cyklx7ui0ope2" path="res://Materials/Enviroment/Steel_Mat.tres" id="1_tr6vp"]
+[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Mat_Controller.gd" id="2_q1yx4"]
 
 [sub_resource type="GDScript" id="GDScript_14snt"]
 script/source = "extends CharacterBody3D
@@ -25,11 +26,14 @@ collision_mask = 2
 script = SubResource("GDScript_14snt")
 mat_type = "Steel_Plate"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 0.162957, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("1_tr6vp")
 gi_mode = 2
 mesh = SubResource("BoxMesh_4lkwk")
+skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -39,3 +43,10 @@ shape = SubResource("BoxShape3D_2ttqn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ro2j7")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+aabb = AABB(-0.644784, -0.382711, -0.627707, 1.28958, 0.765422, 1.25541)
+script = ExtResource("2_q1yx4")
+
+[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]
