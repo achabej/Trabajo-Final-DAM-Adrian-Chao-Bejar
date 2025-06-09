@@ -313,6 +313,7 @@ offset_right = -66.0
 offset_bottom = 6.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(1.35355, 1.35355)
 script = ExtResource("6_oplyg")
 
 [node name="Wood" type="Control" parent="CanvasLayer/HUD/Materials"]
@@ -634,10 +635,10 @@ anchor_left = 1.0
 anchor_top = 0.373
 anchor_right = 1.0
 anchor_bottom = 0.373
-offset_left = -198.0
-offset_top = -55.704
+offset_left = -264.0
+offset_top = -129.56
 offset_right = -14.0
-offset_bottom = 89.296
+offset_bottom = 67.44
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("13_vqwf6")
@@ -663,15 +664,17 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 
 [node name="Esc_Key" type="Control" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = 10.0
-offset_top = 8.0
+offset_top = 16.0
 offset_right = 114.0
-offset_bottom = 48.0
+offset_bottom = 56.0
+scale = Vector2(1.17104, 1.17104)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HUD/Esc_Key"]
 position = Vector2(24, 23)
@@ -692,6 +695,35 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 theme_override_font_sizes/normal_font_size = 22
 text = "Menu"
+
+[node name="F_Key" type="Control" parent="CanvasLayer/HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 52.0
+offset_right = 114.0
+offset_bottom = 92.0
+scale = Vector2(1.2451, 1.2451)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HUD/F_Key"]
+position = Vector2(24, 23)
+scale = Vector2(1.6875, 1.6875)
+texture = ExtResource("34_bx84a")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HUD/F_Key"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = 9.0
+offset_right = 89.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+theme_override_font_sizes/normal_font_size = 22
+text = "Construir"
 
 [node name="Menu" type="Control" parent="CanvasLayer"]
 process_mode = 3

@@ -21,17 +21,19 @@ var active_entry_timeout := 0
 
 func _ready():
 	ConveyorManager.register_conveyor(self)
+	set_physics_process(true)
 
 	entrada_rays = $Entradas.get_children()
 	salida_raycast = $Convey_Manager/RayCast3D
 
 func _process(_delta):
+	
 	if current_material and not is_instance_valid(current_material):
 		current_material = null
 	if active_entry != null and not is_instance_valid(active_entry):
 		active_entry = null
 	
-	$Label3D.text = str(active_entry)
+	$Label3D.text = str(current_material)
 	
 	cleanup_invalid_references()
 

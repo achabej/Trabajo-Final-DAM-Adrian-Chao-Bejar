@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://driv7c25x05r"]
+[gd_scene load_steps=5 format=3 uid="uid://driv7c25x05r"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Mat_Type.gd" id="1_kkil6"]
 [ext_resource type="Material" uid="uid://d3ccf8xvmvoac" path="res://Materials/Enviroment/Copper_Mat.tres" id="2_h6ths"]
-[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Controller.gd" id="3_xwtrl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_w5i7g"]
 
@@ -66,10 +65,3 @@ shape = SubResource("BoxShape3D_rllrh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000104666, -0.00506246, 0.000466704)
 shape = SubResource("BoxShape3D_rllrh")
-
-[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
-aabb = AABB(-0.644784, -0.382711, -0.627707, 1.28958, 0.765422, 1.25541)
-script = ExtResource("3_xwtrl")
-
-[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]

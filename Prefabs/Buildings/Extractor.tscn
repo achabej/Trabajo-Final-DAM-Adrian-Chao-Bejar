@@ -359,7 +359,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g0l13")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k65re"]
-size = Vector3(0.560303, 0.324555, 0.59668)
+size = Vector3(0.560303, 0.463181, 0.59668)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73mnf"]
 size = Vector3(0.113037, 1, 0.110352)
@@ -458,7 +458,7 @@ spawn_position = NodePath("MatSpawnPoint")
 spawn_interval = 1.5
 
 [node name="MatSpawnPoint" type="Node3D" parent="Test_Generator_Manager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.652, 0.656868, -9.81353e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03485, 0.656868, -1.31605e-07)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82454, 0.240582, -1.14877e-07)
@@ -485,7 +485,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_Generator_Manager/ConveyDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0130549, -4.52088e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0823678, -4.52088e-08)
 shape = SubResource("BoxShape3D_k65re")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
@@ -497,4 +497,3 @@ shape = SubResource("BoxShape3D_k65re")
 [connection signal="body_entered" from="Test_Generator_Manager/ConveyDetector" to="Test_Generator_Manager" method="_on_convey_detector_body_entered"]
 [connection signal="body_exited" from="Test_Generator_Manager/ConveyDetector" to="Test_Generator_Manager" method="_on_convey_detector_body_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="Test_Generator_Manager" method="_on_visible_on_screen_notifier_3d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="Test_Generator_Manager" method="_on_visible_on_screen_notifier_3d_screen_exited"]

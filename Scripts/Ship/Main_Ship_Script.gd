@@ -19,7 +19,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 				GameManager.add_mat(material_type, 1)
 				body.queue_free()
 			else:
-				print("Material", material_type, "no requerido en la fase actual")
+				GameManager.add_mat_to_player(material_type)
+				body.queue_free()
 		else:
 			print("Fase actual no válida:", phase_key)
 

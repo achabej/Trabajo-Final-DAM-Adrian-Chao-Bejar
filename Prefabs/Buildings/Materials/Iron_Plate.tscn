@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxn40balyyits"]
+[gd_scene load_steps=6 format=3 uid="uid://cxn40balyyits"]
 
 [ext_resource type="Material" uid="uid://l51ulcokvh81" path="res://Materials/Enviroment/Iron_Mat.tres" id="1_m3thn"]
-[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Controller.gd" id="2_3eypd"]
 
 [sub_resource type="GDScript" id="GDScript_14snt"]
 script/source = "extends CharacterBody3D
@@ -43,10 +42,3 @@ shape = SubResource("BoxShape3D_5w3rc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_tmed7")
-
-[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
-aabb = AABB(-0.644784, -0.382711, -0.627707, 1.28958, 0.765422, 1.25541)
-script = ExtResource("2_3eypd")
-
-[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]

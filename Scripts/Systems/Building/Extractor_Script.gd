@@ -10,7 +10,7 @@ var is_active: bool = false
 var blocking_materials := 0
 var current_conveyor: Node3D = null
 var can_produce: bool =  true
-var detected_material_scene: PackedScene = null  # Prefab detectado del depósito
+var blocking_materials_list := []
 
 # Animación
 @onready var mesh: Node3D = $"../Mesh"
@@ -22,12 +22,12 @@ func _ready() -> void:
 	var detector = get_node_or_null("ConveyDetector")
 	if detector:
 		detector.monitoring = true
-	set_physics_process(true)
 
 func _process(delta: float) -> void:
 	if not is_active:
 		return
-
+	
+	
 	spawn_timer += delta
 	if spawn_timer >= spawn_interval:
 		spawn_timer = 0.0
@@ -60,22 +60,23 @@ func _on_convey_detector_body_entered(body: Node3D) -> void:
 		current_conveyor = body
 	elif body.is_in_group("Material"):
 		blocking_materials += 1
-		#print("🚫 Zona de spawn bloqueada")
+		blocking_materials_list.append(body)
 
 func _on_convey_detector_body_exited(body: Node3D) -> void:
 	if body == current_conveyor:
 		current_conveyor = null
 	elif body.is_in_group("Material"):
 		blocking_materials = max(0, blocking_materials - 1)
-		#print("✅ Zona de spawn libre")
+		blocking_materials_list.erase(body)
+
 
 func snap_to_conveyor_center() -> void:
 	if is_instance_valid(current_conveyor):
 		global_position = current_conveyor.global_position
 
-
-func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
-	can_produce = false
-
 func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
-	can_produce = true
+	for mat in blocking_materials_list:
+		mat.queue_free()
+		print("Material eliminado del extractor")
+	blocking_materials_list.clear()
+	blocking_materials = 0

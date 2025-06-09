@@ -43,15 +43,15 @@ var phases : Dictionary = {
 	
 	"Phase4": {
 		"Resources": {	
-			"Chip": 15,
-			"Steel_Plate": 20,
+			"Chip": 5,
+			"Steel_Plate": 15,
 			"Cristal": 30
 		}
 	},
 	"Phase5": {
 		"Resources": {
-			"Chip": 20,
-			"Steel_Plate": 20,
+			"Chip": 6,
+			"Steel_Plate": 18,
 			"Copper_Plate": 15,
 			"Cristal": 40
 		}
@@ -135,24 +135,8 @@ func add_mat(material_type: String, amount: int = 1) -> void:
 	if max_amount == 0:
 		return
 	
-	# Si superamos el límite, depediendo del material se añadirá al inventario del jugador
-	# Se hace para que sea más facil obtener más materiales
 	if storage.get(material_type, 0) >= max_amount:
-		match material_type:
-			"Iron_Ingot":
-				BuildManager.increase_mat("Iron", 2)
-			"Copper_Ingot":
-				BuildManager.increase_mat("Copper", 2)
-			"Iron_Plate":
-				BuildManager.increase_mat("Iron", 3)
-			"Copper_Plate":
-				BuildManager.increase_mat("Copper", 3)
-			"Steel_Plate":
-				BuildManager.increase_mat("Iron", 2)
-				BuildManager.increase_mat("Copper", 2)
-			"Cristal":
-				BuildManager.increase_mat("Cristal", 1)
-		return
+		add_mat_to_player(material_type)
 	
 	# Si el almacen no tiene el material guardado, lo inicializará
 	if not storage.has(material_type):
@@ -169,6 +153,29 @@ func add_mat(material_type: String, amount: int = 1) -> void:
 	# Esperamos que el jugador confirme la fase acercándose a la nave
 	if _check_phase_complete():
 		print("✅ Fase completada, esperando confirmación en la nave...")
+
+func add_mat_to_player(material_type: String):
+	# Se añadirá al inventario del jugador
+	# Se hace para que sea más facil obtener más materiales
+	match material_type:
+		"Iron_Ingot":
+			BuildManager.increase_mat("Iron", 2)
+		"Copper_Ingot":
+			BuildManager.increase_mat("Copper", 2)
+		"Iron_Plate":
+			BuildManager.increase_mat("Iron", 3)
+		"Copper_Plate":
+			BuildManager.increase_mat("Copper", 3)
+		"Steel_Plate":
+			BuildManager.increase_mat("Iron", 2)
+			BuildManager.increase_mat("Copper", 2)
+		"Cristal":
+			BuildManager.increase_mat("Cristal", 1)
+		_:
+			var root = get_tree().current_scene
+			var metal_pipe = root.get_node("Audio/Metal_Pipe")
+			metal_pipe.play()
+	_update_ui()
 
 # Método para que el jugador confime pasar de fase
 func _on_player_confirm_phase():

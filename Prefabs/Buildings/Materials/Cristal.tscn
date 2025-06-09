@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://b5ga5oyphu56e"]
+[gd_scene load_steps=8 format=4 uid="uid://b5ga5oyphu56e"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Building/Mat_Type.gd" id="1_oi4bi"]
 [ext_resource type="Material" uid="uid://dyc3gpqrdpdci" path="res://Materials/Enviroment/Cristal_Mat.tres" id="2_27a7a"]
-[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Controller.gd" id="3_mf2rw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2iuy7"]
 
@@ -67,10 +66,3 @@ shape = SubResource("BoxShape3D_3gfjt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_wrb7g")
-
-[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
-aabb = AABB(-0.644784, -0.382711, -0.627707, 1.28958, 0.765422, 1.25541)
-script = ExtResource("3_mf2rw")
-
-[connection signal="screen_entered" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="VisibleOnScreenEnabler3D" method="_on_screen_exited"]

@@ -696,7 +696,7 @@ required_materials = Array[Dictionary]([{
 }])
 
 [node name="MatExitPoint" type="Node3D" parent="Test_Generator_Manager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51479, 0.492797, -8.614e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90982, 0.492797, -1.20675e-07)
 
 [node name="MatEnterPoints" type="Node3D" parent="Test_Generator_Manager"]
 
