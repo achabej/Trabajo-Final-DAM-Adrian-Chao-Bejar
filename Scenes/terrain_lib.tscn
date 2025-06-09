@@ -297,6 +297,7 @@ shape = SubResource("ConvexPolygonShape3D_6draa")
 
 [node name="block-grass-corner-overhang-low" parent="block-grass-corner-overhang-low2" index="0"]
 material_override = SubResource("StandardMaterial3D_wfyg0")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-corner-overhang-low2/block-grass-corner-overhang-low" index="0"]
 collision_layer = 5
@@ -309,6 +310,7 @@ shape = SubResource("ConvexPolygonShape3D_hk78t")
 
 [node name="block-grass-corner-overhang" parent="block-grass-corner-overhang2" index="0"]
 material_override = SubResource("StandardMaterial3D_i5ucj")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-corner-overhang2/block-grass-corner-overhang" index="0"]
 collision_layer = 5
@@ -321,6 +323,7 @@ shape = SubResource("ConvexPolygonShape3D_n4lap")
 
 [node name="block-grass-corner" parent="block-grass-corner2" index="0"]
 material_override = SubResource("StandardMaterial3D_j66n7")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-corner2/block-grass-corner" index="0"]
 collision_layer = 5
@@ -333,6 +336,7 @@ shape = SubResource("ConvexPolygonShape3D_h1ioa")
 
 [node name="block-grass-curve-half" parent="block-grass-curve-half2" index="0"]
 material_override = SubResource("StandardMaterial3D_58xbk")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-curve-half2/block-grass-curve-half" index="0"]
 collision_layer = 5
@@ -345,6 +349,7 @@ shape = SubResource("ConvexPolygonShape3D_udy4u")
 
 [node name="block-grass-curve-low" parent="block-grass-curve-low2" index="0"]
 material_override = SubResource("StandardMaterial3D_igxvg")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-curve-low2/block-grass-curve-low" index="0"]
 collision_layer = 5
@@ -357,6 +362,7 @@ shape = SubResource("ConvexPolygonShape3D_ultho")
 
 [node name="block-grass-curve" parent="block-grass-curve2" index="0"]
 material_override = SubResource("StandardMaterial3D_rsyg3")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-curve2/block-grass-curve" index="0"]
 collision_layer = 5
@@ -369,6 +375,7 @@ shape = SubResource("ConvexPolygonShape3D_apyik")
 
 [node name="block-grass-edge" parent="block-grass-edge2" index="0"]
 material_override = SubResource("StandardMaterial3D_jnvjj")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-edge2/block-grass-edge" index="0"]
 collision_layer = 5
@@ -381,6 +388,7 @@ shape = SubResource("ConvexPolygonShape3D_yirgn")
 
 [node name="block-grass-hexagon" parent="block-grass-hexagon2" index="0"]
 material_override = SubResource("StandardMaterial3D_cd55h")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-hexagon2/block-grass-hexagon" index="0"]
 collision_layer = 5
@@ -393,6 +401,7 @@ shape = SubResource("ConvexPolygonShape3D_nr5yv")
 
 [node name="block-grass-large-slope-narrow" parent="block-grass-large-slope-narrow2" index="0"]
 material_override = SubResource("StandardMaterial3D_py8xu")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large-slope-narrow2/block-grass-large-slope-narrow" index="0"]
 collision_layer = 5
@@ -405,6 +414,7 @@ shape = SubResource("ConvexPolygonShape3D_f8uck")
 
 [node name="block-grass-large-slope-steep-narrow" parent="block-grass-large-slope-steep-narrow2" index="0"]
 material_override = SubResource("StandardMaterial3D_gifvf")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large-slope-steep-narrow2/block-grass-large-slope-steep-narrow" index="0"]
 collision_layer = 5
@@ -417,6 +427,7 @@ shape = SubResource("ConvexPolygonShape3D_8iudp")
 
 [node name="block-grass-large-slope-steep" parent="block-grass-large-slope-steep2" index="0"]
 material_override = SubResource("StandardMaterial3D_j8r4t")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large-slope-steep2/block-grass-large-slope-steep" index="0"]
 collision_layer = 5
@@ -429,6 +440,7 @@ shape = SubResource("ConvexPolygonShape3D_1g4cf")
 
 [node name="block-grass-large-slope" parent="block-grass-large-slope2" index="0"]
 material_override = SubResource("StandardMaterial3D_qgi2o")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large-slope2/block-grass-large-slope" index="0"]
 collision_layer = 5
@@ -441,6 +453,7 @@ shape = SubResource("ConvexPolygonShape3D_qeu76")
 
 [node name="block-grass-large-tall" parent="block-grass-large-tall2" index="0"]
 material_override = SubResource("StandardMaterial3D_u1b2p")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large-tall2/block-grass-large-tall" index="0"]
 collision_layer = 5
@@ -453,6 +466,7 @@ shape = SubResource("ConvexPolygonShape3D_efvmf")
 
 [node name="block-grass-large" parent="block-grass-large2" index="0"]
 material_override = SubResource("StandardMaterial3D_aocmi")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-large2/block-grass-large" index="0"]
 collision_layer = 5
@@ -465,6 +479,7 @@ shape = SubResource("ConvexPolygonShape3D_wy8xy")
 
 [node name="block-grass-long" parent="block-grass-long2" index="0"]
 material_override = SubResource("StandardMaterial3D_w35d6")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-long2/block-grass-long" index="0"]
 collision_layer = 5
@@ -477,6 +492,7 @@ shape = SubResource("ConvexPolygonShape3D_pt43j")
 
 [node name="block-grass-low-hexagon" parent="block-grass-low-hexagon2" index="0"]
 material_override = SubResource("StandardMaterial3D_0p8r3")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-low-hexagon2/block-grass-low-hexagon" index="0"]
 collision_layer = 5
@@ -489,6 +505,7 @@ shape = SubResource("ConvexPolygonShape3D_kxdft")
 
 [node name="block-grass-low-large" parent="block-grass-low-large2" index="0"]
 material_override = SubResource("StandardMaterial3D_sj1f3")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-low-large2/block-grass-low-large" index="0"]
 collision_layer = 5
@@ -501,6 +518,7 @@ shape = SubResource("ConvexPolygonShape3D_8t0or")
 
 [node name="block-grass-low-long" parent="block-grass-low-long2" index="0"]
 material_override = SubResource("StandardMaterial3D_huwrg")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-low-long2/block-grass-low-long" index="0"]
 collision_layer = 5
@@ -513,6 +531,7 @@ shape = SubResource("ConvexPolygonShape3D_dual2")
 
 [node name="block-grass-low-narrow" parent="block-grass-low-narrow2" index="0"]
 material_override = SubResource("StandardMaterial3D_wla3r")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-low-narrow2/block-grass-low-narrow" index="0"]
 collision_layer = 5
@@ -525,6 +544,7 @@ shape = SubResource("ConvexPolygonShape3D_5wpyp")
 
 [node name="block-grass-low" parent="block-grass-low2" index="0"]
 material_override = SubResource("StandardMaterial3D_byptv")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-low2/block-grass-low" index="0"]
 collision_layer = 5
@@ -537,6 +557,7 @@ shape = SubResource("ConvexPolygonShape3D_rv13h")
 
 [node name="block-grass-narrow" parent="block-grass-narrow2" index="0"]
 material_override = SubResource("StandardMaterial3D_60iw3")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-narrow2/block-grass-narrow" index="0"]
 collision_layer = 5
@@ -546,6 +567,9 @@ collision_mask = 5
 shape = SubResource("ConvexPolygonShape3D_cvxn7")
 
 [node name="block-grass-overhang-corner2" parent="." instance=ExtResource("23_2misl")]
+
+[node name="block-grass-overhang-corner" parent="block-grass-overhang-corner2" index="0"]
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-corner2/block-grass-overhang-corner" index="0"]
 collision_layer = 5
@@ -558,6 +582,7 @@ shape = SubResource("ConvexPolygonShape3D_ig8fq")
 
 [node name="block-grass-overhang-edge" parent="block-grass-overhang-edge2" index="0"]
 material_override = SubResource("StandardMaterial3D_8iqg6")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-edge2/block-grass-overhang-edge" index="0"]
 collision_layer = 5
@@ -570,6 +595,7 @@ shape = SubResource("ConvexPolygonShape3D_64l3n")
 
 [node name="block-grass-overhang-hexagon" parent="block-grass-overhang-hexagon2" index="0"]
 material_override = SubResource("StandardMaterial3D_tf87e")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-hexagon2/block-grass-overhang-hexagon" index="0"]
 collision_layer = 5
@@ -582,6 +608,7 @@ shape = SubResource("ConvexPolygonShape3D_pxixd")
 
 [node name="block-grass-overhang-large-slope-narrow" parent="block-grass-overhang-large-slope-narrow2" index="0"]
 material_override = SubResource("StandardMaterial3D_ntkq3")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-large-slope-narrow2/block-grass-overhang-large-slope-narrow" index="0"]
 collision_layer = 5
@@ -594,6 +621,7 @@ shape = SubResource("ConvexPolygonShape3D_3am65")
 
 [node name="block-grass-overhang-large-slope-steep-narrow" parent="block-grass-overhang-large-slope-steep-narrow2" index="0"]
 material_override = SubResource("StandardMaterial3D_6mg8b")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-large-slope-steep-narrow2/block-grass-overhang-large-slope-steep-narrow" index="0"]
 collision_layer = 5
@@ -606,6 +634,7 @@ shape = SubResource("ConvexPolygonShape3D_yddeu")
 
 [node name="block-grass-overhang-large-slope-steep" parent="block-grass-overhang-large-slope-steep2" index="0"]
 material_override = SubResource("StandardMaterial3D_hgroh")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-large-slope-steep2/block-grass-overhang-large-slope-steep" index="0"]
 collision_layer = 5
@@ -618,6 +647,7 @@ shape = SubResource("ConvexPolygonShape3D_6iak2")
 
 [node name="block-grass-overhang-large-slope" parent="block-grass-overhang-large-slope2" index="0"]
 material_override = SubResource("StandardMaterial3D_utvga")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-large-slope2/block-grass-overhang-large-slope" index="0"]
 collision_layer = 5
@@ -631,6 +661,7 @@ shape = SubResource("ConvexPolygonShape3D_4y3fs")
 [node name="block-grass-overhang-large-tall" parent="block-grass-overhang-large-tall2" index="0"]
 transform = Transform3D(0.997603, 0, 0, 0, 0.997603, 0, 0, 0, 0.997603, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_pga63")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-large-tall2/block-grass-overhang-large-tall" index="0"]
 collision_layer = 5
@@ -643,6 +674,7 @@ shape = SubResource("ConvexPolygonShape3D_0vo5o")
 
 [node name="block-grass-overhang-large" parent="block-grass-overhang-large2" index="0"]
 material_override = SubResource("StandardMaterial3D_cld3a")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-large2/block-grass-overhang-large" index="0"]
 collision_layer = 5
@@ -655,6 +687,7 @@ shape = SubResource("ConvexPolygonShape3D_fr5gj")
 
 [node name="block-grass-overhang-long" parent="block-grass-overhang-long2" index="0"]
 material_override = SubResource("StandardMaterial3D_bty1p")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-long2/block-grass-overhang-long" index="0"]
 collision_layer = 5
@@ -667,6 +700,7 @@ shape = SubResource("ConvexPolygonShape3D_s6anv")
 
 [node name="block-grass-overhang-low-hexagon" parent="block-grass-overhang-low-hexagon2" index="0"]
 material_override = SubResource("StandardMaterial3D_5sni8")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-low-hexagon2/block-grass-overhang-low-hexagon" index="0"]
 collision_layer = 5
@@ -679,6 +713,7 @@ shape = SubResource("ConvexPolygonShape3D_e12c5")
 
 [node name="block-grass-overhang-low-large" parent="block-grass-overhang-low-large2" index="0"]
 material_override = SubResource("StandardMaterial3D_gv3lp")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-low-large2/block-grass-overhang-low-large" index="0"]
 collision_layer = 5
@@ -691,6 +726,7 @@ shape = SubResource("ConvexPolygonShape3D_uwa51")
 
 [node name="block-grass-overhang-low-long" parent="block-grass-overhang-low-long2" index="0"]
 material_override = SubResource("StandardMaterial3D_yh47d")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-low-long2/block-grass-overhang-low-long" index="0"]
 collision_layer = 5
@@ -703,6 +739,7 @@ shape = SubResource("ConvexPolygonShape3D_mlfvy")
 
 [node name="block-grass-overhang-low-narrow" parent="block-grass-overhang-low-narrow2" index="0"]
 material_override = SubResource("StandardMaterial3D_6lewc")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-low-narrow2/block-grass-overhang-low-narrow" index="0"]
 collision_layer = 5
@@ -715,6 +752,7 @@ shape = SubResource("ConvexPolygonShape3D_p3bwc")
 
 [node name="block-grass-overhang-low" parent="block-grass-overhang-low2" index="0"]
 material_override = SubResource("StandardMaterial3D_axi2m")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-low2/block-grass-overhang-low" index="0"]
 collision_layer = 5
@@ -727,6 +765,7 @@ shape = SubResource("ConvexPolygonShape3D_5eeev")
 
 [node name="block-grass-overhang-narrow" parent="block-grass-overhang-narrow2" index="0"]
 material_override = SubResource("StandardMaterial3D_q3fef")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass-overhang-narrow2/block-grass-overhang-narrow" index="0"]
 collision_layer = 5
@@ -739,6 +778,7 @@ shape = SubResource("ConvexPolygonShape3D_8hbmh")
 
 [node name="block-grass" parent="block-grass2" index="0"]
 material_override = SubResource("StandardMaterial3D_b4rto")
+lod_bias = 0.2
 
 [node name="StaticBody3D" type="StaticBody3D" parent="block-grass2/block-grass" index="0"]
 collision_layer = 5
@@ -751,6 +791,7 @@ shape = SubResource("ConvexPolygonShape3D_2vxa2")
 
 [node name="grass" parent="grass2" index="0"]
 material_override = SubResource("StandardMaterial3D_rsgy2")
+lod_bias = 0.2
 
 [node name="Copper_Deposit" parent="." instance=ExtResource("42_hfi1e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
