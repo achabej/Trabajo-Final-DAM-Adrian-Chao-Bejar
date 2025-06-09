@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://buv6x5ttnwmou"]
+[gd_scene load_steps=32 format=3 uid="uid://buv6x5ttnwmou"]
 
 [ext_resource type="MeshLibrary" uid="uid://cu4e8vajjvl1u" path="res://terrain_lib_1.tres" id="1_02uvw"]
 [ext_resource type="Texture2D" uid="uid://bpo8mm5d2dpml" path="res://Materials/Enviroment/Cartoon_green_texture_grass.jpg" id="2_3nb35"]
@@ -15,9 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/Systems/Managers/Scene_Loader_Script.gd" id="13_t2qre"]
 [ext_resource type="AudioStream" uid="uid://dn850pl5nr25r" path="res://Audio/Music/653695__betabeats__lofi-piano-beat.wav" id="14_iyyoy"]
 [ext_resource type="AudioStream" uid="uid://d2tpl3oeyml55" path="res://Audio/mixkit-mechanical-crate-pick-up-3154.wav" id="15_7gvxh"]
-[ext_resource type="Script" path="res://Scripts/Systems/Volume_Script_3D.gd" id="15_v2gpq"]
 [ext_resource type="AudioStream" uid="uid://cag2x0rgu3jry" path="res://Audio/mixkit-unlock-game-notification-253.wav" id="16_gmc63"]
-[ext_resource type="Script" path="res://Scripts/Systems/Volume_Script_2D.gd" id="17_2nxrc"]
 [ext_resource type="AudioStream" uid="uid://cegunpov6sh1g" path="res://Audio/Ship/mix_05s (audio-joiner.com).mp3" id="17_smtbv"]
 [ext_resource type="AudioStream" uid="uid://nu1jeup12cqt" path="res://Audio/metal-pipe-329305.mp3" id="20_11285"]
 
@@ -654,22 +652,20 @@ environment = SubResource("Environment_4d2ix")
 [node name="Audio" type="Node3D" parent="."]
 
 [node name="Rocket_Start" type="AudioStreamPlayer3D" parent="Audio"]
-script = ExtResource("15_v2gpq")
 
 [node name="Planet_Loop" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("14_iyyoy")
 autoplay = true
-script = ExtResource("17_2nxrc")
 
 [node name="MatCompleteSound" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("16_gmc63")
-script = ExtResource("17_2nxrc")
 
 [node name="Build_Sound" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("15_7gvxh")
-script = ExtResource("17_2nxrc")
 
 [node name="Metal_Pipe" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("20_11285")
+volume_db = 10.0
+max_distance = 10000.0
 
 [editable path="Terrain/Main_Ship_Constructor/Main_Ship"]

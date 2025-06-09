@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c551hwjypuxim"
-path.s3tc="res://.godot/imported/PlatesFactory_colormap.png-4ef0272c3f9b205e5e13198c417fedad.s3tc.ctex"
+uid="uid://bwynmg3w21aek"
+path.s3tc="res://.godot/imported/Convey_Curve_colormap.png-e57985fd595681756f32facae96353c8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "5b3d5ba64d94fac3176b804d1a1d3433"
+}
 
 [deps]
 
-source_file="res://Models/Original/PlatesFactory_colormap.png"
-dest_files=["res://.godot/imported/PlatesFactory_colormap.png-4ef0272c3f9b205e5e13198c417fedad.s3tc.ctex"]
+source_file="res://Models/Original/Convey_Curve_colormap.png"
+dest_files=["res://.godot/imported/Convey_Curve_colormap.png-e57985fd595681756f32facae96353c8.s3tc.ctex"]
 
 [params]
 

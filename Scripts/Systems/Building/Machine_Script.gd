@@ -19,7 +19,7 @@ class_name MachineWithInput
 var anim_time := 0.0
 var original_scale := Vector3.ONE
 
-var material_storage := {}
+@export var material_storage := {"Steel_Plate":300, "Copper_Plate":300, "Cristal":500}
 @onready var spawn_timer: Timer = $SpawnTimer
 var is_active: bool = false
 var current_conveyor: Node3D = null
