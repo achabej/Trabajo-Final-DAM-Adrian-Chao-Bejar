@@ -236,8 +236,5 @@ func _state_dead():
 
 # Cambia de dirección si no se llega al objetivo actual
 func _on_wandering_timer_timeout() -> void:
-	print("timer")
-	if not nav_agent.is_navigation_finished():
-		print("cambiando de dirección")
-		_choose_new_wander_target()
-		$Wandering_timer.start()  
+	_choose_new_wander_target()
+	$Wandering_timer.start()

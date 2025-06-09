@@ -137,7 +137,7 @@ func handle_jetpack(delta: float) -> void:
 	# Maneja el cooldown del jetpack
 	if not jetpack_enabled:
 		jetpack_cooldown_timer += delta
-		if jetpack_cooldown_timer >= 0.75:
+		if jetpack_cooldown_timer >= 0.15:
 			jetpack_enabled = true
 			jetpack_cooldown_timer = 0.0
 

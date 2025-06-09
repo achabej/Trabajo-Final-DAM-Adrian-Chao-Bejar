@@ -362,7 +362,7 @@ shadow_mesh = SubResource("ArrayMesh_g0l13")
 size = Vector3(0.560303, 0.463181, 0.59668)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_73mnf"]
-size = Vector3(0.113037, 1, 0.110352)
+size = Vector3(0.0449219, 1, 0.0507813)
 
 [node name="Extractor" type="StaticBody3D" groups=["Extractor", "Machine"]]
 collision_layer = 3
