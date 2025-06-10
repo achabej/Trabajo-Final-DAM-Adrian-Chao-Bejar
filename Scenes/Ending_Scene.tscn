@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://bfa3fl0naekqi"]
+[gd_scene load_steps=71 format=4 uid="uid://bfa3fl0naekqi"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/Managers/Ending_Scene_Manager.gd" id="1_lgcyy"]
 [ext_resource type="Texture2D" uid="uid://cxbbkml4ilvx5" path="res://Models/Original/Ship_Model_SteelRefinery_colormap.png" id="1_ujvxy"]
@@ -15,7 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://krn2pp5qmhuv" path="res://Audio/Dialog_Beeps/bleep027.mp3" id="11_yib4d"]
 [ext_resource type="Texture2D" uid="uid://cn377usx22q4b" path="res://addons/kenney_input_texture/tile_0077.png" id="12_isk2c"]
 [ext_resource type="AudioStream" uid="uid://cfyrvg8kdb3j5" path="res://Audio/Music/629176__holizna__lofi-vinyl-e-piano-loop-95-bpm.wav" id="12_usu81"]
-[ext_resource type="Script" path="res://Scripts/Systems/Volume_Script_3D.gd" id="14_0qy4y"]
 [ext_resource type="AudioStream" uid="uid://dl4bbcliotsol" path="res://Audio/Player/loopingthrust-95548.mp3" id="14_o0p88"]
 [ext_resource type="AudioStream" uid="uid://cjr2p61ktubic" path="res://Audio/metal-beaten-sfx-230501.mp3" id="16_703yh"]
 
@@ -1241,17 +1240,14 @@ wait_time = 5.0
 [node name="Ending_Loop" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_usu81")
 autoplay = true
-script = ExtResource("14_0qy4y")
 
 [node name="Thrusters_Loop" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("14_o0p88")
 unit_size = 2.0
 autoplay = true
-script = ExtResource("14_0qy4y")
 
 [node name="Sound_Effects" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("16_703yh")
-script = ExtResource("14_0qy4y")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="timeout" from="CanvasLayer/Dialogue/TypeTimer" to="CanvasLayer/Dialogue" method="_on_type_timer_timeout"]
