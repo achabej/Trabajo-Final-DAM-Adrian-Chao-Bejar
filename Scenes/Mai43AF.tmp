@@ -1,0 +1,401 @@
+[gd_scene load_steps=19 format=3 uid="uid://bcckwak36oq4l"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Main_Menu_Controller.gd" id="1_b7ciy"]
+[ext_resource type="Texture2D" uid="uid://53jbr46sikab" path="res://addons/Large_Background_Texture 1024x1024/Purple Nebula/Purple_Nebula_06-1024x1024.png" id="2_w1txq"]
+[ext_resource type="Texture2D" uid="uid://dk87uev4lkeaf" path="res://addons/Large Planets 512x512/Gaseous/Blue Giant/BlueGiant_04-512x512.png" id="3_m78gf"]
+[ext_resource type="Texture2D" uid="uid://bdktnjolsn12p" path="res://addons/Large Planets 512x512/Solid/Tropical/Tropical_01-512x512.png" id="4_kabct"]
+[ext_resource type="Texture2D" uid="uid://cortggn3l2374" path="res://Textures/Main_Menu/Space_Station_Asset.png" id="5_8nkdi"]
+[ext_resource type="Texture2D" uid="uid://cp6o2i4f2vtoy" path="res://Textures/Main_Menu/3debc95274cc405df4ec31af8f065593.png" id="6_gshoy"]
+[ext_resource type="FontFile" uid="uid://83h32egk0jtl" path="res://Textures/Fonts/kleptocracy titling bd.otf" id="6_yu010"]
+[ext_resource type="AudioStream" uid="uid://bvaity5bbsgsj" path="res://Audio/Music/752527__teffyd1__lofi-beat.mp3" id="8_nqjh6"]
+[ext_resource type="Script" path="res://Scripts/UI/Configuration_script.gd" id="8_qvrr1"]
+[ext_resource type="AudioStream" uid="uid://x6a55wbqa7fi" path="res://Audio/Music/sci-fi-reverse-1-proceesed-97689.mp3" id="9_27tff"]
+[ext_resource type="AudioStream" uid="uid://cidtp710ygarx" path="res://Audio/mixkit-distant-explosion-1690.wav" id="10_rtpv3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_834k6"]
+bg_color = Color(0.376471, 0.376471, 0.376471, 0.678431)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88k75"]
+bg_color = Color(0.243893, 0.602565, 0.754479, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pabhr"]
+bg_color = Color(0.190956, 0.36866, 0.457038, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14smg"]
+bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07n1v"]
+bg_color = Color(0.243893, 0.602565, 0.754479, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6twv"]
+bg_color = Color(0.190956, 0.36866, 0.457038, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52ksq"]
+bg_color = Color(0.0177389, 0.161982, 0.208484, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b7ciy")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(0.800491, 0.800491, 0.800491, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_w1txq")
+
+[node name="Tropical01-512x512" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_top = 441.0
+offset_right = 353.0
+offset_bottom = 349.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.466098
+scale = Vector2(0.274703, 0.274703)
+texture = ExtResource("4_kabct")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Tropical01-512x513" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = 10.0
+offset_right = 1645.0
+offset_bottom = 1177.0
+grow_vertical = 2
+rotation = 0.255774
+scale = Vector2(0.358578, 0.358578)
+texture = ExtResource("3_m78gf")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Space_station" type="Sprite2D" parent="Background"]
+position = Vector2(885, 81)
+rotation = -0.366155
+scale = Vector2(0.0742188, 0.0742188)
+texture = ExtResource("5_8nkdi")
+
+[node name="Explosion" type="Sprite2D" parent="Background/Space_station"]
+position = Vector2(-170.262, -7.56523)
+rotation = 0.201509
+scale = Vector2(2.61816, 2.61816)
+texture = ExtResource("6_gshoy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -204.0
+offset_right = 465.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(450, 77)
+theme_override_colors/font_shadow_color = Color(0, 0.597004, 0.954521, 1)
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/shadow_offset_x = 8
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 120
+bbcode_enabled = true
+text = "Overcomplicate it!"
+
+[node name="Menu_default" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -16.0
+offset_right = 151.0
+offset_bottom = 265.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Menu_default"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_834k6")
+
+[node name="Play_Btn" type="Button" parent="Menu_default"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -102.0
+offset_right = 82.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_yu010")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/hover = SubResource("StyleBoxFlat_88k75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
+text = "Jugar"
+
+[node name="Options_Btn" type="Button" parent="Menu_default"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -37.0
+offset_right = 82.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_yu010")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/hover = SubResource("StyleBoxFlat_88k75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
+text = "Opciones"
+
+[node name="Exit_Btn" type="Button" parent="Menu_default"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 32.0
+offset_right = 82.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_yu010")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/hover = SubResource("StyleBoxFlat_88k75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pabhr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_14smg")
+text = "Salir"
+
+[node name="Configuration" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -55.0
+offset_right = 174.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_qvrr1")
+
+[node name="Panel" type="Panel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -122.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_834k6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -163.0
+offset_right = -6.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "
+[center]Configuración"
+fit_content = true
+
+[node name="Return_Btn" type="Button" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = 109.5
+offset_right = 51.0
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_yu010")
+theme_override_styles/hover = SubResource("StyleBoxFlat_07n1v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p6twv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_52ksq")
+text = "Vovler
+"
+
+[node name="Volume_Slider" type="HSlider" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -120.5
+offset_right = -22.0
+offset_bottom = -83.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -78.0
+offset_right = -6.0
+offset_bottom = -223.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]Volumen"
+fit_content = true
+
+[node name="Screen_Option" type="OptionButton" parent="Configuration"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 64.0
+offset_right = 232.0
+offset_bottom = 112.0
+scale = Vector2(1, 0.92)
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = -141.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]Pantalla"
+fit_content = true
+
+[node name="Resolution_Option" type="OptionButton" parent="Configuration"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 148.0
+offset_right = 243.0
+offset_bottom = 196.0
+scale = Vector2(1, 0.96)
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Configuration"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 88.0
+offset_right = -8.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_yu010")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "
+[center]resolución"
+fit_content = true
+
+[node name="flash_overlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="black_overlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Main_Menu_Loop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_nqjh6")
+
+[node name="Main_Menu_Intro" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_27tff")
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_rtpv3")
+
+[connection signal="pressed" from="Menu_default/Play_Btn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="Menu_default/Options_Btn" to="." method="_on_options_btn_pressed"]
+[connection signal="pressed" from="Menu_default/Exit_Btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="Configuration/Return_Btn" to="Configuration" method="_on_return_btn_pressed"]
+[connection signal="changed" from="Configuration/Volume_Slider" to="Configuration" method="_on_slider_volume_changed"]
+[connection signal="item_selected" from="Configuration/Screen_Option" to="Configuration" method="_on_option_screen_selected"]
+[connection signal="item_selected" from="Configuration/Resolution_Option" to="Configuration" method="_on_option_resolution_selected"]

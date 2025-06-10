@@ -48,13 +48,16 @@ func update_message(message: String, text_size: float, text_veloc: float) -> voi
 	type_timer.start()
 
 func _process_command(command: String) -> void:
+	#Si es un numero cambia la velocidad de las letras
 	if command.is_valid_float():
 		type_timer.wait_time = command.to_float()
+	#Si es pause pausa el texto por x segundos
 	elif command.begins_with("pause="):
 		var duration = command.replace("pause=", "").to_float()
 		type_timer.stop()
 		pause_timer.start(duration)
 
+#Omite la generación de texto cuando le demos click izquiedo
 func skip_typing():
 	if not is_typing:
 		return
