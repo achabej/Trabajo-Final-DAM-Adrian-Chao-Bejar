@@ -42,7 +42,7 @@ func runSpawn():
 	if SpawnActor:
 		var ActorInstance = Actor.instantiate()
 		get_tree().root.add_child(ActorInstance)
-		ActorInstance.global_position = $SpawnPoint.global_position
+		#ActorInstance.global_position = $SpawnPoint.global_position
 
 # Gestiona la entrada de objetos en el área
 func _on_body_entered(body: Node3D) -> void:

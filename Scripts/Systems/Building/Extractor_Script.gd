@@ -27,7 +27,6 @@ func _process(delta: float) -> void:
 	if not is_active:
 		return
 	
-	
 	spawn_timer += delta
 	if spawn_timer >= spawn_interval:
 		spawn_timer = 0.0
@@ -68,15 +67,3 @@ func _on_convey_detector_body_exited(body: Node3D) -> void:
 	elif body.is_in_group("Material"):
 		blocking_materials = max(0, blocking_materials - 1)
 		blocking_materials_list.erase(body)
-
-
-func snap_to_conveyor_center() -> void:
-	if is_instance_valid(current_conveyor):
-		global_position = current_conveyor.global_position
-
-func _on_visible_on_screen_notifier_3d_screen_entered() -> void:
-	for mat in blocking_materials_list:
-		mat.queue_free()
-		print("Material eliminado del extractor")
-	blocking_materials_list.clear()
-	blocking_materials = 0

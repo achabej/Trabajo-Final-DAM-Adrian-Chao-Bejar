@@ -82,14 +82,6 @@ func _physics_process(delta: float) -> void:
 	#Detener el movimiento si hay un dialogo
 	check_dialog_state(delta)
 	
-	# Aplica impulso a cuerpos rígidos con los que colisiona
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision and collision.get_collider() is RigidBody3D:
-			var rigid = collision.get_collider() as RigidBody3D
-			var force_dir = velocity.normalized()
-			rigid.apply_central_impulse(force_dir * 0.5)
-
 	# Procesa funcionalidades del jugador
 	handle_jetpack(delta)
 	handle_shooting(delta)
