@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dfwax7fpafe1t" path="res://Models/Original/Convey_Line.glb" id="2_4qs1k"]
 [ext_resource type="Texture2D" uid="uid://dx32wr1quj112" path="res://Models/Original/Landing_Pad_SteelRefinery_colormap.png" id="2_15dpd"]
+[ext_resource type="Material" uid="uid://qorfm5rakhmf" path="res://Materials/Basic_Mat.tres" id="3_xwp7c"]
 [ext_resource type="Script" path="res://Scripts/Ship/Main_Ship_Script.gd" id="3_yqy25"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p3ogs"]
@@ -41,9 +42,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_whyhp")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cc1x"]
-albedo_texture = ExtResource("2_15dpd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbxpl"]
 resource_name = "Material.001"
@@ -129,7 +127,13 @@ shape = SubResource("ConvexPolygonShape3D_p3ogs")
 [node name="Mesh" type="Node3D" parent="."]
 
 [node name="Convey_Line" parent="Mesh" instance=ExtResource("2_4qs1k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79603, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92538, 0, 0)
+
+[node name="conveyor" parent="Mesh/Convey_Line" index="0"]
+material_override = ExtResource("3_xwp7c")
+
+[node name="Cube" parent="Mesh/Convey_Line" index="1"]
+material_override = ExtResource("3_xwp7c")
 
 [node name="Cube_007" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.206371, 0, 0, 0, 0.475778, 0, 0, 0, 0.475778, 5.46248, 0.777339, -0.00858203)
@@ -139,7 +143,7 @@ skeleton = NodePath("")
 
 [node name="Cube_001" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.842905, 0, 0, 0, 0.357999, 0, 0, 0, 1.86653, -4.74108, 0, -0.142468)
-material_override = SubResource("StandardMaterial3D_2cc1x")
+material_override = ExtResource("3_xwp7c")
 mesh = SubResource("ArrayMesh_7x04m")
 skeleton = NodePath("")
 
@@ -175,3 +179,5 @@ shape = SubResource("BoxShape3D_3yvmg")
 [connection signal="body_entered" from="Ship_Controller/MatEnterPoints/Enter1/Area3D" to="Ship_Controller" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="Ship_Controller" method="_on_area_3d_player_entered"]
 [connection signal="body_exited" from="Area3D2" to="Ship_Controller" method="_on_area_3d_player_exited"]
+
+[editable path="Mesh/Convey_Line"]
