@@ -41,7 +41,7 @@ var is_dialogue_active := false
 
 func _process(delta: float) -> void:
 	if is_instance_valid(dialogue_node) and Input.is_action_just_pressed("left_click"):
-		DialogManager.on_click_advance()
+		on_click_advance()
 
 func register_dialogue_node(node: Control) -> void:
 	dialogue_node = node

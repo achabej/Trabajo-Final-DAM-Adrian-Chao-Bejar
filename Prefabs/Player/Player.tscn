@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dtyqm35g18wg4"]
+[gd_scene load_steps=57 format=3 uid="uid://dtyqm35g18wg4"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_Controller.gd" id="1_jhext"]
 [ext_resource type="PackedScene" uid="uid://bcl3ymskyc5x" path="res://Prefabs/Effects/Thruster_Effect.tscn" id="2_24l4c"]
@@ -20,7 +20,6 @@
 [ext_resource type="AudioStream" uid="uid://bhanajf38p76y" path="res://Audio/Dialog_Beeps/bleep014.mp3" id="10_k5355"]
 [ext_resource type="AudioStream" uid="uid://krn2pp5qmhuv" path="res://Audio/Dialog_Beeps/bleep027.mp3" id="11_y0k01"]
 [ext_resource type="Texture2D" uid="uid://cn377usx22q4b" path="res://addons/kenney_input_texture/tile_0077.png" id="13_7jao5"]
-[ext_resource type="Script" path="res://Scripts/UI/Phase_Controller.gd" id="13_vqwf6"]
 [ext_resource type="Script" path="res://Scripts/UI/Dialogue_Script.gd" id="14_rt7f2"]
 [ext_resource type="Script" path="res://Scripts/UI/Game_Menu_Controller.gd" id="17_o71tr"]
 [ext_resource type="FontFile" uid="uid://83h32egk0jtl" path="res://Textures/Fonts/kleptocracy titling bd.otf" id="18_bs3kl"]
@@ -622,7 +621,6 @@ offset_right = -14.0
 offset_bottom = 67.44
 grow_horizontal = 0
 grow_vertical = 2
-script = ExtResource("13_vqwf6")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/HUD/Phase_Controller"]
 modulate = Color(1, 1, 1, 0.47451)
