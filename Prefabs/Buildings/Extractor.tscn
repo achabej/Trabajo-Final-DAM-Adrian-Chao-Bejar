@@ -488,12 +488,9 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02764, 0.0823678, -4.52088e-08)
 shape = SubResource("BoxShape3D_k65re")
 
-[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
 [connection signal="body_entered" from="Test_Generator_Manager/DepositDetector/Area3D" to="Test_Generator_Manager/DepositDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="Test_Generator_Manager/DepositDetector/Area3D" to="Test_Generator_Manager/DepositDetector" method="_on_body_exited"]
 [connection signal="body_entered" from="Test_Generator_Manager/ConveyDetector" to="Test_Generator_Manager" method="_on_convey_detector_body_entered"]
 [connection signal="body_exited" from="Test_Generator_Manager/ConveyDetector" to="Test_Generator_Manager" method="_on_convey_detector_body_exited"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="Test_Generator_Manager" method="_on_visible_on_screen_notifier_3d_screen_entered"]
