@@ -1,2 +1,3 @@
 # OVERCOMPLICATE IT!
 ## A GAME ABOUT OVERCOMPLICATING YOURSELF TO ESCAPE A PLANET
+[See Doc (PDF)](Docs/Proyecto final DAM_Adrian_Chao_Bejar.pdf)
