@@ -6,4 +6,6 @@ Construye fábricas y extrae recursos para construir una nave y escapar del plan
 
 Bueno, siempre que no te sobrecompliques la vida ;)
 
+![image](https://github.com/user-attachments/assets/2aed621a-a793-4fbe-a958-f821f55b8284)
+
 [Ver documentación (PDF)](Docs/Proyecto_final_DAM_Adrian_Chao_Bejar.pdf)
