@@ -665,7 +665,6 @@ stream = ExtResource("15_7gvxh")
 
 [node name="Metal_Pipe" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("20_11285")
-volume_db = 10.0
 max_distance = 10000.0
 
 [editable path="Terrain/Main_Ship_Constructor/Main_Ship"]
