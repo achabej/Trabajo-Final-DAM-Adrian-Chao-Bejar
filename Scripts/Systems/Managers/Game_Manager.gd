@@ -70,7 +70,7 @@ func init():
 	
 	# Iniciamos el juego en modo play
 	currentState = State.Play
-	
+	all_phases_completed = false
 	#Inicializa el elemento del fundido en negro
 	init_black_overlay()
 	
@@ -245,13 +245,13 @@ func _update_ui() -> void:
 	
 	# Si la fase está completa, mostrar solo el mensaje para ir a la nave
 	if _check_phase_complete():
-		var header = "[b]Phase %d[/b]" % current_phase
+		var header = "[b]Phase %d[/b][b] - %s[/b]" % [current_phase, phase_name_by_number(current_phase)]
 		var message = "[color=green]Ve a la plataforma para construir la siguiente pieza[/color]"
-		phase_controller.update_phase_text("%s\n%s" % [header, message])
+		phase_controller.update_phase_text("%s %s" % [header, message])
 		return
 
 	# Si no está completa, mostrar materiales normalmente
-	var text = "[b]Phase %d[/b]\n" % current_phase
+	var text = "[b]Phase %d[/b][b] - %s[/b]" % [current_phase, phase_name_by_number(current_phase)]
 	for mat in phases[phase_key]["Resources"].keys():
 		var have = storage.get(mat, 0)
 		var need = phases[phase_key]["Resources"][mat]
@@ -261,6 +261,17 @@ func _update_ui() -> void:
 			text += "    %s %d/%d\n" % [mat, have, need]
 	
 	phase_controller.update_phase_text(text)
+
+# Añade el nombre del objeto que se esta contruyendo en la fase actual
+func phase_name_by_number(num_phase: int):
+	var n = ""
+	match(num_phase):
+		1: n = "Base \n"
+		2: n = "Motores \n"
+		3: n = "Alas \n"
+		4: n = "Antena \n"
+		5: n = "Motor de Salto \n"
+	return n
 
 # Muestra el dialogo de la siguiente fase, oculta la construccion seleccionada si la tiene
 func _on_phase_changed(new_phase: int):
