@@ -2,10 +2,12 @@
 
 [ext_resource type="Material" uid="uid://l51ulcokvh81" path="res://Materials/Enviroment/Iron_Mat.tres" id="1_4xgqq"]
 [ext_resource type="Script" path="res://Scripts/Systems/Enviroment/Deposit.gd" id="1_vqlnc"]
-[ext_resource type="Script" path="res://Scripts/Systems/Visibility_Mat_Controller.gd" id="3_e6sr6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yofiv"]
+size = Vector3(1.65527, 1.2251, 1.74219)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ppfx"]
-size = Vector3(1.65527, 1.2251, 1.74219)
+size = Vector3(0.0588379, 1.2251, 0.0605469)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t1xey"]
 
@@ -18,7 +20,7 @@ resource_type = "Iron"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176514, 0)
-shape = SubResource("BoxShape3D_1ppfx")
+shape = SubResource("BoxShape3D_yofiv")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -70,6 +72,3 @@ mesh = SubResource("BoxMesh_t1xey")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.630763, 0)
-
-[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
-script = ExtResource("3_e6sr6")

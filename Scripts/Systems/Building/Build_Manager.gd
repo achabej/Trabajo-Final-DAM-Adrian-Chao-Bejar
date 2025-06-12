@@ -24,13 +24,6 @@ var building_costs = {
 	"ChipsFactory": {"Iron": 20, "Copper": 20, "Cristal": 30}
 }
 
-@onready var grid_map : GridMap
-var CurrentSpawnable: StaticBody3D = null
-var AbleToBuild: bool = false
-var OnGrid: bool = true
-var TargetGridCell: Vector3 = Vector3.ZERO
-var MoveSpeed: float = 15.0
-
 #Cantidad materiales
 var materiales = {
 	"Wood" : 0,
@@ -38,6 +31,14 @@ var materiales = {
 	"Copper" : 0,
 	"Cristal" : 0
 }
+
+
+@onready var grid_map : GridMap
+var CurrentSpawnable: StaticBody3D = null
+var AbleToBuild: bool = false
+var OnGrid: bool = true
+var TargetGridCell: Vector3 = Vector3.ZERO
+var MoveSpeed: float = 15.0
 
 # Texturas
 var building_green : Material = preload("res://Materials/Building/building_green.tres")

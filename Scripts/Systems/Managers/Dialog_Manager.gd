@@ -12,19 +12,19 @@ var dialogue_text := {
 		"[0.04]Tengo que buscar mas materiales para hacer los motores"
 	],
 	3: [
-		"[0.04]Guay! Parece ser suficiente para salir del planeta... creo que aun le falta algo",
+		"[0.04]Guay! Parece ser suficiente para salir del planeta... [pause=0.3] creo que aun le falta algo",
 		"[0.04]Ya se, le añadiré unas alas para mayor aerodinamica",
 	],
 	4: [
-		"[0.1]...[0.04] Aun parece incompleto, ¿Qué mas deberia añadirle?",
-		"[0.04]¿Una antena de comunicaciones quizas?, me gusta pilotar escuchando un poco de musica",
+		"[0.1]...[0.04] Aun parece incompleto, [pause=0.3] ¿Qué mas deberia añadirle?",
+		"[0.04]¿Una antena de comunicaciones quizas?, [pause=0.3] me gusta pilotar escuchando un poco de musica",
 	],
 	5: [
 		"[0.04]Esta quedando genial pero, ¿Y si me apetece pararme en Skirm V?, sus playas son geniales!",
-		"[0.04]Deberia de mejorar la propulsion... Voy a añadirle un motor de salto",
+		"[0.04]Deberia de mejorar la propulsion... [pause=0.3] Voy a añadirle un motor de salto",
 	],
 	6: [
-		"[0.04]Siento que aun le faltan cosas... Pero creo que se hace tarde",
+		"[0.04]Siento que aun le faltan cosas... [pause=0.3] Pero creo que se hace tarde",
 		"[0.04]Mejor despego y continuaré en otro planeta",
 	],
 	7: [
@@ -41,7 +41,7 @@ var is_dialogue_active := false
 
 func _process(delta: float) -> void:
 	if is_instance_valid(dialogue_node) and Input.is_action_just_pressed("left_click"):
-		DialogManager.on_click_advance()
+		on_click_advance()
 
 func register_dialogue_node(node: Control) -> void:
 	dialogue_node = node

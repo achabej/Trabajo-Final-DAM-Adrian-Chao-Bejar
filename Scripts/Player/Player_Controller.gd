@@ -82,14 +82,6 @@ func _physics_process(delta: float) -> void:
 	#Detener el movimiento si hay un dialogo
 	check_dialog_state(delta)
 	
-	# Aplica impulso a cuerpos rígidos con los que colisiona
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision and collision.get_collider() is RigidBody3D:
-			var rigid = collision.get_collider() as RigidBody3D
-			var force_dir = velocity.normalized()
-			rigid.apply_central_impulse(force_dir * 0.5)
-
 	# Procesa funcionalidades del jugador
 	handle_jetpack(delta)
 	handle_shooting(delta)
@@ -137,7 +129,7 @@ func handle_jetpack(delta: float) -> void:
 	# Maneja el cooldown del jetpack
 	if not jetpack_enabled:
 		jetpack_cooldown_timer += delta
-		if jetpack_cooldown_timer >= 0.75:
+		if jetpack_cooldown_timer >= 0.15:
 			jetpack_enabled = true
 			jetpack_cooldown_timer = 0.0
 

@@ -37,11 +37,12 @@ func _load_current_settings() -> void:
 
 	# Modo de pantalla
 	select_option_by_text(option_screen, ConfigurationManager.screen)
-	_update_screen_mode(ConfigurationManager.screen)
+	ConfigurationManager.set_screen_mode(ConfigurationManager.screen)
 
 	# Resolución
 	select_option_by_text(option_resolution, ConfigurationManager.resolution)
-	_update_resolution(ConfigurationManager.resolution)
+	ConfigurationManager.set_resolution(ConfigurationManager.resolution)
+
 
 func _on_slider_volume_changed(value: float) -> void:
 	ConfigurationManager.set_volume(value)
@@ -49,31 +50,14 @@ func _on_slider_volume_changed(value: float) -> void:
 
 func _on_option_screen_selected(index: int) -> void:
 	var mode = option_screen.get_item_text(index)
-	_update_screen_mode(mode)
 	ConfigurationManager.set_screen_mode(mode)
 	ConfigurationManager.save_settings()
 
-func _update_screen_mode(mode: String) -> void:
-	match mode:
-		"Ventana":
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-		"Pantalla completa":
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		"Sin bordes":
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-
 func _on_option_resolution_selected(index: int) -> void:
 	var res_text = option_resolution.get_item_text(index)
-	_update_resolution(res_text)
+	ConfigurationManager.set_resolution(res_text)
 	ConfigurationManager.set_resolution(res_text)
 	ConfigurationManager.save_settings()
-
-func _update_resolution(res_text: String) -> void:
-	if resolutions.has(res_text):
-		var size = resolutions[res_text]
-		DisplayServer.window_set_size(size)
 
 func select_option_by_text(option_button: OptionButton, text: String) -> void:
 	for i in range(option_button.item_count):

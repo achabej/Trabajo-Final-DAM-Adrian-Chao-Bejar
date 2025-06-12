@@ -158,6 +158,10 @@ func add_mat_to_player(material_type: String):
 	# Se añadirá al inventario del jugador
 	# Se hace para que sea más facil obtener más materiales
 	match material_type:
+		"Iron":
+			BuildManager.increase_mat("Iron", 1)
+		"Copper":
+			BuildManager.increase_mat("Copper", 1)
 		"Iron_Ingot":
 			BuildManager.increase_mat("Iron", 2)
 		"Copper_Ingot":
@@ -166,12 +170,16 @@ func add_mat_to_player(material_type: String):
 			BuildManager.increase_mat("Iron", 3)
 		"Copper_Plate":
 			BuildManager.increase_mat("Copper", 3)
-		"Steel_Plate":
+		"Steel_Ingot":
 			BuildManager.increase_mat("Iron", 2)
 			BuildManager.increase_mat("Copper", 2)
+		"Steel_Plate":
+			BuildManager.increase_mat("Iron", 4)
+			BuildManager.increase_mat("Copper", 4)
 		"Cristal":
 			BuildManager.increase_mat("Cristal", 1)
 		_:
+			#Esto es una broma, ignoralo
 			var root = get_tree().current_scene
 			var metal_pipe = root.get_node("Audio/Metal_Pipe")
 			metal_pipe.play()
@@ -213,7 +221,6 @@ func _check_phase_complete() -> bool:
 		var required = phases[phase_key]["Resources"][mat]
 		if storage.get(mat, 0) < required:
 			return false
-	
 	return true
 
 # Actualiza la interfaz del jugador con los datos actualizados

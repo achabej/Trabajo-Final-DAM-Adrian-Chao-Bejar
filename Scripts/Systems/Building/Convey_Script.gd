@@ -167,48 +167,12 @@ func cleanup_invalid_references():
 	if not is_instance_valid(active_entry):
 		active_entry = null
 
-func _on_merger_tick():
-	if current_material != null:
-		try_send_to_output()
-		return
-
-	for i in range(entrada_rays.size()):
-		var ray = entrada_rays[entrada_index]
-		entrada_index = (entrada_index + 1) % entrada_rays.size()
-
-		if ray.is_colliding():
-			var material = ray.get_collider()
-			if material and material.is_in_group("Material"):
-				var source_convey = find_parent_with_group(material, "Convey")
-				if source_convey:
-					var source_manager = source_convey.get_node_or_null("Convey_Manager")
-					if source_manager is ConveyScript and source_manager.current_material == material:
-						current_material = material
-						move_material_to_center(material)
-						break
-
 func move_material_to_center(material: CharacterBody3D):
 	var to_pos = get_center_position()
 	to_pos.y = material.global_position.y
 
 	# Usamos la función asíncrona para mover el material sin tween
 	await move_material_to(material, to_pos, convey_velocity)
-
-func try_send_to_output():
-	if current_material == null or not salida_raycast.is_colliding():
-		return
-
-	var salida_collider = salida_raycast.get_collider()
-	if salida_collider:
-		var salida_convey = find_parent_with_group(salida_collider, "Convey")
-		if salida_convey:
-			var salida_manager = salida_convey.get_node_or_null("Convey_Manager")
-			if salida_manager is ConveyScript and salida_manager.current_material == null:
-				var to_pos = salida_manager.get_center_position()
-				to_pos.y = current_material.global_position.y
-
-				await move_material_to(current_material, to_pos, convey_velocity)
-				_on_output_move_finished()
 
 func _on_output_move_finished():
 	current_material = null

@@ -121,7 +121,6 @@ transform = Transform3D(-1.5, 0, -1.31134e-07, 0, 1.5, 0, 1.31134e-07, 0, -1.5, 
 script = ExtResource("3_4bf5b")
 
 [node name="Extractor_Tool" parent="PlayerMesh/weapon_holder" instance=ExtResource("5_bjpnc")]
-visible = false
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -160,6 +159,7 @@ wait_time = 0.5
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Dialogue" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
@@ -608,27 +608,6 @@ theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 
-[node name="Materials_Needed" type="RichTextLabel" parent="CanvasLayer/HUD"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -93.0
-offset_top = 60.0
-offset_right = 98.0
-offset_bottom = 353.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_outline_size = 8
-theme_override_fonts/normal_font = ExtResource("18_bs3kl")
-bbcode_enabled = true
-autowrap_mode = 1
-
 [node name="Phase_Controller" type="Control" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchor_left = 1.0
@@ -666,6 +645,27 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("18_bs3kl")
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
+
+[node name="Materials_Needed" type="RichTextLabel" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = 60.0
+offset_right = 98.0
+offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/normal_font = ExtResource("18_bs3kl")
+bbcode_enabled = true
+autowrap_mode = 1
 
 [node name="Esc_Key" type="Control" parent="CanvasLayer/HUD"]
 layout_mode = 1
@@ -1280,7 +1280,7 @@ theme_override_fonts/font = ExtResource("18_bs3kl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gcxlj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lhk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_k2wmb")
-text = "Vovler
+text = "Volver
 "
 
 [node name="Volume_Slider" type="HSlider" parent="CanvasLayer/Menu/Configuration"]
